@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Commandes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/commands.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<!--    Header  -->
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">E-commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            <ul class=" collapse navbar-collapse navbar-nav me-auto mb-2 mb-md-0" id="navbarCollapse">
+                <li class="nav-item">
+                    <a class="nav-link active" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="login.html">Connexion</a>
+                </li>
+                <li class="nav-item"><a class="nav-link active" href="register.html">Inscription</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--    Body    -->
+<div class="body container mt-5"><h1>Historique des Commandes</h1>
+
+    <!-- Liste dynamique des commandes -->
+    <ul class="list-group"><?php
+      // Connexion à la base de données (exemple avec MySQLi)
+      $mysqli = new mysqli("localhost", "root", "root", "db");
+
+      // Vérifier la connexion
+      if ($mysqli->connect_error) {
+        die("Erreur de connexion à la base de données: " . $mysqli->connect_error);
+        }
+
+        // Récupérer les commandes depuis la base de données
+        $result = $mysqli->query("SELECT * FROM commandes");
+
+        while ($row = $result->fetch_assoc()) {
+        $commande_id = $row['id_commande'];
+        $commande_nom = $row['nom_commande'];
+
+        echo '
+        <li class="list-group-item">';
+            echo "<h5>Commande #$commande_id - $commande_nom</h5>";
+
+            // Récupérer les produits de la commande
+            $products_result = $mysqli->query("SELECT * FROM produits WHERE id_commande = $commande_id");
+
+            echo '
+            <div id="carouselExample" class="carousel slide" data-ride="carousel">';
+                echo '
+                <div class="carousel-inner">';
+
+                    while ($product_row = $products_result->fetch_assoc()) {
+                    $nom_produit = $product_row['nom_produit'];
+                    $description_produit = $product_row['description_produit'];
+                    $prix_produit = $product_row['prix_produit'];
+                    $image_produit = $product_row['image_produit'];
+
+                    echo '
+                    <div class="carousel-item">';
+                        echo '
+                        <div class="card">';
+                            echo "<img src='$image_produit' class='card-img-top' alt='$nom_produit'>";
+                            echo '
+                            <div class="card-body">';
+                                echo "<h5 class='card-title'>$nom_produit</h5>";
+                                echo "<p class='card-text'>$description_produit</p>";
+                                echo "<p class='card-text'>Prix : $$prix_produit</p>";
+                                echo '
+                            </div>
+                            ';
+                            echo '
+                        </div>
+                        ';
+                        echo '
+                    </div>
+                    ';
+                    }
+
+                    echo '
+                </div>
+                ';
+                echo '<a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">';
+                    echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+                    echo '<span class="sr-only">Précédent</span>';
+                    echo '</a>';
+                echo '<a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">';
+                    echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+                    echo '<span class="sr-only">Suivant</span>';
+                    echo '</a>';
+                echo '
+            </div>
+            ';
+            echo '
+        </li>
+        ';
+        }
+
+        // Fermer la connexion à la base de données
+        $mysqli->close();
+        ?>
+    </ul>
+</div>
+<!--    Footer  -->
+
+<!-- Scripts Bootstrap et jQuery (assurez-vous d'inclure jQuery avant Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
