@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Commandes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/commands.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<!--    Header  -->
+<!--    Body    -->
+<div class="body container mt-5"><h1>Historique des Commandes</h1>
+
+    <!-- Liste dynamique des commandes -->
+    <ul class="list-group">
+        <!-- Exemple de commande -->
+        <li class="list-group-item">
+            <h5>Commande #1</h5>
+
+            <!-- Carousel des produits de la commande -->
+            <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Exemple de produit 1 -->
+                    <div class="carousel-item active">
+                        <div class="card">
+                            <img src="produit1.jpg" class="card-img-top" alt="Produit 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Nom du Produit 1</h5>
+                                <p class="card-text">Description du Produit 1</p>
+                                <p class="card-text">Prix : $20.00</p>
+                            </div>
+                        </div>
+
+                        <!-- Exemple de produit 2 -->
+                        <div class="carousel-item">
+                            <div class="card">
+                                <img src="produit2.jpg" class="card-img-top" alt="Produit 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nom du Produit 2</h5>
+                                    <p class="card-text">Description du Produit 2</p>
+                                    <p class="card-text">Prix : $25.00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contrôles du carousel -->
+                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Précédent</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Suivant</span>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Ajoutez d'autres éléments de liste pour chaque commande supplémentaire -->
+
+    </ul>
+</div>
+<!--    Footer  -->
+
+<!-- Scripts Bootstrap et jQuery (assurez-vous d'inclure jQuery avant Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
