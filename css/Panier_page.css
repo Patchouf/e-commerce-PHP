@@ -1,0 +1,88 @@
+header {
+    height: 60px;
+    font-size: 16px;
+}
+
+.amazon-color {
+    background-color: #37475a;
+    color: azure;
+}
+
+
+.profil-picture-header {
+    height: 27px;
+    border-radius: 25px;
+}
+
+.button-header {
+    color: white;
+    transition: 0.15s;
+}
+
+.button-header:hover {
+    transform: scale(110%);
+}
+
+footer {
+    margin-top: 10px;
+}
+
+.bu-payer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 50%;
+    border-style: none;
+    border-radius: 10px;
+    transition: 0.15s;
+}
+
+.bu-payer:hover {
+    transform: scale(110%);
+}
+
+.panier-pic {
+    width: 40%;
+}
+
+.nom-produit {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.prix {
+    font-size: 25px;
+}
+
+.bu-croix {
+    border-style: none; 
+    background-color: white; 
+    width: 60px; 
+    margin-top: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+    header {
+        height: 100px;
+        font-size: 16px;
+    }
+
+    .bu-croix {
+        border-style: none; 
+        background-color: white; 
+        width: 40px; 
+        margin-top: 115%;
+    }
+
+    .nom-produit {
+        font-size: 15px;
+        font-weight: bold;
+    }
+    
+    .prix {
+        font-size: 12px;
+    }
+
+    .panier-pic {
+        width: 100%;
+    }
+}
