@@ -1,0 +1,57 @@
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.navbar-nav {
+    --bs-nav-link-padding-x: 0;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: var(--bs-navbar-color);
+    justify-content: flex-end;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.caca {
+    font-size: 20px;
+    margin-right: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+.about-veno .logo {
+    margin-bottom: 40px;
+}
+.about-veno ul li a {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    background-color: #a24bb4;
+    border-radius: 50%;
+    font-size: 15px;
+    color: #fff;
+    margin-right: 3px;
+    transition: all 0.5s;
+}
