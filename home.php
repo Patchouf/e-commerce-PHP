@@ -1,5 +1,19 @@
-<?php 
-  include("Utils.inc.php")
+<?php
+include("Utils.inc.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['Deconnexion'])) {
+    setcookie('SUID', '', -1, '/e-commerce-php');
+    $page = $_SERVER['PHP_SELF'];
+    header("Refresh: 0; url=$page");
+  }
+}
+
+if (isset($_COOKIE["SUID"])) {
+  include("Conn_header.php");
+} else {
+  include("Deconn_header.php");
+}
 ?>
 
 <!doctype html>
@@ -8,49 +22,16 @@
 <head>
   <!-- <script src="../assets/js/color-modes.js"></script> -->
   <meta charset="utf-8">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
 </head>
 
 <body class="d-flex flex-column h-100">
-  <header>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">E-commerce</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-        <ul class=" collapse navbar-collapse navbar-nav me-auto mb-2 mb-md-0" id="navbarCollapse">
-          <li class="nav-item">
-            <a class="nav-link active" href="home.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="login.php">Connexion</a>
-          </li>
-          <li class="nav-item"><a class="nav-link active" href="register.php">Inscription</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
   <!-- CATEGORY -->
   <section class="category-carousel" style="margin-top: 50px; margin-right:0px; margin-left: 0px;">
     <h2>Produits</h2>
@@ -142,7 +123,7 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
       $(".owl-carousel").owlCarousel({
         items: 4,
         loop: true,
@@ -180,10 +161,7 @@
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Base de données</a></li>
           </ul>
         </div>
-
-        
       </div>
-
       <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
         <p>&copy; E-commerce-PHP, Inc. Tout droits réserver.</p>
       </div>
@@ -192,11 +170,3 @@
 </footer>
 
 </html>
-
-<?php 
-  if (isset($_SESSION['SSID']) && isset($_COOKIE['SSID'])) {
-    Redirect('profil.php', false);
-  } else {
-    echo "PB Session!!!";
-  }
-?>
