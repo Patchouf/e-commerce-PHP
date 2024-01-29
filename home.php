@@ -1,5 +1,5 @@
 <?php 
-  include("Conn.inc.php")
+  include("Utils.inc.php")
 ?>
 
 <!doctype html>
@@ -192,3 +192,11 @@
 </footer>
 
 </html>
+
+<?php 
+  if (isset($_SESSION['SSID']) && isset($_COOKIE['SSID'])) {
+    Redirect('profil.php', false);
+  } else {
+    echo "PB Session!!!";
+  }
+?>

@@ -1,5 +1,5 @@
 <?php 
-  include("Conn.inc.php")
+  include("Utils.inc.php")
 ?>
 
 <!doctype html>
@@ -70,15 +70,44 @@
 <?php
   if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $query = "SELECT Token FROM Auth JOIN User ON Auth.Id = User.Id JOIN Login_info ON User.Id = Login_info.Id WHERE Login_info.mail = '" . $email . "' AND Login_info.Password = '" . $hash . "';";
-    echo $query;
-    // try {
-    //     mysqli_query($conn, $query);
-    //     echo "You are now registerd!";
-    // } 
-    // catch(mysqli_sql_exception) {
-    //   echo "That username is taken";
-    // }
+    // $hash = password_hash($password, PASSWORD_DEFAULT);
+    $query = "SELECT Password FROM login_info WHERE mail = '$email';";
+
+    try {
+      $result = $conn->query($query);
+      if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+          $pass = $row["Password"];
+        }
+      } else {
+        $pass = "0 results";
+      }
+    } 
+    catch(mysqli_sql_exception) {
+      echo "Problème";
+    }
+
+    if (password_verify($password, $pass)) {
+      $token = password_hash($password, PASSWORD_BCRYPT);
+
+      // session_start();
+      // /*session is started if you don't write this line can't use $_Session  global variable*/
+      // // $_SESSION["SSID"] = $token;
+      // $_COOKIE["SSID"] = $token;
+
+      // echo session_id();
+
+      // if (isset($_SESSION['SSID']) && isset($_COOKIE['SSID'])) {
+      //   Redirect('home.php', false);
+      // } else {
+      //   echo "PB Session!!!";
+      // }
+      
+
+      echo "You are connected";
+    } else {
+      echo "You are not connected";
+    }
   }
 ?>
