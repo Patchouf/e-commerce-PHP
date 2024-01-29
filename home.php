@@ -1,3 +1,7 @@
+<?php 
+  include("Conn.inc.php")
+?>
+
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 
@@ -35,18 +39,12 @@
         </div>
         <ul class=" collapse navbar-collapse navbar-nav me-auto mb-2 mb-md-0" id="navbarCollapse">
           <li class="nav-item">
-            <a class="nav-link active" href="home.html">Home</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link active" href="panier.html">Panier</a>
+            <a class="nav-link active" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="profil.html">Profil</a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link active" href="login.html">Connexion</a>
+            <a class="nav-link active" href="login.php">Connexion</a>
           </li>
-          <li class="nav-item"><a class="nav-link active" href="register.html">Inscription</a>
+          <li class="nav-item"><a class="nav-link active" href="register.php">Inscription</a>
           </li>
         </ul>
       </div>
@@ -100,7 +98,7 @@
   </section>
   <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
     <h3>Maison</h3>
-    <form action="">
+    <form action="product.php" method="get">
       <div class="owl-carousel owl-theme">
         <div class="category-item">
           <img src="img/popular_item_1.jpg" alt="Category 1">
@@ -109,8 +107,8 @@
         </div>
         <div class="category-item">
           <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
+          <h3>Category 234</h3>
+          <button class="add-to-cart" name="product" value="4">View Product</button>
         </div>
         <div class="category-item">
           <img src="img/popular_item_1.jpg" alt="Category 3">

@@ -1,3 +1,7 @@
+<?php 
+  include("Conn.inc.php")
+?>
+
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -18,17 +22,33 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
   <main class="form-signin w-100 m-auto">
-    <form>
+    <form action="login.php" method="post">
       <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
       <h1 class="h3 mb-3 fw-normal">Connexion</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
         <label for="floatingInput">Adresse mail</label>
+        <?php
+          if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
+            if(empty($email)) {
+                echo "Please enter an email <br>";
+            }
+          }
+        ?>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
         <label for="floatingPassword">Mot de passe</label>
+        <?php
+          if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+            if(empty($password)) {
+                echo "Please enter a password <br>";
+            }
+          }
+        ?>
       </div>
 
       <div class="form-check text-start my-3">
@@ -37,8 +57,7 @@
           Se souvenir de moi
         </label>
       </div>
-      <button class="btn btn-primary w-100 py-2" type="submit"><a class="nav-link active"
-          href="home.html">Connexion</a></button>
+      <button class="btn btn-primary w-100 py-2" type="submit"><a class="nav-link active">Connexion</a></button>
       <!-- <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p> -->
     </form>
   </main>
@@ -47,3 +66,19 @@
 </body>
 
 </html>
+
+<?php
+  if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $query = "SELECT Token FROM Auth JOIN User ON Auth.Id = User.Id JOIN Login_info ON User.Id = Login_info.Id WHERE Login_info.mail = '" . $email . "' AND Login_info.Password = '" . $hash . "';";
+    echo $query;
+    // try {
+    //     mysqli_query($conn, $query);
+    //     echo "You are now registerd!";
+    // } 
+    // catch(mysqli_sql_exception) {
+    //   echo "That username is taken";
+    // }
+  }
+?>

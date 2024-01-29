@@ -1,3 +1,7 @@
+<?php 
+  include("Conn.inc.php")
+?>
+
 <!doctype html>
 <html lang="en">
 
