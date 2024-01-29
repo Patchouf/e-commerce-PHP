@@ -21,25 +21,55 @@
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
   <main class="form-signin w-100 m-auto">
-    <form>
-      <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+    <form action="register.php" method="post">
       <h1 class="h3 mb-3 fw-normal">Incription</h1>
-
       <div class="form-floating">
-        <input type="nom" class="form-control" id="floatingInput" placeholder="nom">
+        <input type="nom" class="form-control" name="username" placeholder="nom">
         <label for="floatingInput">Nom d'utilisateur</label>
+        <?php
+          if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+            if(empty($username)) {
+                echo "Please enter a username <br>";
+            }
+          }
+        ?>
       </div>
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" class="form-control" name="email" placeholder="name@example.com">
         <label for="floatingInput">Adresse mail</label>
+        <?php
+          if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
+            if(empty($email)) {
+                echo "Please enter a email <br>";
+            }
+          }
+        ?>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password">
         <label for="floatingPassword">Mot de passe</label>
+        <?php
+          if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+            if(empty($password)) {
+                echo "Please enter a password <br>";
+            }
+          }
+        ?>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingAPassword" placeholder="Password">
+        <input type="password" class="form-control" name="confpassword" placeholder="Password">
         <label for="floatingPassword">Confirmer le mot de passe</label>
+        <?php
+          if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $confpassword = filter_input(INPUT_POST, "confpassword", FILTER_SANITIZE_SPECIAL_CHARS);
+            if(empty($password) || $password != $confpassword) {
+                echo "Please confirm the password <br>";
+            }
+          }
+        ?>
       </div>
       <div class="form-check text-start my-3">
         <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
@@ -47,12 +77,15 @@
           Se souvenir de moi
         </label>
       </div>
-      <button class="btn btn-primary w-100 py-2" type="submit"> <a class="nav-link active"
-          href="home.html">Connexion</a></button>
+      <button class="btn btn-primary w-100 py-2" type="submit"> <a class="nav-link active">Connexion</a></button>
     </form>
   </main>
 
 
 </body>
-
+<?php 
+  if($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+  }
+?>
 </html>

@@ -210,6 +210,11 @@
         </footer>
     </div>
 </footer>
-
-
 </html>
+
+<?php 
+    if($_SERVER["REQUEST_METHOD"] == "GET") {
+        $value = $_GET["product"];
+        echo $value;
+    }
+?>
