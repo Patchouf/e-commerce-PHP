@@ -55,3 +55,16 @@ function getToken($email, $hash, $conn)
     echo "Problème";
   }
 }
+
+function EnvoieMail() {
+  ini_set("SMTP", "smtp.gmail.com");
+  ini_set('smtp_port', 1025);
+  $verif = mail("yann.fournier@ynov.com","Mail php","Voici un mail de php");
+  if ($verif) {
+    echo "Le mail à bien été envoyer!";
+  } else {
+    echo "Le mail n'a pas été envoyer";
+  }
+}
+
+EnvoieMail();

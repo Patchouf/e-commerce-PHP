@@ -153,8 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "PB! Auth";
   }
 
-  setcookie("SUID", $token);
-
+  setcookie('SUID', $token);
   header('Location: home.php');
 }
 ?>

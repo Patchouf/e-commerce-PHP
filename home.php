@@ -3,7 +3,7 @@ include("Utils.inc.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Deconnexion'])) {
-    setcookie('SUID', '', -1, '/');
+    setcookie('SUID', '', -1);
     $page = $_SERVER['PHP_SELF'];
     header("Refresh: 0; url=$page");
   }
