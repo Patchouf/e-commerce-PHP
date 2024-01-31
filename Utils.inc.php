@@ -68,21 +68,21 @@ function getToken($email, $hash, $conn)
 
 // phpinfo();
 
-function EnvoieMail()
-{
-  $to      = 'ya.fourni@icloud.com';
-  $subject = 'Mail php';
-  $message = 'Voici un mail de php';
+// function EnvoieMail()
+// {
+//   $to      = 'ya.fourni@icloud.com';
+//   $subject = 'Mail php';
+//   $message = 'Voici un mail de php';
 
-  $verif = mail($to, $subject, $message);
-  // $verif = mail("yann.fournier@ynov.com","Mail php","Voici un mail de php");
-  // $verif = mail("ya.fourni@icloud.com","Mail php","Voici un mail de php");
-  if ($verif) {
-    echo "Le mail à bien été envoyer!";
-  } else {
-    echo "Le mail n'a pas été envoyer";
-  }
-}
+//   $verif = mail($to, $subject, $message);
+//   // $verif = mail("yann.fournier@ynov.com","Mail php","Voici un mail de php");
+//   // $verif = mail("ya.fourni@icloud.com","Mail php","Voici un mail de php");
+//   if ($verif) {
+//     echo "Le mail à bien été envoyer!";
+//   } else {
+//     echo "Le mail n'a pas été envoyer";
+//   }
+// }
 
 
 // function EnvoieMail()
@@ -94,18 +94,18 @@ function EnvoieMail()
 //     //Server settings
 //     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
 //     $mail->isSMTP();                                            //Send using SMTP
-//     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-//     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-//     $mail->Username   = 'PHP';                     //SMTP username
-//     $mail->Password   = 'ProjetECommercePHP';                               //SMTP password
-//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-//     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
+//     $mail->Host       = 'localhost';                     //Set the SMTP server to send through
+//     // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+//     // $mail->Username   = 'PHP';                     //SMTP username
+//     // $mail->Password   = 'ProjetECommercePHP';                               //SMTP password
+//     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+//     $mail->Port       = 1025;                               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+//     $mail->SMTPAutoTLS = false;
 //     // Expéditeur
-//     $mail->setFrom('projet.e.commerce.php@gmail.com');
+//     $mail->setFrom('projet.e.commerce.php@gmail.com', 'Mailer');
 
 //     //Destinataires
-//     $mail->addAddress('ya.fourni@icloud.com');     //Add a recipient
+//     $mail->addAddress('ya.fourni@icloud.com', 'Recepient');     //Add a recipient
 //     // $mail->addAddress('ellen@example.com');               //Name is optional
 //     // $mail->addReplyTo('info@example.com', 'Information');
 //     // $mail->addCC('cc@example.com');
@@ -128,4 +128,4 @@ function EnvoieMail()
 //   }
 // }
 
-EnvoieMail();
+// EnvoieMail();
