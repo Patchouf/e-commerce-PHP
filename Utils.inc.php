@@ -18,16 +18,16 @@ $db_pass = "";
 $db_name = "projet-ecommerce";
 $conn = "";
 
-// try {
-//   $conn = mysqli_connect(
-//     $db_server,
-//     $db_user,
-//     $db_pass,
-//     $db_name
-//   );
-// } catch (mysqli_sql_exception) {
-//   echo "Could not connect! <br>";
-// }
+try {
+  $conn = mysqli_connect(
+    $db_server,
+    $db_user,
+    $db_pass,
+    $db_name
+  );
+} catch (mysqli_sql_exception) {
+  echo "Could not connect! <br>";
+}
 
 function getNumber($table, $conn)
 {
@@ -96,8 +96,8 @@ function getToken($email, $hash, $conn)
 //     $mail->isSMTP();                                            //Send using SMTP
 //     $mail->Host       = 'localhost';                     //Set the SMTP server to send through
 //     // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-//     // $mail->Username   = 'PHP';                     //SMTP username
-//     // $mail->Password   = 'ProjetECommercePHP';                               //SMTP password
+//     // $mail->Username   = '';                     //SMTP username
+//     // $mail->Password   = '';                               //SMTP password
 //     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 //     $mail->Port       = 1025;                               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 //     $mail->SMTPAutoTLS = false;
