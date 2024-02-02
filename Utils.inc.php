@@ -66,6 +66,77 @@ function getToken($email, $hash, $conn)
   }
 }
 
+// Permet de créer un élément html (balise, class, style, innerhtml, ...)
+function createElement($domObj, $tag_name, $value = NULL, $attributes = NULL)
+{
+    $element = ($value != NULL) ? $domObj->createElement($tag_name, $value) : $domObj->createElement($tag_name);
+
+    if ($attributes != NULL) {
+        foreach ($attributes as $attr => $val) {
+            $element->setAttribute($attr, $val);
+        }
+    }
+
+    return $element;
+}
+
+// Permet de créer le rendu de la page home.php
+function createHome($conn) {
+  $query = "SELECT * FROM Category;";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        createCarousel($row["Name"], $row["Id"], $conn);
+      }
+    } else {
+      echo "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+}
+
+// Permet de créer les carroussels de la page home.php
+function createCarousel($category, $id, $conn) {
+
+  $dom = new DOMDocument('1.0', 'utf-8');
+  $section = createElement($dom, 'section', '', array('class' => 'category-carousel', 'style' => 'margin-top: 10px; margin-right:0px; margin-left: 0px;'));
+  $titre = createElement($dom, 'h3', $category." ".$id);
+  $form = createElement($dom, 'form', '', array('action' => 'product.php', 'methode' => 'get'));
+  $div = createElement($dom, 'div', '', array('class' => 'owl-carousel owl-theme'));
+  
+  $query = "SELECT * FROM Items WHERE Id = ". $id . ";";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        $div2 = createElement($dom, 'div', '', array('class' => 'category-item'));
+        $img = createElement($dom, 'img', '', array('src' => 'img/popular_item_1.jpg', 'alt' => $row["Name"]));
+        $titr2 = createElement($dom, 'h3', $row["Name"]);
+        $bouton = createElement($dom, 'button', 'View Product', array('class' => 'add-to-cart', 'name' => 'product', 'value' => $row["Id"]));
+
+        $div2->append($img);
+        $div2->append($titr2);
+        $div2->append($bouton);
+        $div->append($div2);
+      }
+    } else {
+      echo "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+
+  $section->append($titre);
+  $form->append($div);
+  $section->append($form);
+  $dom->appendChild($section);
+  echo $dom->saveXML();
+}
+
 // phpinfo();
 
 // function EnvoieMail()

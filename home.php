@@ -32,9 +32,9 @@ if (isset($_COOKIE["SUID"])) {
 </head>
 
 <body class="d-flex flex-column h-100">
+  <h2 style="margin-top:100px;">Produits</h2>
   <!-- CATEGORY -->
-  <section class="category-carousel" style="margin-top: 50px; margin-right:0px; margin-left: 0px;">
-    <h2>Produits</h2>
+  <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
     <h3>Livres</h3>
     <form>
       <div class="owl-carousel owl-theme">
@@ -120,6 +120,10 @@ if (isset($_COOKIE["SUID"])) {
       </div>
     </form>
   </section>
+  <?php
+  // $dom = new DOMDocument('1.0', 'utf-8');
+  createHome($conn);
+  ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script>
