@@ -1,5 +1,5 @@
-<?php 
-  include("Conn.inc.php")
+<?php
+include("Utils.inc.php")
 ?>
 
 <!doctype html>
@@ -9,11 +9,8 @@
   <script src="../assets/js/color-modes.js"></script>
 
   <meta charset="utf-8">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/login.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
@@ -30,24 +27,24 @@
         <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
         <label for="floatingInput">Adresse mail</label>
         <?php
-          if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
-            if(empty($email)) {
-                echo "Please enter an email <br>";
-            }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
+          if (empty($email)) {
+            echo "Please enter an email <br>";
           }
+        }
         ?>
       </div>
       <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
         <label for="floatingPassword">Mot de passe</label>
         <?php
-          if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-            if(empty($password)) {
-                echo "Please enter a password <br>";
-            }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+          if (empty($password)) {
+            echo "Please enter a password <br>";
           }
+        }
         ?>
       </div>
 
@@ -68,17 +65,32 @@
 </html>
 
 <?php
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $query = "SELECT Token FROM Auth JOIN User ON Auth.Id = User.Id JOIN Login_info ON User.Id = Login_info.Id WHERE Login_info.mail = '" . $email . "' AND Login_info.Password = '" . $hash . "';";
-    echo $query;
-    // try {
-    //     mysqli_query($conn, $query);
-    //     echo "You are now registerd!";
-    // } 
-    // catch(mysqli_sql_exception) {
-    //   echo "That username is taken";
-    // }
+  // $hash = password_hash($password, PASSWORD_DEFAULT);
+  $query = "SELECT Password FROM login_info WHERE mail = '$email';";
+
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        $pass = $row["Password"];
+      }
+    } else {
+      $pass = "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
   }
+
+  if (password_verify($password, $pass)) {
+    $token = password_hash($password, PASSWORD_BCRYPT);
+
+    setcookie('SUID', $token);
+    header('Location: home.php');
+  } else {
+    echo "You are not connected";
+  }
+}
 ?>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 include("Conn.inc.php");
 
@@ -26,6 +27,10 @@ $seller = getSomethink('user', $MainRow["Seller"])["Name"];
 $rating = getSomethink('rating', $MainRow["Rating"])["Rating"];
 $commentId = getSomethink('rating', $MainRow["Rating"])["Comment"];
 
+=======
+<?php 
+  include("Utils.inc.php")
+>>>>>>> 2b5f3dd17df76065941cddd16c54340b675a7dcd
 ?>
 
 <!doctype html>

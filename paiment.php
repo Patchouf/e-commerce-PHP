@@ -1,5 +1,5 @@
 <?php 
-  include("Conn.inc.php")
+  include("Utils.inc.php")
 ?>
 
 <!doctype html>
@@ -306,9 +306,5 @@
         </footer>
     </div>
 </footer>
-<!-- Scripts Bootstrap et jQuery (assurez-vous d'inclure jQuery avant Bootstrap)
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
 </html>
