@@ -133,7 +133,7 @@
         <div class="category-item">
           <img src="img/popular_item_1.jpg" alt="Category 2">
           <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
+          <button class="add-to-cart" >View Product</button>
         </div>
         <!-- Add more category items as needed -->
       </div>

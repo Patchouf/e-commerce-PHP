@@ -12,7 +12,7 @@
             $db_pass,
             $db_name
         );
-    } catch (mysqli_sql_exception) {
+    } catch (mysqli_sql_exception $ex) {
         echo "Could not connect! <br>";
     }
 
