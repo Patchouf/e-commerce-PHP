@@ -76,7 +76,7 @@ if (isset($_COOKIE["SUID"])) {
       </div>
     </form>
   </section> -->
-  <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
+  <!-- <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
     <h3>Maison</h3>
     <form action="product.php" method="get">
       <div class="owl-carousel owl-theme">
@@ -117,7 +117,7 @@ if (isset($_COOKIE["SUID"])) {
         </div>
       </div>
     </form>
-  </section>
+  </section> -->
   <?php
   // $dom = new DOMDocument('1.0', 'utf-8');
   createHome($conn);

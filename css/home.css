@@ -64,9 +64,10 @@ h2 {
   padding: 12px;
 }
 
-.category-item img {
-  width: 80%;
-  height: auto;
+.image-item{
+  block-size: 100px;
+  width: 100px;
+  height: 100px;
   border-radius: 20px;
   box-shadow: 0 0 5px;
 }

@@ -133,7 +133,7 @@ function createCarousel($category, $id, $conn) {
       while ($row = $result->fetch_assoc()) {
         $url_image = getItemImage($row["Photo"], $conn);
         $div2 = createElement($dom, 'div', '', array('class' => 'category-item'));
-        $img = createElement($dom, 'img', '', array('src' => $url_image, 'alt' => $row["Name"]));
+        $img = createElement($dom, 'img', '', array('src' => $url_image, 'alt' => $row["Name"], 'class' => 'image-item', 'style' => 'block-size: 200px; width: 200px; height: 200px; border-radius: 20px; box-shadow: 0 0 5px;'));
         // $img = createElement($dom, 'img', '', array('src' => 'img/popular_item_1.jpg', 'alt' => $row["Name"]));
         $titr2 = createElement($dom, 'h3', $row["Name"]);
         $bouton = createElement($dom, 'button', 'View Product', array('class' => 'add-to-cart', 'name' => 'product', 'value' => $row["Id"]));
