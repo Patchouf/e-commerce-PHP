@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS Comment
 CREATE TABLE IF NOT EXISTS Rating
 (
     Id      INT NOT NULL,
-    Rating  INT NOT NULL,
+    Rating  FLOAT NOT NULL,
     Comment INT NOT NULL
 );
 

@@ -26,7 +26,7 @@
         "Street": "25 avenue des Champs-Élysées",
         "City": "Paris",
         "CP": "75008",
-        "State": "Île de France",
+        "State": "Ile de France",
         "Country": "France"
       },
       {
@@ -695,7 +695,8 @@
         "Id": "67",
         "Comment": "Livraison rapide et produit de qualité, je recommande vivement.",
         "User": "2"
-      },{
+      },
+      {
         "Id": "67",
         "Comment": "Service client efficace, merci pour votre professionnalisme.",
         "User": "0"
@@ -1569,7 +1570,19 @@
     "data": [
       {
         "Id": "0",
-        "Payment": "Pay"
+        "Payment": "Paypal"
+      },
+      {
+        "Id": "1",
+        "Payment": "Visa"
+      },
+      {
+        "Id": "2",
+        "Payment": "Mastercard"
+      },
+      {
+        "Id": "3",
+        "Payment": "American Express"
       }
     ]
   },
@@ -1898,8 +1911,373 @@
     "data": [
       {
         "Id": "0",
-        "Rating": "4",
-        "Comment": null
+        "Rating": "4.3",
+        "Comment": "0"
+      },
+      {
+        "Id": "1",
+        "Rating": "2.7",
+        "Comment": "1"
+      },
+      {
+        "Id": "2",
+        "Rating": "5.0",
+        "Comment": "2"
+      },
+      {
+        "Id": "3",
+        "Rating": "1.5",
+        "Comment": "3"
+      },
+      {
+        "Id": "4",
+        "Rating": "3.8",
+        "Comment": "4"
+      },
+      {
+        "Id": "5",
+        "Rating": "4.5",
+        "Comment": "5"
+      },
+      {
+        "Id": "6",
+        "Rating": "0.9",
+        "Comment": "6"
+      },
+      {
+        "Id": "7",
+        "Rating": "2.1",
+        "Comment": "7"
+      },
+      {
+        "Id": "8",
+        "Rating": "4.7",
+        "Comment": "8"
+      },
+      {
+        "Id": "9",
+        "Rating": "3.2",
+        "Comment": "9"
+      },
+      {
+        "Id": "10",
+        "Rating": "4.9",
+        "Comment": "10"
+      },
+      {
+        "Id": "11",
+        "Rating": "0.4",
+        "Comment": "11"
+      },
+      {
+        "Id": "12",
+        "Rating": "2.6",
+        "Comment": "12"
+      },
+      {
+        "Id": "13",
+        "Rating": "3.7",
+        "Comment": "13"
+      },
+      {
+        "Id": "14",
+        "Rating": "1.8",
+        "Comment": "14"
+      },
+      {
+        "Id": "15",
+        "Rating": "4.2",
+        "Comment": "15"
+      },
+      {
+        "Id": "16",
+        "Rating": "4.4",
+        "Comment": "16"
+      },
+      {
+        "Id": "17",
+        "Rating": "0.6",
+        "Comment": "17"
+      },
+      {
+        "Id": "18",
+        "Rating": "2.3",
+        "Comment": "18"
+      },
+      {
+        "Id": "19",
+        "Rating": "5.0",
+        "Comment": "19"
+      },
+      {
+        "Id": "20",
+        "Rating": "3.1",
+        "Comment": "20"
+      },
+      {
+        "Id": "21",
+        "Rating": "4.8",
+        "Comment": "21"
+      },
+      {
+        "Id": "22",
+        "Rating": "1.0",
+        "Comment": "22"
+      },
+      {
+        "Id": "23",
+        "Rating": "2.9",
+        "Comment": "23"
+      },
+      {
+        "Id": "24",
+        "Rating": "3.6",
+        "Comment": "24"
+      },
+      {
+        "Id": "25",
+        "Rating": "1.7",
+        "Comment": "25"
+      },
+      {
+        "Id": "26",
+        "Rating": "4.1",
+        "Comment": "26"
+      },
+      {
+        "Id": "27",
+        "Rating": "4.6",
+        "Comment": "27"
+      },
+      {
+        "Id": "28",
+        "Rating": "0.2",
+        "Comment": "28"
+      },
+      {
+        "Id": "29",
+        "Rating": "2.5",
+        "Comment": "29"
+      },
+      {
+        "Id": "30",
+        "Rating": "3.9",
+        "Comment": "30"
+      },
+      {
+        "Id": "31",
+        "Rating": "1.2",
+        "Comment": "31"
+      },
+      {
+        "Id": "32",
+        "Rating": "4.0",
+        "Comment": "32"
+      },
+      {
+        "Id": "33",
+        "Rating": "4.3",
+        "Comment": "33"
+      },
+      {
+        "Id": "34",
+        "Rating": "0.8",
+        "Comment": "34"
+      },
+      {
+        "Id": "35",
+        "Rating": "2.2",
+        "Comment": "35"
+      },
+      {
+        "Id": "36",
+        "Rating": "4.5",
+        "Comment": "36"
+      },
+      {
+        "Id": "37",
+        "Rating": "1.4",
+        "Comment": "37"
+      },
+      {
+        "Id": "38",
+        "Rating": "3.5",
+        "Comment": "38"
+      },
+      {
+        "Id": "39",
+        "Rating": "3.0",
+        "Comment": "39"
+      },
+      {
+        "Id": "40",
+        "Rating": "1.9",
+        "Comment": "40"
+      },
+      {
+        "Id": "41",
+        "Rating": "4.7",
+        "Comment": "41"
+      },
+      {
+        "Id": "42",
+        "Rating": "4.2",
+        "Comment": "42"
+      },
+      {
+        "Id": "43",
+        "Rating": "0.7",
+        "Comment": "43"
+      },
+      {
+        "Id": "44",
+        "Rating": "2.4",
+        "Comment": "44"
+      },
+      {
+        "Id": "45",
+        "Rating": "4.6",
+        "Comment": "45"
+      },
+      {
+        "Id": "46",
+        "Rating": "1.1",
+        "Comment": "46"
+      },
+      {
+        "Id": "47",
+        "Rating": "3.8",
+        "Comment": "47"
+      },
+      {
+        "Id": "48",
+        "Rating": "3.3",
+        "Comment": "48"
+      },
+      {
+        "Id": "49",
+        "Rating": "1.6",
+        "Comment": "49"
+      },
+      {
+        "Id": "50",
+        "Rating": "4.4",
+        "Comment": "50"
+      },
+      {
+        "Id": "51",
+        "Rating": "4.9",
+        "Comment": "51"
+      },
+      {
+        "Id": "52",
+        "Rating": "0.3",
+        "Comment": "52"
+      },
+      {
+        "Id": "53",
+        "Rating": "2.8",
+        "Comment": "53"
+      },
+      {
+        "Id": "54",
+        "Rating": "4.1",
+        "Comment": "54"
+      },
+      {
+        "Id": "55",
+        "Rating": "1.3",
+        "Comment": "55"
+      },
+      {
+        "Id": "56",
+        "Rating": "3.7",
+        "Comment": "56"
+      },
+      {
+        "Id": "57",
+        "Rating": "3.4",
+        "Comment": "57"
+      },
+      {
+        "Id": "58",
+        "Rating": "2.0",
+        "Comment": "58"
+      },
+      {
+        "Id": "59",
+        "Rating": "4.8",
+        "Comment": "59"
+      },
+      {
+        "Id": "60",
+        "Rating": "3.3",
+        "Comment": "60"
+      },
+      {
+        "Id": "61",
+        "Rating": "1.0",
+        "Comment": "61"
+      },
+      {
+        "Id": "62",
+        "Rating": "4.0",
+        "Comment": "62"
+      },
+      {
+        "Id": "63",
+        "Rating": "4.5",
+        "Comment": "63"
+      },
+      {
+        "Id": "64",
+        "Rating": "0.5",
+        "Comment": "64"
+      },
+      {
+        "Id": "65",
+        "Rating": "2.1",
+        "Comment": "65"
+      },
+      {
+        "Id": "66",
+        "Rating": "4.3",
+        "Comment": "66"
+      },
+      {
+        "Id": "67",
+        "Rating": "1.2",
+        "Comment": "67"
+      },
+      {
+        "Id": "68",
+        "Rating": "3.6",
+        "Comment": "68"
+      },
+      {
+        "Id": "69",
+        "Rating": "3.1",
+        "Comment": "69"
+      },
+      {
+        "Id": "70",
+        "Rating": "1.7",
+        "Comment": "70"
+      },
+      {
+        "Id": "71",
+        "Rating": "4.6",
+        "Comment": "71"
+      },
+      {
+        "Id": "72",
+        "Rating": "4.2",
+        "Comment": "72"
+      },
+      {
+        "Id": "73",
+        "Rating": "0.1",
+        "Comment": "73"
       }
     ]
   },
