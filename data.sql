@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 12 fév. 2024 à 11:06
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Généré le : lun. 12 fév. 2024 à 12:06
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `aaa`
+-- Base de données : `projet-ecommerce`
 --
 
 -- --------------------------------------------------------
@@ -35,6 +35,15 @@ CREATE TABLE `address` (
   `State` varchar(14) DEFAULT NULL,
   `Country` varchar(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `address`
+--
+
+INSERT INTO `address` (`Id`, `Street`, `City`, `CP`, `State`, `Country`) VALUES
+(0, '20 rue de la Paix', 'Paris', 75002, 'Ile de France', 'France'),
+(1, '25 avenue des Champs-Ã‰lysÃ©es', 'Paris', 75008, 'Ile de France', 'France'),
+(2, '15 rue de Rivoli', 'Lyon', 69001, 'Auvergne-Rhône', 'France');
 
 -- --------------------------------------------------------
 
@@ -75,24 +84,14 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`Id`, `Name`) VALUES
 (0, 'Génériques'),
-(NULL, NULL),
 (1, 'Vaccins'),
-(NULL, NULL),
 (2, 'Ustensiles médicales'),
-(NULL, NULL),
 (3, 'Dispositifs médical'),
-(NULL, NULL),
 (4, 'Echantillons bactéries'),
-(NULL, NULL),
 (5, 'Echantillons champigons'),
-(NULL, NULL),
 (6, 'Echantillons parasites'),
-(NULL, NULL),
-(NULL, NULL),
 (7, 'Echantillons virus'),
-(NULL, NULL),
 (8, 'Echantillons autres agents pathogènes'),
-(NULL, NULL),
 (9, 'Organes');
 
 -- --------------------------------------------------------
@@ -137,6 +136,145 @@ CREATE TABLE `comment` (
   `Comment` varchar(199) DEFAULT NULL,
   `User` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `comment`
+--
+
+INSERT INTO `comment` (`Id`, `Comment`, `User`) VALUES
+(0, 'Excellent produit, très efficace ! Je le recommande vivement.', 0),
+(0, 'Livraison rapide et service client au top. Merci beaucoup !', 1),
+(0, 'Produit conforme à mes attentes, je suis pleinement satisfait.', 2),
+(1, 'Très content de mon achat, merci pour votre professionnalisme.', 0),
+(1, 'Commande reçue en parfait état, je recommande ce vendeur.', 1),
+(2, 'Super produit, je suis agréablement surpris par sa qualité.', 0),
+(3, 'Service client réactif et aimable, je suis très satisfait.', 1),
+(3, 'Ce produit a vraiment amélioré ma qualité de vie, je le recommande à tous.', 2),
+(4, 'Livraison rapide et produit conforme à la description. Parfait !', 0),
+(4, 'Je suis satisfait de mon achat, merci au vendeur pour sa réactivité.', 1),
+(5, 'Excellent service client, j\'ai reçu des réponses rapides à mes questions.', 0),
+(6, 'Ce produit est vraiment efficace, je le recommande sans hésitation.', 1),
+(7, 'Livraison rapide et emballage soigné. Je suis très satisfait de mon achat.', 2),
+(7, 'Produit de qualité, je suis très content de mon achat.', 0),
+(8, 'Service client exceptionnel, ils ont résolu mon problème rapidement.', 1),
+(9, 'Très bon rapport qualité-prix pour ce produit, je le recommande.', 0),
+(10, 'Livraison rapide et produit conforme à mes attentes. Merci !', 1),
+(11, 'Excellent vendeur, je recommande vivement !', 2),
+(11, 'Produit de qualité, je suis entièrement satisfait de mon achat.', 0),
+(12, 'Je suis très content de mon achat, merci beaucoup !', 1),
+(12, 'Service client impeccable, je recommande ce vendeur.', 2),
+(12, 'Produit conforme à mes attentes, je le recommande vivement.', 0),
+(13, 'Très bon produit, je suis satisfait de mon achat.', 1),
+(14, 'Livraison rapide et produit de qualité, je recommande ce vendeur.', 0),
+(14, 'Excellent service client, j\'ai été très bien accompagné tout au long de mon achat.', 1),
+(15, 'Ce produit correspond parfaitement à mes attentes, je suis satisfait.', 2),
+(15, 'Livraison rapide et emballage soigné, je recommande ce vendeur.', 0),
+(16, 'Service client réactif et produit de qualité, je recommande !', 1),
+(17, 'Produit conforme à la description, je suis satisfait de mon achat.', 2),
+(18, 'Très bon rapport qualité-prix, je recommande ce produit.', 0),
+(19, 'Livraison rapide et produit conforme à mes attentes. Parfait !', 1),
+(20, 'Ce produit est vraiment efficace, je le recommande à tous.', 2),
+(20, 'Service client impeccable, merci pour votre professionnalisme.', 0),
+(21, 'Livraison rapide et produit de qualité, je recommande ce vendeur.', 1),
+(21, 'Excellent produit, je suis très satisfait de mon achat.', 2),
+(22, 'Service client au top, ils ont répondu à toutes mes questions.', 0),
+(23, 'Produit conforme à mes attentes, je suis très content de mon achat.', 1),
+(24, 'Je recommande vivement ce produit, il est vraiment efficace.', 2),
+(25, 'Livraison rapide et produit de qualité, je suis pleinement satisfait.', 0),
+(25, 'Service client très professionnel, je recommande ce vendeur.', 1),
+(26, 'Ce produit est vraiment génial, je le recommande à tous mes amis.', 2),
+(26, 'Emballage soigné et livraison rapide, je suis très content de mon achat.', 0),
+(27, 'Très satisfait de mon achat, je recommande ce produit sans hésitation.', 1),
+(28, 'Service client très réactif, merci pour votre professionnalisme.', 2),
+(28, 'Livraison rapide et produit de qualité, je recommande ce vendeur.', 0),
+(29, 'Excellent produit, je suis très satisfait de mon achat.', 1),
+(30, 'Produit conforme à la description, livraison rapide. Que demander de plus ?', 2),
+(30, 'Service client efficace, ils ont répondu à toutes mes questions rapidement.', 0),
+(31, 'Très bon produit, je recommande vivement ce vendeur.', 1),
+(31, 'Livraison rapide et produit conforme à mes attentes, je suis satisfait.', 2),
+(32, 'Service client au top, merci pour votre réactivité.', 0),
+(33, 'Produit de qualité, je recommande ce vendeur sans hésitation.', 1),
+(34, 'Livraison rapide et produit conforme à la description, que demander de plus ?', 2),
+(34, 'Service client très réactif, merci pour votre professionnalisme.', 0),
+(35, 'Excellent produit, je suis très satisfait de mon achat.', 1),
+(35, 'Livraison rapide et emballage soigné, je recommande ce vendeur.', 2),
+(36, 'Produit conforme à la description, je recommande vivement.', 0),
+(36, 'Service client au top, merci pour votre professionnalisme.', 1),
+(37, 'Très satisfait de mon achat, livraison rapide et produit conforme.', 2),
+(38, 'Service client efficace, ils ont répondu à toutes mes questions.', 0),
+(38, 'Livraison rapide et produit de qualité, je recommande ce vendeur.', 1),
+(39, 'Très bon produit, je suis pleinement satisfait.', 2),
+(40, 'Livraison rapide et produit conforme à mes attentes, je recommande.', 0),
+(40, 'Service client très professionnel, merci pour votre réactivité.', 1),
+(41, 'Produit de qualité, je suis très satisfait de mon achat.', 2),
+(41, 'Livraison rapide et emballage soigné, je recommande vivement.', 0),
+(42, 'Excellent produit, je recommande ce vendeur sans hésitation.', 1),
+(43, 'Service client au top, merci pour votre réactivité.', 2),
+(44, 'Très satisfait de mon achat, produit conforme à mes attentes.', 0),
+(44, 'Livraison rapide et emballage soigné, je recommande ce vendeur.', 1),
+(45, 'Service client efficace, merci pour votre professionnalisme.', 2),
+(45, 'Produit de qualité, je suis très satisfait de mon achat.', 0),
+(46, 'Livraison rapide et produit conforme à la description.', 1),
+(46, 'Service client très réactif, je recommande vivement.', 2),
+(47, 'Très bon produit, je recommande ce vendeur sans hésitation.', 0),
+(47, 'Service client au top, merci pour votre réactivité.', 1),
+(48, 'Livraison rapide et emballage soigné, je suis pleinement satisfait.', 2),
+(48, 'Excellent produit, je recommande vivement ce vendeur.', 0),
+(49, 'Service client efficace, merci pour votre professionnalisme.', 1),
+(49, 'Produit conforme à mes attentes, je suis très satisfait.', 2),
+(50, 'Livraison rapide et produit de qualité, je recommande vivement.', 0),
+(50, 'Service client très professionnel, merci pour votre réactivité.', 1),
+(51, 'Très satisfait de mon achat, produit conforme à la description.', 2),
+(52, 'Livraison rapide et emballage soigné, je suis pleinement satisfait.', 0),
+(52, 'Service client au top, merci pour votre réactivité.', 1),
+(53, 'Excellent produit, je recommande vivement ce vendeur.', 2),
+(53, 'Service client efficace, merci pour votre professionnalisme.', 0),
+(54, 'Produit conforme à mes attentes, je suis très satisfait.', 1),
+(54, 'Livraison rapide et produit de qualité, je recommande vivement.', 2),
+(55, 'Service client très professionnel, merci pour votre réactivité.', 0),
+(55, 'Très satisfait de mon achat, produit conforme à la description.', 1),
+(56, 'Très bon produit, je recommande ce vendeur sans hésitation.', 2),
+(56, 'Service client réactif et emballage soigné, je suis pleinement satisfait.', 0),
+(57, 'Livraison rapide et produit de qualité, je recommande vivement.', 1),
+(57, 'Service client efficace, merci pour votre professionnalisme.', 2),
+(58, 'Excellent produit, je recommande vivement ce vendeur.', 0),
+(58, 'Service client au top, merci pour votre réactivité.', 1),
+(59, 'Produit conforme à mes attentes, je suis très satisfait.', 2),
+(60, 'Service client très professionnel, merci pour votre réactivité.', 0),
+(60, 'Très satisfait de mon achat, produit conforme à la description.', 1),
+(61, 'Très bon produit, je recommande ce vendeur sans hésitation.', 2),
+(61, 'Service client réactif et emballage soigné, je suis pleinement satisfait.', 0),
+(62, 'Livraison rapide et produit de qualité, je recommande vivement.', 1),
+(62, 'Service client efficace, merci pour votre professionnalisme.', 2),
+(63, 'Excellent produit, je recommande vivement ce vendeur.', 0),
+(63, 'Service client au top, merci pour votre réactivité.', 1),
+(64, 'Produit conforme à mes attentes, je suis très satisfait.', 2),
+(64, 'Livraison rapide et emballage soigné, je suis pleinement satisfait.', 0),
+(65, 'Très satisfait de mon achat, produit conforme à la description.', 1),
+(65, 'Service client très professionnel, merci pour votre réactivité.', 2),
+(66, 'Très bon produit, je recommande ce vendeur sans hésitation.', 0),
+(66, 'Service client réactif et emballage soigné, je suis pleinement satisfait.', 1),
+(67, 'Livraison rapide et produit de qualité, je recommande vivement.', 2),
+(67, 'Service client efficace, merci pour votre professionnalisme.', 0),
+(68, 'Excellent produit, je recommande vivement ce vendeur.', 1),
+(68, 'Service client au top, merci pour votre réactivité.', 2),
+(69, 'Produit conforme à mes attentes, je suis très satisfait.', 0),
+(69, 'Livraison rapide et emballage soigné, je suis pleinement satisfait.', 1),
+(70, 'Très satisfait de mon achat, produit conforme à la description.', 2),
+(70, 'Service client très professionnel, merci pour votre réactivité.', 0),
+(71, 'Très bon produit, je recommande ce vendeur sans hésitation.', 1),
+(71, 'Service client réactif et emballage soigné, je suis pleinement satisfait.', 2),
+(72, 'Livraison rapide et produit de qualité, je recommande vivement.', 0),
+(72, 'Service client efficace, merci pour votre professionnalisme.', 1),
+(71, 'Profil utilisateur très complet, merci pour toutes ces informations !', 0),
+(71, 'Utilisateur sympathique, merci pour votre confiance !', 1),
+(71, 'Profil utilisateur intéressant, j\'espère avoir l\'occasion de discuter avec vous.', 2),
+(72, 'Utilisateur sérieux et fiable, transaction sans aucun problème !', 0),
+(72, 'Profil utilisateur de confiance, je recommande vivement !', 1),
+(72, 'Utilisateur agréable, merci pour votre réactivité !', 2),
+(73, 'Profil utilisateur bien renseigné, merci pour toutes ces informations !', 0),
+(73, 'Utilisateur fiable et sérieux, je recommande sans hésitation !', 1),
+(73, 'Profil utilisateur intéressant, merci pour votre confiance !', 2);
 
 -- --------------------------------------------------------
 
@@ -223,22 +361,22 @@ INSERT INTO `items` (`Id`, `Name`, `Price`, `Description`, `Photo`, `Category`, 
 (27, 'Trousse de premiers sec', 50, 'Trousse de premiers secours - 1 unité', 27, 2, 1, 27),
 (28, 'Seringues/aiguilles', 5, 'Seringues et aiguilles - 1 seringue + 1 aiguille stéril', 28, 2, 2, 28),
 (29, 'PEM', 30, '[PEM] Papier d\'examen médical - 1 Rouleau', 29, 2, 1, 29),
-(30, 'IRM', NULL, 'Imagerie par Résonance Magnétique - Produit des images détaillées des structures internes du corps en utilisant des champs magnétiques et des ondes radio. / ~1,5 million€ sur devis', 30, 3, 0, 30),
-(31, 'Scanner', NULL, 'Tomodensitométrie - Crée des images en coupe transversale du corps en utilisant des rayons X pour détecter les différences de densité des tissus. / ~500k€ sur devis', 31, 3, 1, 31),
-(32, 'Échographe', 32000, 'Échographe - Utilise des ondes sonores pour produire des images en temps réel des organes internes.', 32, 3, 2, 32),
+(30, 'IRM', 0, 'Imagerie par RÃƒÂ©sonance MagnÃƒÂ©tique - Produit des images dÃƒÂ©taillÃƒÂ©es des structures internes du corps en utilisant des champs magnÃƒÂ©tiques et des ondes radio. / ~1,5 millionÃ¢â€šÂ¬ sur dev', 30, 3, 0, 30),
+(31, 'Scanner', 0, 'TomodensitomÃƒÂ©trie - CrÃƒÂ©e des images en coupe transversale du corps en utilisant des rayons X pour dÃƒÂ©tecter les diffÃƒÂ©rences de densitÃƒÂ© des tissus. / ~500kÃ¢â€šÂ¬ sur devis', 31, 3, 1, 31),
+(32, 'Ãƒâ€°chographe', 32000, 'Ãƒâ€°chographe - Utilise des ondes sonores pour produire des images en temps rÃƒÂ©el des organes internes.', 32, 3, 2, 32),
 (33, 'Endoscope', 7500, 'Instrument optique inséré dans le corps pour visualiser les organes internes ou effectuer des procédures chirurgicales mini-invasives.', 33, 3, 0, 3),
 (34, 'MSP', 5000, 'Moniteur de Surveillance Patient - Surveille en continu les signes vitaux tels que la fréquence cardiaque, la pression artérielle, et la saturation en oxygène.', 34, 3, 2, 34),
 (35, 'VM', 32500, 'Ventilateur mécanique -  Fournit un soutien respiratoire mécanique aux patients présentant des problèmes respiratoires.', 35, 3, 1, 35),
 (36, 'Défibrillateur', 5600, 'Défibrillateur - Utilisé pour administrer un choc électrique afin de restaurer le rythme cardiaque normal en cas d\'arrêt cardiaque.', 36, 3, 1, 36),
-(37, 'Laser chirurgical', 32000, 'Laser chirurgical - Émet un faisceau laser utilisé en chirurgie pour couper, vaporiser ou coaguler les tissus.', 37, 3, 1, 37),
-(38, 'ASA', NULL, 'Analyseur de Sang Automatique -  Effectue des analyses sanguines automatiques pour évaluer les paramètres hématologiques et biochimiques. / ~50k€ sur devis', 38, 3, 2, 38),
+(37, 'Laser chirurgical', 32000, 'Laser chirurgical - Ãƒâ€°met un faisceau laser utilisÃƒÂ© en chirurgie pour couper, vaporiser ou coaguler les tissus.', 37, 3, 1, 37),
+(38, 'ASA', 0, 'Analyseur de Sang Automatique -  Effectue des analyses sanguines automatiques pour ÃƒÂ©valuer les paramÃƒÂ¨tres hÃƒÂ©matologiques et biochimiques. / ~50kÃ¢â€šÂ¬ sur devis', 38, 3, 2, 38),
 (39, 'PaP', 2500, 'Pompe à perfusion - Administre avec précision des liquides médicamenteux ou des solutions nutritives à un patient.', 39, 3, 2, 39),
 (40, 'Yersinia pestis', 2500, 'Echantillons d\'une colnie de bactéries Yersinia pestis - Attention, à manier avec précaution, responsable de la peste', 40, 4, 2, 40),
 (41, 'Clostridium botulinum', 1600, 'Echantillon de la colonie de bactérie Clostridium botulinum - Produit la toxine botulique, l\'une des toxines les plus puissantes connues, provoquant le botulisme.', 41, 4, 1, 41),
 (42, 'Mycobacterium tuberculo', 2700, 'Echantillon de la colonie de la bactérie Mycobacterium tuberculosis - Causant la tuberculose, une maladie respiratoire potentiellement mortelle.', 42, 4, 2, 42),
 (43, 'O157:H7', 700, 'Echantillon de la colonie de la bactérie Escherichia coli (E. coli) O157:H7 - Certaines souches peuvent causer des infections sévères, notamment des infections alimentaires.', 43, 4, 0, 43),
 (44, 'Salmonella spp.', 1200, 'Echantillon de la colonie de la bactérie Salmonella spp. - Responsable de nombreuses infections alimentaires, provoquant la salmonellose.', 44, 4, 0, 4),
-(45, 'Vibrio cholerae', NULL, 'Echantillon de la colonie de la bactérie Vibrio cholerae - Causant le choléra, une maladie diarrhéique aiguë potentiellement mortelle.', 45, 4, 2, 45),
+(45, 'Vibrio cholerae', 0, 'Echantillon de la colonie de la bactérie Vibrio cholerae - Causant le choléra, une maladie diarrhéique aiguë potentiellement mortelle.', 45, 4, 2, 45),
 (46, 'SARM', 32000, 'Staphylococcus aureus résistant à la méthicilline (SARM) - Une souche résistante aux antibiotiques pouvant causer des infections graves.', 46, 4, 0, 46),
 (47, 'Neisseria meningitidis', 1400, 'Neisseria meningitidis - Provocant des infections graves, notamment la méningite.', 47, 4, 2, 47),
 (48, 'Listeria monocytogenes', 2500, 'Listeria monocytogenes - Causant la listériose, une infection généralement associée à la consommation d\'aliments contaminés.', 48, 4, 0, 48),
@@ -296,6 +434,16 @@ CREATE TABLE `payment` (
   `Id` tinyint(4) DEFAULT NULL,
   `Payment` varchar(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `payment`
+--
+
+INSERT INTO `payment` (`Id`, `Payment`) VALUES
+(0, 'Pay'),
+(1, 'Vis'),
+(2, 'Mas'),
+(3, 'Ame');
 
 -- --------------------------------------------------------
 
@@ -385,9 +533,9 @@ INSERT INTO `photo` (`Id`, `Link`) VALUES
 (68, 'https://th.bing.com/th/id/OIP.YV'),
 (69, 'https://th.bing.com/th/id/OIP.Pi'),
 (70, 'data:image/jpeg;base64,/9j/4AAQS'),
-(71, NULL),
-(72, NULL),
-(73, NULL);
+(71, 'None'),
+(72, 'None'),
+(73, 'None');
 
 -- --------------------------------------------------------
 
@@ -400,6 +548,13 @@ CREATE TABLE `prefer_payment` (
   `Payment` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `prefer_payment`
+--
+
+INSERT INTO `prefer_payment` (`Id`, `Payment`) VALUES
+(0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -411,6 +566,86 @@ CREATE TABLE `rating` (
   `Rating` tinyint(4) DEFAULT NULL,
   `Comment` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `rating`
+--
+
+INSERT INTO `rating` (`Id`, `Rating`, `Comment`) VALUES
+(0, 4, 0),
+(1, 3, 1),
+(2, 5, 2),
+(3, 2, 3),
+(4, 4, 4),
+(5, 5, 5),
+(6, 1, 6),
+(7, 2, 7),
+(8, 5, 8),
+(9, 3, 9),
+(10, 5, 10),
+(11, 0, 11),
+(12, 3, 12),
+(13, 4, 13),
+(14, 2, 14),
+(15, 4, 15),
+(16, 4, 16),
+(17, 1, 17),
+(18, 2, 18),
+(19, 5, 19),
+(20, 3, 20),
+(21, 5, 21),
+(22, 1, 22),
+(23, 3, 23),
+(24, 4, 24),
+(25, 2, 25),
+(26, 4, 26),
+(27, 5, 27),
+(28, 0, 28),
+(29, 3, 29),
+(30, 4, 30),
+(31, 1, 31),
+(32, 4, 32),
+(33, 4, 33),
+(34, 1, 34),
+(35, 2, 35),
+(36, 5, 36),
+(37, 1, 37),
+(38, 4, 38),
+(39, 3, 39),
+(40, 2, 40),
+(41, 5, 41),
+(42, 4, 42),
+(43, 1, 43),
+(44, 2, 44),
+(45, 5, 45),
+(46, 1, 46),
+(47, 4, 47),
+(48, 3, 48),
+(49, 2, 49),
+(50, 4, 50),
+(51, 5, 51),
+(52, 0, 52),
+(53, 3, 53),
+(54, 4, 54),
+(55, 1, 55),
+(56, 4, 56),
+(57, 3, 57),
+(58, 2, 58),
+(59, 5, 59),
+(60, 3, 60),
+(61, 1, 61),
+(62, 4, 62),
+(63, 5, 63),
+(64, 1, 64),
+(65, 2, 65),
+(66, 4, 66),
+(67, 1, 67),
+(68, 4, 68),
+(69, 3, 69),
+(70, 2, 70),
+(71, 5, 71),
+(72, 4, 72),
+(73, 0, 73);
 
 -- --------------------------------------------------------
 
