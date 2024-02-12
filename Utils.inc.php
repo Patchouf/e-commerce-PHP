@@ -66,6 +66,24 @@ function getToken($email, $hash, $conn)
   }
 }
 
+// Permet de récupérer l'image d'un Item
+function getItemImage($photoId, $conn) {
+  $query = "SELECT * FROM Photo WHERE Id = " . $photoId .";";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        return $row["Link"];
+      }
+    } else {
+      echo "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+}
+
 // Permet de créer un élément html (balise, class, style, innerhtml, ...)
 function createElement($domObj, $tag_name, $value = NULL, $attributes = NULL)
 {
@@ -107,14 +125,16 @@ function createCarousel($category, $id, $conn) {
   $form = createElement($dom, 'form', '', array('action' => 'product.php', 'methode' => 'get'));
   $div = createElement($dom, 'div', '', array('class' => 'owl-carousel owl-theme'));
   
-  $query = "SELECT * FROM Items WHERE Id = ". $id . ";";
+  $query = "SELECT * FROM Items WHERE Category = ". $id . ";";
   try {
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
+        $url_image = getItemImage($row["Photo"], $conn);
         $div2 = createElement($dom, 'div', '', array('class' => 'category-item'));
-        $img = createElement($dom, 'img', '', array('src' => 'img/popular_item_1.jpg', 'alt' => $row["Name"]));
+        $img = createElement($dom, 'img', '', array('src' => $url_image, 'alt' => $row["Name"]));
+        // $img = createElement($dom, 'img', '', array('src' => 'img/popular_item_1.jpg', 'alt' => $row["Name"]));
         $titr2 = createElement($dom, 'h3', $row["Name"]);
         $bouton = createElement($dom, 'button', 'View Product', array('class' => 'add-to-cart', 'name' => 'product', 'value' => $row["Id"]));
 

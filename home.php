@@ -36,7 +36,7 @@ if (isset($_COOKIE["SUID"])) {
   <!-- CATEGORY -->
   <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
     <h3>Livres</h3>
-    <form>
+    <form action="product.php" method="get">
       <div class="owl-carousel owl-theme">
         <div class="category-item">
           <img src="img/popular_item_1.jpg" alt="Category 1">

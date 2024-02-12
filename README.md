@@ -1,6 +1,6 @@
 # To do list
 
-    - refaire la faker pour mettre plusieurs Items par category (10 items, ce serai pas mal)
+    - refaire le faker pour mettre plusieurs Items par category (10 items, ce serai pas mal)
     - faire page home
     - faire page product
     - faire page panier
