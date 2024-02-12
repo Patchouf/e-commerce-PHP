@@ -15,7 +15,7 @@ require 'PHPMailer/SMTP.php';
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
-$db_name = "tkt";
+$db_name = "projet-ecommerce";
 $conn = "";
 
 try {
