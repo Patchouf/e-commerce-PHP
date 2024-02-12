@@ -12,7 +12,7 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
-      <ul class=" collapse navbar-collapse navbar-nav me-auto mb-2 mb-md-0" id="navbarCollapse">
+      <ul class="collapse navbar-collapse navbar-nav me-auto mb-2 mb-md-0" id="navbarCollapse">
         <li class="nav-item">
           <a class="nav-link active" href="home.php">Home</a>
         </li>

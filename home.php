@@ -34,7 +34,7 @@ if (isset($_COOKIE["SUID"])) {
 <body class="d-flex flex-column h-100">
   <h2 style="margin-top:100px;">Produits</h2>
   <!-- CATEGORY -->
-  <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
+  <!-- <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
     <h3>Livres</h3>
     <form action="product.php" method="get">
       <div class="owl-carousel owl-theme">
@@ -73,10 +73,9 @@ if (isset($_COOKIE["SUID"])) {
           <h3>Category 2</h3>
           <button class="add-to-cart">View Product</button>
         </div>
-        <!-- Add more category items as needed -->
       </div>
     </form>
-  </section>
+  </section> -->
   <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
     <h3>Maison</h3>
     <form action="product.php" method="get">
@@ -114,9 +113,8 @@ if (isset($_COOKIE["SUID"])) {
         <div class="category-item">
           <img src="img/popular_item_1.jpg" alt="Category 2">
           <h3>Category 2</h3>
-          <button class="add-to-cart" >View Product</button>
+          <button class="add-to-cart">View Product</button>
         </div>
-        <!-- Add more category items as needed -->
       </div>
     </form>
   </section>

@@ -1,5 +1,19 @@
-<?php 
-  include("Utils.inc.php")
+<?php
+include("Utils.inc.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['Deconnexion'])) {
+        setcookie('SUID', '', -1);
+        $page = $_SERVER['PHP_SELF'];
+        header("Refresh: 0; url=$page");
+    }
+}
+
+if (isset($_COOKIE["SUID"])) {
+    include("Conn_header.php");
+} else {
+    include("Deconn_header.php");
+}
 ?>
 
 <!doctype html>
@@ -7,78 +21,41 @@
 
 <head>
     <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/Profil_page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ecommerce Profil page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="../css/Profil_page.css" rel="stylesheet">
+    <meta name="description" content="">
 </head>
 
 <body class="d-flex flex-column h-100">
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">E-commerce</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-                <ul class=" collapse navbar-collapse navbar-nav me-auto mb-2 mb-md-0" id="navbarCollapse">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="panier.html">Panier</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="commands.html">Commandes</a>
-                    </li>
-                    <li>
-                        <img src="https://lh3.googleusercontent.com/fife/AGXqzDlUHhocjkHyJwhcbSpJdNBHBuaqyF-Pe3_QIGUZUlp0mK-amxSiGQSsN_6-aseS9EQu4xOuQ5syzHZei9NLhlgSEYuUJZXIKLUO4JghqbqKYm9uGjXz2DI-0mIYSUaIB8cld5mgFQP5EFdb9oH6T-q9sfqHxajqYJXJc-XIDL3IBjHLNd5oWIAthjcxasY4J7et7K5-ZBbx8kqGe4MY0nEfF-nRVTX1pnKgKrQh-T_K-xHjOH6ufR8AVz0xRPXSG_7sb1nCC6KYFjbmSVgXIZ69DIxznycR6g_AsKaFWc3DvX2gwxi9peY7GGC70HQPNnmNUsU7aLNQBz3607kY_EjVcR_LKo8EZaw4z7ua2sYSz_KSdW2so2wdrv7HjAFv21YTTOJXpDgul_5QJkNT67wM8MJgsdYKZiIi9d9ENhxIfQVWH78Jk2ZpK7tgmtzoKCjn-xDrVvzSrg57fQSYMI7V4AQ_KoVMjx8o3iPrGkYiI9STC1QXJZ-yuEg-VM2LvHU7s-uYHc3O8-3I1XOj0zOsJ9W8AXtb3SPNYRHOJJej9v0eVx9DIE42N-btl3MgB1jX4yfOlZdPie39E-xYQpCZetvVWNAoCgHqSC1nX0Aw5_e9onrREmZNTufOYozQChHmE6fQxGH8IqjEjwjzhmJxedYo6kxEnaU1nxpp__x8JYl5QZ7pbDd3RdLBJBImMe1kgt8RJkuBIwAlnCxrsn02zOnvWF2pkctsaS1yqMX0u6it0E8LZBwXzvRVs0f9tedmVsm22ncLg-ENvwP0Hdvx_jDKmUuiomUENL6-8qv156Xfw7_oOQjs3SeYE0cGtEY3xcGd5Nci5Aq4MFX71g8xHMyN43Mcgt_hm09T77DVMwpRL0B5HMbxw2KnkjF-1hcNo7Ap01fAZVbs44Vo3rnpmznGH_5n_zclSI4YFn45z49huYnp0L8PmBC85ibWDsmU5oKgmo7HjaCaoWI46MAkOSbOizVIjR7MXNUMkQZJ4caEw4WF18y-je38LQ3N_4Hl9iD_hDnpVZ6MedkRRHgbR4fHo6WFtrPI-JzWWhDZwuXVXmQwwj9yLLkXolJHTYiDzqeDIYtqO5BtdSBe9OlXEoSK1GXLEuYuZTGfN5BuJ7-WeRz0kf2Iev7Rf5TtGj2DG9PN4O2U2GcBWu_aUcEqEpwDqHpnqN6c87G6Y8rjkeox_LJZnCUf-ju80fc83OKRQt-G-Ofvd8yQbIykXnZSKlC4BmwaDKfXUS_VOijWf4LAak6Fac8zpr799jRJJiQJUQBAwxCpaiyo_pjiGY41aiIM9S_yl0ufZTZ2p3pAIFPN5T8Pckljqutf27uIEf5YYtLFiKo3bXUlx2o4MhuJzNaCeu5RmOHRWN1UjsXEoIo6=s64-c"
-                            class="profil-picture-header">
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        </div>
-    </header>
-
     <div class="row row-cols-2" style="margin-top: 60px; margin-left:5px;">
         <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-            <img class="profil-picture"
-                src="https://imgs.search.brave.com/1Y31ZLnS5hLEtoO1VUs8Zkdj7S_0pR4oyBPhDBSvztg/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9saDMu/Z29vZ2xldXNlcmNv/bnRlbnQuY29tLy0z/OEgtNXpuVURQTS9B/QUFBQUFBQUFBSS9B/QUFBQUFBQUFBQS9B/TVp1dWNsbEY5bmZ2/UjMxeXIwZWlDZk1W/QzBnc2FYWUl3L3Bo/b3RvLmpwZw">
+            <img class="profil-picture" src="https://imgs.search.brave.com/1Y31ZLnS5hLEtoO1VUs8Zkdj7S_0pR4oyBPhDBSvztg/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9saDMu/Z29vZ2xldXNlcmNv/bnRlbnQuY29tLy0z/OEgtNXpuVURQTS9B/QUFBQUFBQUFBSS9B/QUFBQUFBQUFBQS9B/TVp1dWNsbEY5bmZ2/UjMxeXIwZWlDZk1W/QzBnc2FYWUl3L3Bo/b3RvLmpwZw">
         </div>
         <div class="col-7 ">
             <p class="username">Yann Fournier</p>
             <p class="description-user">Cette page servira pour de template pour notre projet php</p>
         </div>
     </div>
-    <p
-        style="margin: 30px;margin-top: 50px; padding-left:5%;padding-bottom:10px; font-size:150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
+    <p style="margin: 30px;margin-top: 50px; padding-left:5%;padding-bottom:10px; font-size:150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
         Produits vendu par l'utilisateur
     </p>
 
     <div id="carouselExampleDark" class="carousel carousel-dark slide" style="margin: 20px;">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000">
                 <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
                     <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                        <img class="carousel-pic"
-                            src="https://m.media-amazon.com/images/I/91t7YlWwGfL._AC_UL640_FMwebp_QL65_.jpg">
+                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/91t7YlWwGfL._AC_UL640_FMwebp_QL65_.jpg">
                     </div>
                     <div class="col-7 ">
                         <p class="username">One piece tome 1</p>
@@ -98,8 +75,7 @@
             <div class="carousel-item" data-bs-interval="2000">
                 <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
                     <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                        <img class="carousel-pic"
-                            src="https://m.media-amazon.com/images/I/91sKhhBDJ0L._AC_UL640_FMwebp_QL65_.jpg">
+                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/91sKhhBDJ0L._AC_UL640_FMwebp_QL65_.jpg">
                     </div>
                     <div class="col-7 ">
                         <p class="username">One piece tome 3</p>
@@ -119,8 +95,7 @@
             <div class="carousel-item">
                 <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
                     <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                        <img class="carousel-pic"
-                            src="https://m.media-amazon.com/images/I/913wc4EdSlL._AC_UL640_FMwebp_QL65_.jpg">
+                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/913wc4EdSlL._AC_UL640_FMwebp_QL65_.jpg">
                     </div>
                     <div class="col-7 ">
                         <p class="username">One piece tome 4</p>
@@ -198,8 +173,9 @@
         </footer>
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 </html>

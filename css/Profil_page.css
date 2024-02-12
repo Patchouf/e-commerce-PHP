@@ -3,8 +3,9 @@
     z-index: 2;
     height: 2.75rem;
     overflow-y: hidden;
-}
-.nav-scroller .nav {
+  }
+  
+  .nav-scroller .nav {
     display: flex;
     flex-wrap: nowrap;
     padding-bottom: 1rem;
@@ -14,12 +15,14 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
   }
+  
   .navbar-collapse {
     flex-basis: 100%;
     flex-grow: 1;
     align-items: center;
-}
-.navbar-nav {
+  }
+  
+  .navbar-nav {
     --bs-nav-link-padding-x: 0;
     --bs-nav-link-padding-y: 0.5rem;
     --bs-nav-link-font-weight: ;
@@ -28,7 +31,7 @@
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
-}
+  }
 
 @media only screen and (max-width: 700px) {
     header {
