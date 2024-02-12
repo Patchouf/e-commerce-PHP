@@ -14,6 +14,24 @@ if (isset($_COOKIE["SUID"])) {
 } else {
   include("Deconn_header.php");
 }
+
+// Permet de créer le rendu de la page home.php
+function createHome($conn) {
+  $query = "SELECT * FROM Category;";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        createCarousel($row["Name"], $row["Id"], $conn);
+      }
+    } else {
+      echo "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+}
 ?>
 
 <!doctype html>
@@ -34,93 +52,7 @@ if (isset($_COOKIE["SUID"])) {
 
 <body class="d-flex flex-column h-100">
   <h2 style="margin-top:100px;">Produits</h2>
-  <!-- CATEGORY -->
-  <!-- <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
-    <h3>Livres</h3>
-    <form action="product.php" method="get">
-      <div class="owl-carousel owl-theme">
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 1">
-          <h3>Category 1</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 4</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-      </div>
-    </form>
-  </section> -->
-  <!-- <section class="category-carousel" style="margin-top: 10px; margin-right:0px; margin-left: 0px;">
-    <h3>Maison</h3>
-    <form action="product.php" method="get">
-      <div class="owl-carousel owl-theme">
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 1">
-          <h3>Category 1</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 234</h3>
-          <button class="add-to-cart" name="product" value="4">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 3">
-          <h3>Category 3</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 4">
-          <h3>Category 4</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 5">
-          <h3>Category 5</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-        <div class="category-item">
-          <img src="img/popular_item_1.jpg" alt="Category 2">
-          <h3>Category 2</h3>
-          <button class="add-to-cart">View Product</button>
-        </div>
-      </div>
-    </form>
-  </section> -->
   <?php
-  // $dom = new DOMDocument('1.0', 'utf-8');
   createHome($conn);
   ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

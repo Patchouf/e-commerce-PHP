@@ -12,6 +12,7 @@ require 'PHPMailer/Exception.php';
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
+// Permet de se connecter à la base de données
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
@@ -29,6 +30,7 @@ try {
   echo "Could not connect! <br>";
 }
 
+// Permet de récupérer le nombre d'élément d'une table
 function getNumber($table, $conn)
 {
   $query = "SELECT MAX(Id) AS max FROM " . $table . ";";
@@ -47,6 +49,7 @@ function getNumber($table, $conn)
   }
 }
 
+// Permet de récupérer le token d'identification d'un utilisateur
 function getToken($email, $hash, $conn)
 {
   $query = "SELECT Token FROM Auth JOIN User ON Auth.Id = User.Id JOIN Login_info ON User.Id = Login_info.Id WHERE Login_info.mail = '" . $email . "' AND Login_info.Password = '" . $hash . "';";
@@ -98,25 +101,7 @@ function createElement($domObj, $tag_name, $value = NULL, $attributes = NULL)
     return $element;
 }
 
-// Permet de créer le rendu de la page home.php
-function createHome($conn) {
-  $query = "SELECT * FROM Category;";
-  try {
-    $result = $conn->query($query);
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while ($row = $result->fetch_assoc()) {
-        createCarousel($row["Name"], $row["Id"], $conn);
-      }
-    } else {
-      echo "0 results";
-    }
-  } catch (mysqli_sql_exception) {
-    echo "Problème";
-  }
-}
-
-// Permet de créer les carroussels de la page home.php
+// Permet de créer les carroussels en fonction des catégories
 function createCarousel($category, $id, $conn) {
 
   $dom = new DOMDocument('1.0', 'utf-8');
