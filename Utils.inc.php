@@ -121,7 +121,6 @@ function createCarousel($category, $id, $conn) {
 
   $dom = new DOMDocument('1.0', 'utf-8');
   $section = createElement($dom, 'section', '', array('class' => 'category-carousel', 'style' => 'margin-top: 10px; margin-right:0px; margin-left: 0px;'));
-  $titre = createElement($dom, 'h3', $category." ".$id);
   $form = createElement($dom, 'form', '', array('action' => 'product.php', 'methode' => 'get'));
   $div = createElement($dom, 'div', '', array('class' => 'owl-carousel owl-theme'));
   
@@ -134,9 +133,8 @@ function createCarousel($category, $id, $conn) {
         $url_image = getItemImage($row["Photo"], $conn);
         $div2 = createElement($dom, 'div', '', array('class' => 'category-item'));
         $img = createElement($dom, 'img', '', array('src' => $url_image, 'alt' => $row["Name"], 'class' => 'image-item', 'style' => 'block-size: 200px; width: 200px; height: 200px; border-radius: 20px; box-shadow: 0 0 5px;'));
-        // $img = createElement($dom, 'img', '', array('src' => 'img/popular_item_1.jpg', 'alt' => $row["Name"]));
         $titr2 = createElement($dom, 'h3', $row["Name"]);
-        $bouton = createElement($dom, 'button', 'View Product', array('class' => 'add-to-cart', 'name' => 'product', 'value' => $row["Id"]));
+        $bouton = createElement($dom, 'button', 'View Product', array('class' => 'add-to-cart', 'name' => 'product', 'value' => $row["Id"] . " " . $id));
 
         $div2->append($img);
         $div2->append($titr2);
@@ -150,7 +148,10 @@ function createCarousel($category, $id, $conn) {
     echo "Problème";
   }
 
-  $section->append($titre);
+  if($category != "") {
+    $titre = createElement($dom, 'h3', $category);
+    $section->append($titre);
+  }
   $form->append($div);
   $section->append($form);
   $dom->appendChild($section);

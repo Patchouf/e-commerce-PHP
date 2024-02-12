@@ -1,43 +1,82 @@
 <?php
 include("Utils.inc.php");
 
+$is_connected = false;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
         setcookie('SUID', '', -1);
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
+        $is_connected = false;
     }
 }
 
 if (isset($_COOKIE["SUID"])) {
+    $is_connected = true;
     include("Conn_header.php");
 } else {
+    $is_connected = false;
     include("Deconn_header.php");
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $value = $_GET["product"];
 }
 
 function getSomethink($table, $value, $conn)
 {
     $query = "SELECT * FROM $table WHERE Id = '" . $value . "';";
-    echo $query;
+    // echo $query;
     $result = $conn->query($query);
     $row = $result->fetch_assoc();
     return $row;
 }
 
+function createButonAddToCart($value)
+{
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $form = createElement($dom, 'form', '', array('action' => 'panier.php', 'methode' => 'post'));
+    $bouton = createElement($dom, 'button', 'Ajout au panier', array('class' => 'add-to-cart', 'name' => 'addToCart', 'value' => $value));
 
-$MainRow = getSomethink('items', $value, $conn);
-$name = $MainRow["Name"];
-$price = $MainRow["Price"];
-$description = $MainRow["Description"];
-$category = $MainRow["Category"];
-$photo = getSomethink('photo', $MainRow["Photo"], $conn)["Link"];
-$seller = getSomethink('user', $MainRow["Seller"], $conn)["Name"];
-$rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
-$commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
+    $form->append($bouton);
+    $dom->appendChild($form);
+    echo $dom->saveXML();
+}
+
+function createDivAddComment($value)
+{
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $div = createElement($dom, 'div', '', array());
+    $form = createElement($dom, 'form', '', array('action' => 'product.php', 'methode' => 'get'));
+    $input = createElement($dom, 'input', '', array('type' => 'text', 'name' => 'inputCommentaire', 'placeholder' => 'Ajouter un commentaire'));
+    $bouton = createElement($dom, 'button', 'Ajouter', array('class' => 'add-to-cart', 'name' => 'divAddComment', 'value' => $value));
+
+    $form->append($input);
+    $form->append($bouton);
+    $div->append($form);
+    $dom->appendChild($div);
+    echo $dom->saveXML();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['divAddComment'])) {
+        $value = $_GET["divAddComment"];
+        // $comment = $_GET["inputCommentaire"];
+        // echo $comment;
+    } else {
+        $get = $_GET["product"];
+        $get_explode = explode(" ", $get);
+        $value = $get_explode[0];
+        $categoryName = $get_explode[1];
+    }
+
+    $MainRow = getSomethink('items', $value, $conn);
+    $name = $MainRow["Name"];
+    $price = $MainRow["Price"];
+    $description = $MainRow["Description"];
+    $category = $MainRow["Category"];
+    $photo = getSomethink('photo', $MainRow["Photo"], $conn)["Link"];
+    $seller = getSomethink('user', $MainRow["Seller"], $conn)["Name"];
+    $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
+    $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
+}
 
 ?>
 
@@ -45,14 +84,18 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
 <html lang="en" class="h-100" data-bs-theme="auto">
 
 <head>
-    <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/product.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Maladie.fr/product</title>
+  <!-- <script src="../assets/js/color-modes.js"></script> -->
+  <meta charset="utf-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/product.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Maladie.fr/product</title>
 </head>
+
 
 <body class="d-flex flex-column h-100">
     <main class="container-fluid">
@@ -67,9 +110,16 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
                     <p><?php echo $description ?></p>
                     <h2>Prix: <?php echo $price ?> €</h2>
                     <h2>Rating: <?php echo $rating ?>/5</h2>
+                    <?php
+                    if ($is_connected) {
+                        createButonAddToCart($value);
+                    }
+                    ?>
                 </article>
             </div>
         </div>
+
+
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <h6 class="border-bottom pb-2 mb-0">Commentaires et notes du produit</h6>
             <div class="d-flex text-body-secondary pt-3">
@@ -115,52 +165,29 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
                 <a href="#"></a>
             </small>
         </div>
+        <?php
+        if ($is_connected) {
+            createDivAddComment($value);
+        }
+        ?>
     </main>
-    <section class="category-carousel">
-        <h3>Autres Produits</h3>
-        <form>
-            <div class="owl-carousel owl-theme">
-                <div class="category-item">
-                    <img src="img/popular_item_1.jpg" alt="Category 1">
-                    <h3>Category 1</h3>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-                <div class="category-item">
-                    <img src="img/popular_item_1.jpg" alt="Category 2">
-                    <h3>Category 2</h3>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-                <div class="category-item">
-                    <img src="img/popular_item_1.jpg" alt="Category 2">
-                    <h3>Category 4</h3>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-                <div class="category-item">
-                    <img src="img/popular_item_1.jpg" alt="Category 2">
-                    <h3>Category 2</h3>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-                <div class="category-item">
-                    <img src="img/popular_item_1.jpg" alt="Category 2">
-                    <h3>Category 2</h3>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-        </form>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
-        <script>
-            $(document).ready(function() {
-                $(".owl-carousel").owlCarousel({
-                    items: 4,
-                    loop: true,
-                    nav: true,
-                    dots: false,
-                    navText: ["<", ">"]
-                });
+    <h3>Autres Produits</h3>
+    <?php
+    createCarousel("", $category, $conn)
+    ?>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                items: 4,
+                loop: true,
+                nav: true,
+                dots: false,
+                navText: ["<", ">"]
             });
-        </script>
-    </section>
+        });
+    </script>
 </body>
 
 <!-- FOOTER -->
