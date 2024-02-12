@@ -6,109 +6,93 @@
   },
   {
     "type": "database",
-    "name": "aaa"
+    "name": "projet-ecommerce"
   },
   {
     "type": "table",
     "name": "address",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
+      {
+        "Id": "0",
+        "Street": "20 rue de la Paix",
+        "City": "Paris",
+        "CP": "75002",
+        "State": "Ile de France",
+        "Country": "France"
+      },
+      {
+        "Id": "1",
+        "Street": "25 avenue des Champs-Élysées",
+        "City": "Paris",
+        "CP": "75008",
+        "State": "Île de France",
+        "Country": "France"
+      },
+      {
+        "Id": "2",
+        "Street": "15 rue de Rivoli",
+        "City": "Lyon",
+        "CP": "69001",
+        "State": "Auvergne-Rhône-Alpes",
+        "Country": "France"
+      }
     ]
   },
   {
     "type": "table",
     "name": "auth",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
     ]
   },
   {
     "type": "table",
     "name": "cart",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
     ]
   },
   {
     "type": "table",
     "name": "category",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
       {
         "Id": "0",
         "Name": "Génériques"
       },
       {
-        "Id": null,
-        "Name": null
-      },
-      {
         "Id": "1",
         "Name": "Vaccins"
-      },
-      {
-        "Id": null,
-        "Name": null
       },
       {
         "Id": "2",
         "Name": "Ustensiles médicales"
       },
       {
-        "Id": null,
-        "Name": null
-      },
-      {
         "Id": "3",
         "Name": "Dispositifs médical"
-      },
-      {
-        "Id": null,
-        "Name": null
       },
       {
         "Id": "4",
         "Name": "Echantillons bactéries"
       },
       {
-        "Id": null,
-        "Name": null
-      },
-      {
         "Id": "5",
         "Name": "Echantillons champigons"
-      },
-      {
-        "Id": null,
-        "Name": null
       },
       {
         "Id": "6",
         "Name": "Echantillons parasites"
       },
       {
-        "Id": null,
-        "Name": null
-      },
-      {
-        "Id": null,
-        "Name": null
-      },
-      {
         "Id": "7",
         "Name": "Echantillons virus"
       },
       {
-        "Id": null,
-        "Name": null
-      },
-      {
         "Id": "8",
         "Name": "Echantillons autres agents pathogènes"
-      },
-      {
-        "Id": null,
-        "Name": null
       },
       {
         "Id": "9",
@@ -119,14 +103,14 @@
   {
     "type": "table",
     "name": "command",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
     ]
   },
   {
     "type": "table",
     "name": "commands",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
       {
         "Id": "0",
@@ -145,21 +129,685 @@
   {
     "type": "table",
     "name": "comment",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
+      {
+        "Id": "0",
+        "Comment": "Excellent produit, très efficace ! Je le recommande vivement.",
+        "User": "0"
+      },
+      {
+        "Id": "0",
+        "Comment": "Livraison rapide et service client au top. Merci beaucoup !",
+        "User": "1"
+      },
+      {
+        "Id": "0",
+        "Comment": "Produit conforme à mes attentes, je suis pleinement satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "1",
+        "Comment": "Très content de mon achat, merci pour votre professionnalisme.",
+        "User": "0"
+      },
+      {
+        "Id": "1",
+        "Comment": "Commande reçue en parfait état, je recommande ce vendeur.",
+        "User": "1"
+      },
+      {
+        "Id": "2",
+        "Comment": "Super produit, je suis agréablement surpris par sa qualité.",
+        "User": "0"
+      },
+      {
+        "Id": "3",
+        "Comment": "Service client réactif et aimable, je suis très satisfait.",
+        "User": "1"
+      },
+      {
+        "Id": "3",
+        "Comment": "Ce produit a vraiment amélioré ma qualité de vie, je le recommande à tous.",
+        "User": "2"
+      },
+      {
+        "Id": "4",
+        "Comment": "Livraison rapide et produit conforme à la description. Parfait !",
+        "User": "0"
+      },
+      {
+        "Id": "4",
+        "Comment": "Je suis satisfait de mon achat, merci au vendeur pour sa réactivité.",
+        "User": "1"
+      },
+      {
+        "Id": "5",
+        "Comment": "Excellent service client, j'ai reçu des réponses rapides à mes questions.",
+        "User": "0"
+      },
+      {
+        "Id": "6",
+        "Comment": "Ce produit est vraiment efficace, je le recommande sans hésitation.",
+        "User": "1"
+      },
+      {
+        "Id": "7",
+        "Comment": "Livraison rapide et emballage soigné. Je suis très satisfait de mon achat.",
+        "User": "2"
+      },
+      {
+        "Id": "7",
+        "Comment": "Produit de qualité, je suis très content de mon achat.",
+        "User": "0"
+      },
+      {
+        "Id": "8",
+        "Comment": "Service client exceptionnel, ils ont résolu mon problème rapidement.",
+        "User": "1"
+      },
+      {
+        "Id": "9",
+        "Comment": "Très bon rapport qualité-prix pour ce produit, je le recommande.",
+        "User": "0"
+      },
+      {
+        "Id": "10",
+        "Comment": "Livraison rapide et produit conforme à mes attentes. Merci !",
+        "User": "1"
+      },
+      {
+        "Id": "11",
+        "Comment": "Excellent vendeur, je recommande vivement !",
+        "User": "2"
+      },
+      {
+        "Id": "11",
+        "Comment": "Produit de qualité, je suis entièrement satisfait de mon achat.",
+        "User": "0"
+      },
+      {
+        "Id": "12",
+        "Comment": "Je suis très content de mon achat, merci beaucoup !",
+        "User": "1"
+      },
+      {
+        "Id": "12",
+        "Comment": "Service client impeccable, je recommande ce vendeur.",
+        "User": "2"
+      },
+      {
+        "Id": "12",
+        "Comment": "Produit conforme à mes attentes, je le recommande vivement.",
+        "User": "0"
+      },
+      {
+        "Id": "13",
+        "Comment": "Très bon produit, je suis satisfait de mon achat.",
+        "User": "1"
+      },
+      {
+        "Id": "14",
+        "Comment": "Livraison rapide et produit de qualité, je recommande ce vendeur.",
+        "User": "0"
+      },
+      {
+        "Id": "14",
+        "Comment": "Excellent service client, j'ai été très bien accompagné tout au long de mon achat.",
+        "User": "1"
+      },
+      {
+        "Id": "15",
+        "Comment": "Ce produit correspond parfaitement à mes attentes, je suis satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "15",
+        "Comment": "Livraison rapide et emballage soigné, je recommande ce vendeur.",
+        "User": "0"
+      },
+      {
+        "Id": "16",
+        "Comment": "Service client réactif et produit de qualité, je recommande !",
+        "User": "1"
+      },
+      {
+        "Id": "17",
+        "Comment": "Produit conforme à la description, je suis satisfait de mon achat.",
+        "User": "2"
+      },
+      {
+        "Id": "18",
+        "Comment": "Très bon rapport qualité-prix, je recommande ce produit.",
+        "User": "0"
+      },
+      {
+        "Id": "19",
+        "Comment": "Livraison rapide et produit conforme à mes attentes. Parfait !",
+        "User": "1"
+      },
+      {
+        "Id": "20",
+        "Comment": "Ce produit est vraiment efficace, je le recommande à tous.",
+        "User": "2"
+      },
+      {
+        "Id": "20",
+        "Comment": "Service client impeccable, merci pour votre professionnalisme.",
+        "User": "0"
+      },
+      {
+        "Id": "21",
+        "Comment": "Livraison rapide et produit de qualité, je recommande ce vendeur.",
+        "User": "1"
+      },
+      {
+        "Id": "21",
+        "Comment": "Excellent produit, je suis très satisfait de mon achat.",
+        "User": "2"
+      },
+      {
+        "Id": "22",
+        "Comment": "Service client au top, ils ont répondu à toutes mes questions.",
+        "User": "0"
+      },
+      {
+        "Id": "23",
+        "Comment": "Produit conforme à mes attentes, je suis très content de mon achat.",
+        "User": "1"
+      },
+      {
+        "Id": "24",
+        "Comment": "Je recommande vivement ce produit, il est vraiment efficace.",
+        "User": "2"
+      },
+      {
+        "Id": "25",
+        "Comment": "Livraison rapide et produit de qualité, je suis pleinement satisfait.",
+        "User": "0"
+      },
+      {
+        "Id": "25",
+        "Comment": "Service client très professionnel, je recommande ce vendeur.",
+        "User": "1"
+      },
+      {
+        "Id": "26",
+        "Comment": "Ce produit est vraiment génial, je le recommande à tous mes amis.",
+        "User": "2"
+      },
+      {
+        "Id": "26",
+        "Comment": "Emballage soigné et livraison rapide, je suis très content de mon achat.",
+        "User": "0"
+      },
+      {
+        "Id": "27",
+        "Comment": "Très satisfait de mon achat, je recommande ce produit sans hésitation.",
+        "User": "1"
+      },
+      {
+        "Id": "28",
+        "Comment": "Service client très réactif, merci pour votre professionnalisme.",
+        "User": "2"
+      },
+      {
+        "Id": "28",
+        "Comment": "Livraison rapide et produit de qualité, je recommande ce vendeur.",
+        "User": "0"
+      },
+      {
+        "Id": "29",
+        "Comment": "Excellent produit, je suis très satisfait de mon achat.",
+        "User": "1"
+      },
+      {
+        "Id": "30",
+        "Comment": "Produit conforme à la description, livraison rapide. Que demander de plus ?",
+        "User": "2"
+      },
+      {
+        "Id": "30",
+        "Comment": "Service client efficace, ils ont répondu à toutes mes questions rapidement.",
+        "User": "0"
+      },
+      {
+        "Id": "31",
+        "Comment": "Très bon produit, je recommande vivement ce vendeur.",
+        "User": "1"
+      },
+      {
+        "Id": "31",
+        "Comment": "Livraison rapide et produit conforme à mes attentes, je suis satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "32",
+        "Comment": "Service client au top, merci pour votre réactivité.",
+        "User": "0"
+      },
+      {
+        "Id": "33",
+        "Comment": "Produit de qualité, je recommande ce vendeur sans hésitation.",
+        "User": "1"
+      },
+      {
+        "Id": "34",
+        "Comment": "Livraison rapide et produit conforme à la description, que demander de plus ?",
+        "User": "2"
+      },
+      {
+        "Id": "34",
+        "Comment": "Service client très réactif, merci pour votre professionnalisme.",
+        "User": "0"
+      },
+      {
+        "Id": "35",
+        "Comment": "Excellent produit, je suis très satisfait de mon achat.",
+        "User": "1"
+      },
+      {
+        "Id": "35",
+        "Comment": "Livraison rapide et emballage soigné, je recommande ce vendeur.",
+        "User": "2"
+      },
+      {
+        "Id": "36",
+        "Comment": "Produit conforme à la description, je recommande vivement.",
+        "User": "0"
+      },
+      {
+        "Id": "36",
+        "Comment": "Service client au top, merci pour votre professionnalisme.",
+        "User": "1"
+      },
+      {
+        "Id": "37",
+        "Comment": "Très satisfait de mon achat, livraison rapide et produit conforme.",
+        "User": "2"
+      },
+      {
+        "Id": "38",
+        "Comment": "Service client efficace, ils ont répondu à toutes mes questions.",
+        "User": "0"
+      },
+      {
+        "Id": "38",
+        "Comment": "Livraison rapide et produit de qualité, je recommande ce vendeur.",
+        "User": "1"
+      },
+      {
+        "Id": "39",
+        "Comment": "Très bon produit, je suis pleinement satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "40",
+        "Comment": "Livraison rapide et produit conforme à mes attentes, je recommande.",
+        "User": "0"
+      },
+      {
+        "Id": "40",
+        "Comment": "Service client très professionnel, merci pour votre réactivité.",
+        "User": "1"
+      },
+      {
+        "Id": "41",
+        "Comment": "Produit de qualité, je suis très satisfait de mon achat.",
+        "User": "2"
+      },
+      {
+        "Id": "41",
+        "Comment": "Livraison rapide et emballage soigné, je recommande vivement.",
+        "User": "0"
+      },
+      {
+        "Id": "42",
+        "Comment": "Excellent produit, je recommande ce vendeur sans hésitation.",
+        "User": "1"
+      },
+      {
+        "Id": "43",
+        "Comment": "Service client au top, merci pour votre réactivité.",
+        "User": "2"
+      },
+      {
+        "Id": "44",
+        "Comment": "Très satisfait de mon achat, produit conforme à mes attentes.",
+        "User": "0"
+      },
+      {
+        "Id": "44",
+        "Comment": "Livraison rapide et emballage soigné, je recommande ce vendeur.",
+        "User": "1"
+      },
+      {
+        "Id": "45",
+        "Comment": "Service client efficace, merci pour votre professionnalisme.",
+        "User": "2"
+      },
+      {
+        "Id": "45",
+        "Comment": "Produit de qualité, je suis très satisfait de mon achat.",
+        "User": "0"
+      },
+      {
+        "Id": "46",
+        "Comment": "Livraison rapide et produit conforme à la description.",
+        "User": "1"
+      },
+      {
+        "Id": "46",
+        "Comment": "Service client très réactif, je recommande vivement.",
+        "User": "2"
+      },
+      {
+        "Id": "47",
+        "Comment": "Très bon produit, je recommande ce vendeur sans hésitation.",
+        "User": "0"
+      },
+      {
+        "Id": "47",
+        "Comment": "Service client au top, merci pour votre réactivité.",
+        "User": "1"
+      },
+      {
+        "Id": "48",
+        "Comment": "Livraison rapide et emballage soigné, je suis pleinement satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "48",
+        "Comment": "Excellent produit, je recommande vivement ce vendeur.",
+        "User": "0"
+      },
+      {
+        "Id": "49",
+        "Comment": "Service client efficace, merci pour votre professionnalisme.",
+        "User": "1"
+      },
+      {
+        "Id": "49",
+        "Comment": "Produit conforme à mes attentes, je suis très satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "50",
+        "Comment": "Livraison rapide et produit de qualité, je recommande vivement.",
+        "User": "0"
+      },
+      {
+        "Id": "50",
+        "Comment": "Service client très professionnel, merci pour votre réactivité.",
+        "User": "1"
+      },
+      {
+        "Id": "51",
+        "Comment": "Très satisfait de mon achat, produit conforme à la description.",
+        "User": "2"
+      },
+      {
+        "Id": "52",
+        "Comment": "Livraison rapide et emballage soigné, je suis pleinement satisfait.",
+        "User": "0"
+      },
+      {
+        "Id": "52",
+        "Comment": "Service client au top, merci pour votre réactivité.",
+        "User": "1"
+      },
+      {
+        "Id": "53",
+        "Comment": "Excellent produit, je recommande vivement ce vendeur.",
+        "User": "2"
+      },
+      {
+        "Id": "53",
+        "Comment": "Service client efficace, merci pour votre professionnalisme.",
+        "User": "0"
+      },
+      {
+        "Id": "54",
+        "Comment": "Produit conforme à mes attentes, je suis très satisfait.",
+        "User": "1"
+      },
+      {
+        "Id": "54",
+        "Comment": "Livraison rapide et produit de qualité, je recommande vivement.",
+        "User": "2"
+      },
+      {
+        "Id": "55",
+        "Comment": "Service client très professionnel, merci pour votre réactivité.",
+        "User": "0"
+      },
+      {
+        "Id": "55",
+        "Comment": "Très satisfait de mon achat, produit conforme à la description.",
+        "User": "1"
+      },
+      {
+        "Id": "56",
+        "Comment": "Très bon produit, je recommande ce vendeur sans hésitation.",
+        "User": "2"
+      },
+      {
+        "Id": "56",
+        "Comment": "Service client réactif et emballage soigné, je suis pleinement satisfait.",
+        "User": "0"
+      },
+      {
+        "Id": "57",
+        "Comment": "Livraison rapide et produit de qualité, je recommande vivement.",
+        "User": "1"
+      },
+      {
+        "Id": "57",
+        "Comment": "Service client efficace, merci pour votre professionnalisme.",
+        "User": "2"
+      },
+      {
+        "Id": "58",
+        "Comment": "Excellent produit, je recommande vivement ce vendeur.",
+        "User": "0"
+      },
+      {
+        "Id": "58",
+        "Comment": "Service client au top, merci pour votre réactivité.",
+        "User": "1"
+      },
+      {
+        "Id": "59",
+        "Comment": "Produit conforme à mes attentes, je suis très satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "60",
+        "Comment": "Service client très professionnel, merci pour votre réactivité.",
+        "User": "0"
+      },
+      {
+        "Id": "60",
+        "Comment": "Très satisfait de mon achat, produit conforme à la description.",
+        "User": "1"
+      },
+      {
+        "Id": "61",
+        "Comment": "Très bon produit, je recommande ce vendeur sans hésitation.",
+        "User": "2"
+      },
+      {
+        "Id": "61",
+        "Comment": "Service client réactif et emballage soigné, je suis pleinement satisfait.",
+        "User": "0"
+      },
+      {
+        "Id": "62",
+        "Comment": "Livraison rapide et produit de qualité, je recommande vivement.",
+        "User": "1"
+      },
+      {
+        "Id": "62",
+        "Comment": "Service client efficace, merci pour votre professionnalisme.",
+        "User": "2"
+      },
+      {
+        "Id": "63",
+        "Comment": "Excellent produit, je recommande vivement ce vendeur.",
+        "User": "0"
+      },
+      {
+        "Id": "63",
+        "Comment": "Service client au top, merci pour votre réactivité.",
+        "User": "1"
+      },
+      {
+        "Id": "64",
+        "Comment": "Produit conforme à mes attentes, je suis très satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "64",
+        "Comment": "Livraison rapide et emballage soigné, je suis pleinement satisfait.",
+        "User": "0"
+      },
+      {
+        "Id": "65",
+        "Comment": "Très satisfait de mon achat, produit conforme à la description.",
+        "User": "1"
+      },
+      {
+        "Id": "65",
+        "Comment": "Service client très professionnel, merci pour votre réactivité.",
+        "User": "2"
+      },
+      {
+        "Id": "66",
+        "Comment": "Très bon produit, je recommande ce vendeur sans hésitation.",
+        "User": "0"
+      },
+      {
+        "Id": "66",
+        "Comment": "Service client réactif et emballage soigné, je suis pleinement satisfait.",
+        "User": "1"
+      },
+      {
+        "Id": "67",
+        "Comment": "Livraison rapide et produit de qualité, je recommande vivement.",
+        "User": "2"
+      },{
+        "Id": "67",
+        "Comment": "Service client efficace, merci pour votre professionnalisme.",
+        "User": "0"
+      },
+      {
+        "Id": "68",
+        "Comment": "Excellent produit, je recommande vivement ce vendeur.",
+        "User": "1"
+      },
+      {
+        "Id": "68",
+        "Comment": "Service client au top, merci pour votre réactivité.",
+        "User": "2"
+      },
+      {
+        "Id": "69",
+        "Comment": "Produit conforme à mes attentes, je suis très satisfait.",
+        "User": "0"
+      },
+      {
+        "Id": "69",
+        "Comment": "Livraison rapide et emballage soigné, je suis pleinement satisfait.",
+        "User": "1"
+      },
+      {
+        "Id": "70",
+        "Comment": "Très satisfait de mon achat, produit conforme à la description.",
+        "User": "2"
+      },
+      {
+        "Id": "70",
+        "Comment": "Service client très professionnel, merci pour votre réactivité.",
+        "User": "0"
+      },
+      {
+        "Id": "71",
+        "Comment": "Très bon produit, je recommande ce vendeur sans hésitation.",
+        "User": "1"
+      },
+      {
+        "Id": "71",
+        "Comment": "Service client réactif et emballage soigné, je suis pleinement satisfait.",
+        "User": "2"
+      },
+      {
+        "Id": "72",
+        "Comment": "Livraison rapide et produit de qualité, je recommande vivement.",
+        "User": "0"
+      },
+      {
+        "Id": "72",
+        "Comment": "Service client efficace, merci pour votre professionnalisme.",
+        "User": "1"
+      },
+      {
+        "Id": "71",
+        "Comment": "Profil utilisateur très complet, merci pour toutes ces informations !",
+        "User": "0"
+      },
+      {
+        "Id": "71",
+        "Comment": "Utilisateur sympathique, merci pour votre confiance !",
+        "User": "1"
+      },
+      {
+        "Id": "71",
+        "Comment": "Profil utilisateur intéressant, j'espère avoir l'occasion de discuter avec vous.",
+        "User": "2"
+      },
+      {
+        "Id": "72",
+        "Comment": "Utilisateur sérieux et fiable, transaction sans aucun problème !",
+        "User": "0"
+      },
+      {
+        "Id": "72",
+        "Comment": "Profil utilisateur de confiance, je recommande vivement !",
+        "User": "1"
+      },
+      {
+        "Id": "72",
+        "Comment": "Utilisateur agréable, merci pour votre réactivité !",
+        "User": "2"
+      },
+      {
+        "Id": "73",
+        "Comment": "Profil utilisateur bien renseigné, merci pour toutes ces informations !",
+        "User": "0"
+      },
+      {
+        "Id": "73",
+        "Comment": "Utilisateur fiable et sérieux, je recommande sans hésitation !",
+        "User": "1"
+      },
+      {
+        "Id": "73",
+        "Comment": "Profil utilisateur intéressant, merci pour votre confiance !",
+        "User": "2"
+      }
     ]
   },
   {
     "type": "table",
     "name": "invoice",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
     ]
   },
   {
     "type": "table",
     "name": "invoices",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
       {
         "Id": "0",
@@ -178,7 +826,7 @@
   {
     "type": "table",
     "name": "items",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
       {
         "Id": "0",
@@ -483,8 +1131,8 @@
       {
         "Id": "30",
         "Name": "IRM",
-        "Price": null,
-        "Description": "Imagerie par Résonance Magnétique - Produit des images détaillées des structures internes du corps en utilisant des champs magnétiques et des ondes radio. \/ ~1,5 million€ sur devis",
+        "Price": "0",
+        "Description": "Imagerie par RÃ©sonance MagnÃ©tique - Produit des images dÃ©taillÃ©es des structures internes du corps en utilisant des champs magnÃ©tiques et des ondes radio. \/ ~1,5 millionâ‚¬ sur devis",
         "Photo": "30",
         "Category": "3",
         "Seller": "0",
@@ -493,8 +1141,8 @@
       {
         "Id": "31",
         "Name": "Scanner",
-        "Price": null,
-        "Description": "Tomodensitométrie - Crée des images en coupe transversale du corps en utilisant des rayons X pour détecter les différences de densité des tissus. \/ ~500k€ sur devis",
+        "Price": "0",
+        "Description": "TomodensitomÃ©trie - CrÃ©e des images en coupe transversale du corps en utilisant des rayons X pour dÃ©tecter les diffÃ©rences de densitÃ© des tissus. \/ ~500kâ‚¬ sur devis",
         "Photo": "31",
         "Category": "3",
         "Seller": "1",
@@ -502,9 +1150,9 @@
       },
       {
         "Id": "32",
-        "Name": "Échographe",
+        "Name": "Ã‰chographe",
         "Price": "32000",
-        "Description": "Échographe - Utilise des ondes sonores pour produire des images en temps réel des organes internes.",
+        "Description": "Ã‰chographe - Utilise des ondes sonores pour produire des images en temps rÃ©el des organes internes.",
         "Photo": "32",
         "Category": "3",
         "Seller": "2",
@@ -554,7 +1202,7 @@
         "Id": "37",
         "Name": "Laser chirurgical",
         "Price": "32000",
-        "Description": "Laser chirurgical - Émet un faisceau laser utilisé en chirurgie pour couper, vaporiser ou coaguler les tissus.",
+        "Description": "Laser chirurgical - Ã‰met un faisceau laser utilisÃ© en chirurgie pour couper, vaporiser ou coaguler les tissus.",
         "Photo": "37",
         "Category": "3",
         "Seller": "1",
@@ -563,8 +1211,8 @@
       {
         "Id": "38",
         "Name": "ASA",
-        "Price": null,
-        "Description": "Analyseur de Sang Automatique -  Effectue des analyses sanguines automatiques pour évaluer les paramètres hématologiques et biochimiques. \/ ~50k€ sur devis",
+        "Price": "0",
+        "Description": "Analyseur de Sang Automatique -  Effectue des analyses sanguines automatiques pour Ã©valuer les paramÃ¨tres hÃ©matologiques et biochimiques. \/ ~50kâ‚¬ sur devis",
         "Photo": "38",
         "Category": "3",
         "Seller": "2",
@@ -633,7 +1281,7 @@
       {
         "Id": "45",
         "Name": "Vibrio cholerae",
-        "Price": null,
+        "Price": "0",
         "Description": "Echantillon de la colonie de la bactérie Vibrio cholerae - Causant le choléra, une maladie diarrhéique aiguë potentiellement mortelle.",
         "Photo": "45",
         "Category": "4",
@@ -895,7 +1543,7 @@
   {
     "type": "table",
     "name": "login_info",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
       {
         "Id": "0",
@@ -917,14 +1565,18 @@
   {
     "type": "table",
     "name": "payment",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
+      {
+        "Id": "0",
+        "Payment": "Pay"
+      }
     ]
   },
   {
     "type": "table",
     "name": "photo",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
       {
         "Id": "0",
@@ -1216,36 +1868,45 @@
       },
       {
         "Id": "71",
-        "Link": null
+        "Link": "None"
       },
       {
         "Id": "72",
-        "Link": null
+        "Link": "None"
       },
       {
         "Id": "73",
-        "Link": null
+        "Link": "None"
       }
     ]
   },
   {
     "type": "table",
     "name": "prefer_payment",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
+      {
+        "Id": "0",
+        "Payment": "0"
+      }
     ]
   },
   {
     "type": "table",
     "name": "rating",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
+      {
+        "Id": "0",
+        "Rating": "4",
+        "Comment": null
+      }
     ]
   },
   {
     "type": "table",
     "name": "user",
-    "database": "aaa",
+    "database": "projet-ecommerce",
     "data": [
       {
         "Id": "0",
