@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Category
 CREATE TABLE IF NOT EXISTS Photo
 (
     Id   INT          NOT NULL,
-    Link VARCHAR(255) NOT NULL,
+    Link VARCHAR(1000) NOT NULL,
     PRIMARY KEY (Id)
 );
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS Items
 (
     Id          INT          NOT NULL,
     Name        VARCHAR(255) NOT NULL,
-    Price       INT          NOT NULL,
+    Price       FLOAT          NOT NULL,
     Description VARCHAR(255) NOT NULL,
     Photo       INT          NOT NULL,
     Category    INT          NOT NULL,
