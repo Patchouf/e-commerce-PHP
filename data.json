@@ -80,7 +80,7 @@
       },
       {
         "Id": "5",
-        "Name": "Echantillons champigons"
+        "Name": "Echantillons champignons"
       },
       {
         "Id": "6",
@@ -1365,7 +1365,7 @@
         "Price": "530",
         "Description": "Ascaris lumbricoides - Un ver rond intestinal qui peut causer des infections chez les humains, connu sous le nom d'ascaridiose.",
         "Photo": "53",
-        "Category": "5",
+        "Category": "6",
         "Seller": "0",
         "Rating": "53"
       },
@@ -1375,7 +1375,7 @@
         "Price": "650",
         "Description": "Giardia lamblia - Un protozoaire responsable de la giardiase, une infection intestinale courante.",
         "Photo": "54",
-        "Category": "5",
+        "Category": "7",
         "Seller": "0",
         "Rating": "54"
       },
@@ -1385,7 +1385,7 @@
         "Price": "210",
         "Description": "Taenia solium - Un ver plat responsable de la cysticercose, une maladie résultant de l'ingestion de larves de Taenia solium.",
         "Photo": "55",
-        "Category": "5",
+        "Category": "6",
         "Seller": "1",
         "Rating": "55"
       },
@@ -1395,7 +1395,7 @@
         "Price": "420",
         "Description": "Enterobius vermicularis - Un petit ver rond, communément appelé oxyure, qui peut infecter le côlon humain et provoquer la maladie appelée oxyurose.",
         "Photo": "56",
-        "Category": "5",
+        "Category": "6",
         "Seller": "0",
         "Rating": "56"
       },
@@ -1405,7 +1405,7 @@
         "Price": "150",
         "Description": "Ankylostomes (Ancylostoma duodenale et Necator americanus) - Des vers parasites qui infectent les intestins humains, provoquant l'ankylostomiase.",
         "Photo": "57",
-        "Category": "5",
+        "Category": "6",
         "Seller": "1",
         "Rating": "57"
       },
@@ -1415,7 +1415,7 @@
         "Price": "200",
         "Description": "Schistosoma spp. - Les schistosomes sont des vers plats responsables de la schistosomiase, une maladie parasitaire affectant les voies urinaires et intestinales.",
         "Photo": "58",
-        "Category": "5",
+        "Category": "6",
         "Seller": "2",
         "Rating": "58"
       },
@@ -1435,7 +1435,7 @@
         "Price": "1200",
         "Description": "Toxoplasma gondii - Un protozoaire parasite qui peut infecter divers organes, provoquant la toxoplasmose.",
         "Photo": "60",
-        "Category": "5",
+        "Category": "7",
         "Seller": "2",
         "Rating": "60"
       },
@@ -1445,7 +1445,7 @@
         "Price": "420",
         "Description": "Larves de mouche tsé-tsé (Trypanosoma brucei) - Responsables de la maladie du sommeil en Afrique, transmise par les piqûres de mouches tsé-tsé.",
         "Photo": "61",
-        "Category": "5",
+        "Category": "7",
         "Seller": "1",
         "Rating": "61"
       },
@@ -1455,7 +1455,7 @@
         "Price": "5200",
         "Description": "VIH (Virus de l'immunodéficience humaine) - Responsable du syndrome d'immunodéficience acquise (SIDA), le VIH attaque le système immunitaire et affaiblit la capacité du corps à lutter contre les infe",
         "Photo": "62",
-        "Category": "6",
+        "Category": "7",
         "Seller": "0",
         "Rating": "62"
       },
@@ -1465,7 +1465,7 @@
         "Price": "5620",
         "Description": "Virus Ebola - Les virus Ebola sont associés à des fièvres hémorragiques graves avec un taux de mortalité élevé.",
         "Photo": "63",
-        "Category": "6",
+        "Category": "7",
         "Seller": "2",
         "Rating": "63"
       },
@@ -1475,7 +1475,7 @@
         "Price": "2300",
         "Description": "Virus de la grippe espagnole (H1N1)",
         "Photo": "64",
-        "Category": "6",
+        "Category": "7",
         "Seller": "0",
         "Rating": "64"
       },
@@ -1485,7 +1485,7 @@
         "Price": "6200",
         "Description": "Virus de la variole",
         "Photo": "65",
-        "Category": "6",
+        "Category": "7",
         "Seller": "2",
         "Rating": "65"
       },
@@ -1495,7 +1495,7 @@
         "Price": "4520",
         "Description": "Virus de la dengue - Transmis par les moustiques, le virus de la dengue peut provoquer une fièvre sévère, voire une forme hémorragique potentiellement mortelle.",
         "Photo": "66",
-        "Category": "6",
+        "Category": "7",
         "Seller": "1",
         "Rating": "66"
       },
@@ -1505,7 +1505,7 @@
         "Price": "2500",
         "Description": "Virus de la grippe aviaire (H5N1) -  le virus H5N1 peut être grave avec un taux de mortalité élevé.",
         "Photo": "67",
-        "Category": "6",
+        "Category": "7",
         "Seller": "1",
         "Rating": "67"
       },
@@ -1515,7 +1515,7 @@
         "Price": "2300",
         "Description": "Virus Zika - peut entraîner des complications graves",
         "Photo": "68",
-        "Category": "6",
+        "Category": "7",
         "Seller": "0",
         "Rating": "68"
       },
@@ -1525,7 +1525,7 @@
         "Price": "5600",
         "Description": "Virus du SRAS (syndrome respiratoire aigu sévère) - Le SRAS est un coronavirus qui provoque une maladie respiratoire sévère.",
         "Photo": "69",
-        "Category": "6",
+        "Category": "7",
         "Seller": "2",
         "Rating": "69"
       },
@@ -1535,7 +1535,7 @@
         "Price": "9600",
         "Description": "Virus de la COVID-19 (SARS-CoV-2)",
         "Photo": "70",
-        "Category": "6",
+        "Category": "7",
         "Seller": "1",
         "Rating": "70"
       }
