@@ -14,6 +14,7 @@ include("Utils.inc.php")
   <link rel="stylesheet" href="css/login.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
+  <title>Maladie.fr/login</title>
 </head>
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">

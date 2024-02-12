@@ -29,6 +29,7 @@ if (isset($_COOKIE["SUID"])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
+  <title>Maladie.fr/home</title>
 </head>
 
 <body class="d-flex flex-column h-100">

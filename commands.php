@@ -30,6 +30,7 @@ if (isset($_COOKIE["SUID"])) {
     <link rel="stylesheet" href="css/Panier_page.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <title>Maladie.fr/command</title>
 </head>
 
 <body class="d-flex flex-column h-100">

@@ -51,6 +51,7 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
     <link rel="stylesheet" href="css/product.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <title>Maladie.fr/product</title>
 </head>
 
 <body class="d-flex flex-column h-100">
