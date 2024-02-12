@@ -70,7 +70,7 @@ function getToken($email, $hash, $conn)
 }
 
 // Permet de récupérer l'image d'un Item
-function getItemImage($photoId, $conn) {
+function getImage($photoId, $conn) {
   $query = "SELECT * FROM Photo WHERE Id = " . $photoId .";";
   try {
     $result = $conn->query($query);
@@ -115,7 +115,7 @@ function createCarousel($category, $id, $conn) {
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
-        $url_image = getItemImage($row["Photo"], $conn);
+        $url_image = getImage($row["Photo"], $conn);
         $div2 = createElement($dom, 'div', '', array('class' => 'category-item'));
         $img = createElement($dom, 'img', '', array('src' => $url_image, 'alt' => $row["Name"], 'class' => 'image-item', 'style' => 'block-size: 200px; width: 200px; height: 200px; border-radius: 20px; box-shadow: 0 0 5px;'));
         $titr2 = createElement($dom, 'h3', $row["Name"]);

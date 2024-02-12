@@ -78,22 +78,80 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
 }
 
+function createCommentSpace($commentId, $conn)
+{
+    $query = "SELECT * FROM Comment WHERE Id = " . $commentId . ";";
+    try {
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                createComment($row["Comment"], $row["User"], $conn);
+            }
+        } else {
+            echo "Ce produit n'a aucun commentaire";
+        }
+    } catch (mysqli_sql_exception) {
+        echo "Problème";
+    }
+}
+
+function createComment($comment, $userId, $conn)
+{
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $form = createElement($dom, 'form', '', array('action' => 'profil.php', 'method' => 'get'));
+    $div = createElement($dom, 'div', '', array('class' => 'd-flex text-body-secondary pt-3'));
+    $button = createElement($dom, 'button', '', array('name' => 'boutonProfil', 'value' => 'UserId', 'style' => 'background-color: white; border-style: none; display:flex; flex-direction:row;'));
+    $div2 = createElement($dom, 'div', '', array('class' => 'pb-3 mb-0 small lh-sm border-bottom'));
+
+    $query = "SELECT * FROM User WHERE Id = " . $userId . ";";
+    try {
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $url_image = getImage($row["Photo"], $conn);
+                if ($url_image != "None") {
+                    $img = createElement($dom, 'img', '', array('src' => $url_image, 'alt' => 'pp', 'style' => 'block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;'));
+                } else {
+                    $img = createElement($dom, 'img', '', array('src' => 'img/default.png', 'alt' => 'pp', 'style' => 'block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;'));
+                }
+                $strong = createElement($dom, 'strong', $row["Name"]);
+                $p = createElement($dom, 'p', $comment);
+            }
+        } else {
+            echo "Ce produit n'a aucun commentaire";
+        }
+    } catch (mysqli_sql_exception) {
+        echo "Problème";
+    }
+
+    $div2->append($strong);
+    $div2->append($p);
+    $button->append($img);
+    $button->append($div2);
+    $div->append($button);
+    $form->append($div);
+    $dom->appendChild($form);
+    echo $dom->saveXML();
+}
+
 ?>
 
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 
 <head>
-  <!-- <script src="../assets/js/color-modes.js"></script> -->
-  <meta charset="utf-8">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/product.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <title>Maladie.fr/product</title>
+    <!-- <script src="../assets/js/color-modes.js"></script> -->
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Maladie.fr/product</title>
 </head>
 
 
@@ -122,48 +180,43 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <h6 class="border-bottom pb-2 mb-0">Commentaires et notes du produit</h6>
-            <div class="d-flex text-body-secondary pt-3">
-                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff" />
-                    <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32
-                    </text>
-                </svg>
-                <p class="pb-3 mb-0 small lh-sm border-bottom">
-                    <strong class="d-block text-gray-dark">@username</strong>
-                    Some representative placeholder content, with some information about this user. Imagine this being
-                    some sort of status update, perhaps?
-                </p>
-            </div>
-            <div class="d-flex text-body-secondary pt-3">
-                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#e83e8c" />
-                    <text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32
-                    </text>
-                </svg>
-                <p class="pb-3 mb-0 small lh-sm border-bottom">
-                    <strong class="d-block text-gray-dark">@username</strong>
-                    Some more representative placeholder content, related to this other user. Another status update,
-                    perhaps.
-                </p>
-            </div>
-            <div class="d-flex text-body-secondary pt-3">
-                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#6f42c1" />
-                    <text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32
-                    </text>
-                </svg>
-                <p class="pb-3 mb-0 small lh-sm border-bottom">
-                    <strong class="d-block text-gray-dark">@username</strong>
-                    This user also gets some representative placeholder content. Maybe they did something interesting,
-                    and you really want to highlight this in the recent updates.
-                </p>
-            </div>
-            <small class="d-block text-end mt-3">
-                <a href="#"></a>
-            </small>
+            <!-- <form action="profil.php" method="get">
+                <div class="d-flex text-body-secondary pt-3">
+                    <button name="boutonProfil" value="UserId" style="background-color: white; border-style: none; display:flex; flex-direction:row;">
+                        <img src="img/popular_item_2.jpg" alt="PP" style="block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;">
+                        <div class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">@username</strong>
+                            <p>Some representative placeholder content, with some information about this user. Imagine this being
+                                some sort of status update, perhaps?</p>
+                        </div>
+                    </button>
+                </div>
+            </form>
+            <form action="profil.php" method="get">
+                <div class="d-flex text-body-secondary pt-3">
+                    <button name="boutonProfil" value="UserId" style="background-color: white; border-style: none; display:flex; flex-direction:row;">
+                        <img src="img/popular_item_3.jpg" alt="PP" style="block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;">
+                        <div class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">@username</strong>
+                            <p>Some representative placeholder content, with some information about this user. Imagine this being
+                                some sort of status update, perhaps?</p>
+                        </div>
+                    </button>
+                </div>
+            </form>
+            <form action="profil.php" method="get">
+                <div class="d-flex text-body-secondary pt-3">
+                    <button name="boutonProfil" value="UserId" style="background-color: white; border-style: none; display:flex; flex-direction:row;">
+                        <img src="img/popular_item_4.jpg" alt="PP" style="block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;">
+                        <div class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">@username</strong>
+                            <p>Some representative placeholder content, with some information about this user. Imagine this being
+                                some sort of status update, perhaps?</p>
+                        </div>
+                    </button>
+                </div>
+            </form> -->
+            <?php createCommentSpace($commentId, $conn) ?>
         </div>
         <?php
         if ($is_connected) {

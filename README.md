@@ -1,6 +1,6 @@
 # To do list
 
-    - faire aspace commentaire pour la page product
+    - faire ajout de commentaire pour la page product
     - faire page panier
     - faire page profil
     - faire page paiement
