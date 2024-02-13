@@ -14,6 +14,13 @@ if (isset($_COOKIE["SUID"])) {
 } else {
     include("Deconn_header.php");
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $get = $_GET["boutonProfil"];
+    // echo $get;
+}
+
+
 ?>
 
 <!doctype html>

@@ -49,6 +49,15 @@ function getNumber($table, $conn)
   }
 }
 
+function getSomethink($table, $value, $conn)
+{
+    $query = "SELECT * FROM $table WHERE Id = '" . $value . "';";
+    // echo $query;
+    $result = $conn->query($query);
+    $row = $result->fetch_assoc();
+    return $row;
+}
+
 // Permet de récupérer le token d'identification d'un utilisateur
 function getToken($email, $hash, $conn)
 {

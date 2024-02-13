@@ -20,15 +20,6 @@ if (isset($_COOKIE["SUID"])) {
     include("Deconn_header.php");
 }
 
-function getSomethink($table, $value, $conn)
-{
-    $query = "SELECT * FROM $table WHERE Id = '" . $value . "';";
-    // echo $query;
-    $result = $conn->query($query);
-    $row = $result->fetch_assoc();
-    return $row;
-}
-
 function createButonAddToCart($value)
 {
     $dom = new DOMDocument('1.0', 'utf-8');
