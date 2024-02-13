@@ -101,7 +101,7 @@ function createComment($comment, $userId, $conn)
     $dom = new DOMDocument('1.0', 'utf-8');
     $form = createElement($dom, 'form', '', array('action' => 'profil.php', 'method' => 'get'));
     $div = createElement($dom, 'div', '', array('class' => 'd-flex text-body-secondary pt-3'));
-    $button = createElement($dom, 'button', '', array('name' => 'boutonProfil', 'value' => 'UserId', 'style' => 'background-color: white; border-style: none; display:flex; flex-direction:row;'));
+    $button = createElement($dom, 'button', '', array('name' => 'boutonProfil', 'value' => $userId, 'style' => 'background-color: white; border-style: none; display:flex; flex-direction:row;'));
     $div2 = createElement($dom, 'div', '', array('class' => 'pb-3 mb-0 small lh-sm border-bottom'));
 
     $query = "SELECT * FROM User WHERE Id = " . $userId . ";";
