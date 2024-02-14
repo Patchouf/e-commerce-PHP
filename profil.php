@@ -3,13 +3,13 @@ include("Utils.inc.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
-        setcookie('SUID', '', -1);
+        setcookie('ID', '', -1);
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
     }
 }
 
-if (isset($_COOKIE["SUID"])) {
+if (isset($_COOKIE["ID"])) {
     include("Conn_header.php");
 } else {
     include("Deconn_header.php");

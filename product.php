@@ -5,14 +5,14 @@ $is_connected = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
-        setcookie('SUID', '', -1);
+        setcookie('ID', '', -1);
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
         $is_connected = false;
     }
 }
 
-if (isset($_COOKIE["SUID"])) {
+if (isset($_COOKIE["ID"])) {
     $is_connected = true;
     include("Conn_header.php");
 } else {
@@ -49,8 +49,15 @@ function createDivAddComment($value)
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['divAddComment'])) {
         $value = $_GET["divAddComment"];
-        // $comment = $_GET["inputCommentaire"];
-        // echo $comment;
+        $comment = $_GET["inputCommentaire"];
+        $userId = $_COOKIE["ID"];
+
+        $queryComment = "INSERT INTO Comment (Id, Comment, User) VALUES ($value, '$comment', $userId)";
+        try {
+            mysqli_query($conn, $queryComment);
+        } catch (mysqli_sql_exception) {
+            echo "PB! Add Comment";
+        }
     } else {
         $get = $_GET["product"];
         $get_explode = explode(" ", $get);
@@ -171,42 +178,6 @@ function createComment($comment, $userId, $conn)
 
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <h6 class="border-bottom pb-2 mb-0">Commentaires et notes du produit</h6>
-            <!-- <form action="profil.php" method="get">
-                <div class="d-flex text-body-secondary pt-3">
-                    <button name="boutonProfil" value="UserId" style="background-color: white; border-style: none; display:flex; flex-direction:row;">
-                        <img src="img/popular_item_2.jpg" alt="PP" style="block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;">
-                        <div class="pb-3 mb-0 small lh-sm border-bottom">
-                            <strong class="d-block text-gray-dark">@username</strong>
-                            <p>Some representative placeholder content, with some information about this user. Imagine this being
-                                some sort of status update, perhaps?</p>
-                        </div>
-                    </button>
-                </div>
-            </form>
-            <form action="profil.php" method="get">
-                <div class="d-flex text-body-secondary pt-3">
-                    <button name="boutonProfil" value="UserId" style="background-color: white; border-style: none; display:flex; flex-direction:row;">
-                        <img src="img/popular_item_3.jpg" alt="PP" style="block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;">
-                        <div class="pb-3 mb-0 small lh-sm border-bottom">
-                            <strong class="d-block text-gray-dark">@username</strong>
-                            <p>Some representative placeholder content, with some information about this user. Imagine this being
-                                some sort of status update, perhaps?</p>
-                        </div>
-                    </button>
-                </div>
-            </form>
-            <form action="profil.php" method="get">
-                <div class="d-flex text-body-secondary pt-3">
-                    <button name="boutonProfil" value="UserId" style="background-color: white; border-style: none; display:flex; flex-direction:row;">
-                        <img src="img/popular_item_4.jpg" alt="PP" style="block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;">
-                        <div class="pb-3 mb-0 small lh-sm border-bottom">
-                            <strong class="d-block text-gray-dark">@username</strong>
-                            <p>Some representative placeholder content, with some information about this user. Imagine this being
-                                some sort of status update, perhaps?</p>
-                        </div>
-                    </button>
-                </div>
-            </form> -->
             <?php createCommentSpace($commentId, $conn) ?>
         </div>
         <?php

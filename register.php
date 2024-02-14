@@ -1,5 +1,23 @@
 <?php
-include("Utils.inc.php")
+include("Utils.inc.php");
+
+function getEmail($email, $conn)
+{
+  $query = "SELECT * FROM login_info WHERE mail = '" . $email . "';";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+}
+
+$ok = true;
+
 ?>
 
 <!doctype html>
@@ -29,6 +47,7 @@ include("Utils.inc.php")
           $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
           if (empty($username)) {
             echo "Please enter a username <br>";
+            $ok = false;
           }
         }
         ?>
@@ -41,6 +60,10 @@ include("Utils.inc.php")
           $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
           if (empty($email)) {
             echo "Please enter a email <br>";
+            $ok = false;
+          } else if (getEmail($email, $conn)) {
+            echo "Ce mail est déja pris. Choisissez en un autre. <br>";
+            $ok = false;
           }
         }
         ?>
@@ -53,6 +76,7 @@ include("Utils.inc.php")
           $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
           if (empty($password)) {
             echo "Please enter a password <br>";
+            $ok = false;
           }
         }
         ?>
@@ -65,6 +89,7 @@ include("Utils.inc.php")
           $confpassword = filter_input(INPUT_POST, "confpassword", FILTER_SANITIZE_SPECIAL_CHARS);
           if (empty($password) || $password != $confpassword) {
             echo "Please confirm the password <br>";
+            $ok = false;
           }
         }
         ?>
@@ -78,11 +103,10 @@ include("Utils.inc.php")
       <button class="btn btn-primary w-100 py-2" type="submit"> <a class="nav-link active">Connexion</a></button>
     </form>
   </main>
-
-
 </body>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
 
   $countUser = getNumber("user", $conn);
   $countPhoto = getNumber("photo", $conn);
@@ -93,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $queryLoginInfo = "INSERT INTO Login_info (Id, mail, Password) VALUES ($countUser, '$email', '$hash')";
   $queryAddress = "INSERT INTO Address (Id, Street, City, CP, State, Country) VALUES ($countUser, '', '', 2, '', '')";
-  $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, '')";
+  $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, 'None')";
   $queryCommands = "INSERT INTO Commands (Id) VALUES ($countUser)";
   $queryCart = "INSERT INTO Cart (Id) VALUES ($countUser)";
   $queryInvoices = "INSERT INTO Invoices (Id) VALUES ($countUser)";
@@ -154,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "PB! Auth";
   }
 
-  setcookie('SUID', $token);
+  setcookie('ID', $countUser);
   header('Location: home.php');
 }
 ?>

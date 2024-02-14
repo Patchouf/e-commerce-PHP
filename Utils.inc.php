@@ -61,14 +61,14 @@ function getSomethink($table, $value, $conn)
 // Permet de récupérer le token d'identification d'un utilisateur
 function getToken($email, $hash, $conn)
 {
-  $query = "SELECT Token FROM Auth JOIN User ON Auth.Id = User.Id JOIN Login_info ON User.Id = Login_info.Id WHERE Login_info.mail = '" . $email . "' AND Login_info.Password = '" . $hash . "';";
+  $query = "SELECT * FROM Auth JOIN User ON Auth.Id = User.Id JOIN Login_info ON User.Id = Login_info.Id WHERE Login_info.mail = '" . $email . "' AND Login_info.Password = '" . $hash . "';";
   try {
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
         //   echo "Nombre : " .  . "<br>";
-        return $row["token"];
+        return $row["id"] + $row["token"];
       }
     } else {
       echo "0 results";
@@ -107,14 +107,15 @@ function getIdFromToken($Token, $conn)
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
-        //   echo "Nombre : " .  . "<br>";
-        return $row["token"];
+          // echo "Nombre : " .  . "<br>";
+          // echo $row["Id"] . "\n";
+        return $row["Id"];
       }
     } else {
-      echo "0 results";
+      echo "0 results <br />";
     }
   } catch (mysqli_sql_exception) {
-    echo "Problème";
+    echo "Problème <br />";
   }
 }
 

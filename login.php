@@ -66,6 +66,26 @@ include("Utils.inc.php")
 </html>
 
 <?php
+
+function getIdFromEmail($email, $conn)
+{
+  $query = "SELECT * FROM login_info WHERE mail = '" . $email . "';";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        //   echo "Nombre : " .  . "<br>";
+        return $row["Id"];
+      }
+    } else {
+      echo "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -86,9 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if (password_verify($password, $pass)) {
-    $token = password_hash($password, PASSWORD_BCRYPT);
-
-    setcookie('SUID', $token);
+    $ident = getIdFromEmail($email, $conn);
+    setcookie('ID', $ident);
     header('Location: home.php');
   } else {
     echo "You are not connected";
