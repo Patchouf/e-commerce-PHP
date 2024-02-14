@@ -43,15 +43,13 @@
     "type": "table",
     "name": "auth",
     "database": "projet-ecommerce",
-    "data": [
-    ]
+    "data": []
   },
   {
     "type": "table",
     "name": "cart",
     "database": "projet-ecommerce",
-    "data": [
-    ]
+    "data": []
   },
   {
     "type": "table",
@@ -104,8 +102,7 @@
     "type": "table",
     "name": "command",
     "database": "projet-ecommerce",
-    "data": [
-    ]
+    "data": []
   },
   {
     "type": "table",
@@ -802,8 +799,7 @@
     "type": "table",
     "name": "invoice",
     "database": "projet-ecommerce",
-    "data": [
-    ]
+    "data": []
   },
   {
     "type": "table",
@@ -2317,6 +2313,25 @@
         "Invoices": "2",
         "Prefer_payment": "0",
         "Rating": "73"
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "auth",
+    "database": "projet-ecommerce",
+    "data": [
+      {
+        "Id": "0",
+        "Token": "$2y$10$QIgZqodyG9NWISxOPtUKBemhDUGXbbG0LK6adGEc2YptqFkMblrH2"
+      },
+      {
+        "Id": "1",
+        "Token": "$2y$10$LeGVWKnNYVhAFppHoyltA.ClCB21LZfoHW4QgEmuqKd.wZWbave0W"
+      },
+      {
+        "Id": "2",
+        "Token": "$2y$10$AYqboiFrj0sq7EEtghnK2OEduVbqek46x.QQltbU4sxKZ7Jnt4yha"
       }
     ]
   }

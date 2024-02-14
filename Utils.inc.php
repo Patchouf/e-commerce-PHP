@@ -78,6 +78,46 @@ function getToken($email, $hash, $conn)
   }
 }
 
+// Permet de récupérer le token d'identification d'un utilisateur
+function getTokenFromId($Id, $conn)
+{
+  $query = "SELECT Token FROM Auth WHERE Id = " . $Id . "';";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        //   echo "Nombre : " .  . "<br>";
+        return $row["token"];
+      }
+    } else {
+      echo "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+}
+
+// Permet de récupérer le token d'identification d'un utilisateur
+function getIdFromToken($Token, $conn)
+{
+  $query = "SELECT Id FROM Auth WHERE Token = " . $Token . "';";
+  try {
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        //   echo "Nombre : " .  . "<br>";
+        return $row["token"];
+      }
+    } else {
+      echo "0 results";
+    }
+  } catch (mysqli_sql_exception) {
+    echo "Problème";
+  }
+}
+
 // Permet de récupérer l'image d'un Item
 function getImage($photoId, $conn) {
   $query = "SELECT * FROM Photo WHERE Id = " . $photoId .";";
