@@ -53,7 +53,7 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
 <!--    profil card-->
     <div class="col col-5" style="margin: 50px;">
         <div class="card" style="padding: 100px; width:600px;">
-            <img src='<?php if ($Photo == null || $Photo == "None") {
+            <img src='<?php if ($Photo == null || $Photo == "") {
                 $Photo = 'img/default.png';
             }
             echo $Photo ?>' style="width:200px;" alt="John">

@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
 
   $queryLoginInfo = "INSERT INTO Login_info (Id, mail, Password) VALUES ($countUser, '$email', '$hash')";
   $queryAddress = "INSERT INTO Address (Id, Street, City, CP, State, Country) VALUES ($countUser, '', '', 2, '', '')";
-  $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, 'None')";
+  $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, '')";
   $queryCommands = "INSERT INTO Commands (Id) VALUES ($countUser)";
   $queryCart = "INSERT INTO Cart (Id) VALUES ($countUser)";
   $queryInvoices = "INSERT INTO Invoices (Id) VALUES ($countUser)";
