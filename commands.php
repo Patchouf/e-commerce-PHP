@@ -1,16 +1,20 @@
 <?php 
   include("Utils.inc.php");
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
         setcookie('ID', '', -1);
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
-    } else if (isset($_POST['buCommandes'])) {
-        echo "Bouton Commandes OK!!!!!!!!";
     }
-} else {
-    header('Location: home.php');
+} 
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['buCommandes'])) {
+        echo "Bouton Commandes OK!!!!!!!!";
+    } else {
+        header('Location: home.php');
+    }
 }
 
 if (isset($_COOKIE["ID"])) {

@@ -12,11 +12,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_COOKIE["ID"])) {
     include("Conn_header.php");
 } else {
-    header('Location: home.php');
+    include("Conn_header.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $get = $_GET["boutonProfil"];
+    if (isset($_GET["boutonProfil"])) {
+        if ($_GET["boutonProfil"] == "") {
+            $get = $_COOKIE["ID"];
+        } else {
+            $get = $_GET["boutonProfil"];
+        }
+    } else {
+        header('Location: home.php');
+    }
 }
 
 $MainRow = getSomethink('user', $get, $conn);
@@ -32,16 +40,12 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
 
 <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/Profil_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -49,118 +53,114 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
 </head>
 
 <body class="d-flex flex-column ">
-<div class="row" style="margin: 50px;">
-<!--    profil card-->
-    <div class="col col-5" style="margin: 50px;">
-        <div class="card" style="padding: 100px; width:600px;">
-            <img src='<?php if ($Photo == null || $Photo == "") {
-                $Photo = 'img/default.png';
-            }
-            echo $Photo ?>' style="width:200px;" alt="John">
-            <h1><?php echo $UserName ?></h1>
-            <p class="title"><?php echo $mail ?></p>
-            <p>Rating: <?php echo $rating?></p>
+    <div class="row" style="margin: 50px;">
+        <!--    profil card-->
+        <div class="col col-5" style="margin: 50px;">
+            <div class="card" style="padding: 100px; width:600px;">
+                <img src='<?php if ($Photo == null || $Photo == "") {
+                                $Photo = 'img/default.png';
+                            }
+                            echo $Photo ?>' style="width:200px;" alt="John">
+                <h1><?php echo $UserName ?></h1>
+                <p class="title"><?php echo $mail ?></p>
+                <p>Rating: <?php echo $rating ?></p>
 
-            <div style="margin: 24px 0;">
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
+                <div style="margin: 24px 0;">
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </div>
+                <p>
+                    <button>Contact</button>
+                </p>
             </div>
-            <p>
-                <button>Contact</button>
-            </p>
+        </div>
+        <!--    espace commentaire-->
+        <div class="col col-5" style="margin: 50px;">
         </div>
     </div>
-<!--    espace commentaire-->
-    <div class="col col-5" style="margin: 50px;">
-    </div>
-</div>
-<p style="margin: 30px;margin-top: 50px; padding-left:5%;padding-bottom:10px; font-size:150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
-    Produits vendu par l'utilisateur
-</p>
+    <p style="margin: 30px;margin-top: 50px; padding-left:5%;padding-bottom:10px; font-size:150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
+        Produits vendu par l'utilisateur
+    </p>
 
-<div id="carouselExampleDark" class="carousel carousel-dark slide" style="margin: 20px;">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" style="margin: 20px;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
+                    <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
+                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/91t7YlWwGfL._AC_UL640_FMwebp_QL65_.jpg">
+                    </div>
+                    <div class="col-7 ">
+                        <p class="username">One piece tome 1</p>
+                        <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
+                            devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
+                            a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
+                            contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
+                            de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
+                            toujours plus rocambolesques.
+                            Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
+                            formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
+                            désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
+                            exceptionnelles de leurs héros.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
+                    <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
+                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/91sKhhBDJ0L._AC_UL640_FMwebp_QL65_.jpg">
+                    </div>
+                    <div class="col-7 ">
+                        <p class="username">One piece tome 3</p>
+                        <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
+                            devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
+                            a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
+                            contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
+                            de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
+                            toujours plus rocambolesques.
+                            Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
+                            formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
+                            désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
+                            exceptionnelles de leurs héros.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
+                    <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
+                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/913wc4EdSlL._AC_UL640_FMwebp_QL65_.jpg">
+                    </div>
+                    <div class="col-7 ">
+                        <p class="username">One piece tome 4</p>
+                        <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
+                            devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
+                            a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
+                            contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
+                            de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
+                            toujours plus rocambolesques.
+                            Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
+                            formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
+                            désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
+                            exceptionnelles de leurs héros.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-            <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
-                <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                    <img class="carousel-pic"
-                         src="https://m.media-amazon.com/images/I/91t7YlWwGfL._AC_UL640_FMwebp_QL65_.jpg">
-                </div>
-                <div class="col-7 ">
-                    <p class="username">One piece tome 1</p>
-                    <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
-                        devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
-                        a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
-                        contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
-                        de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
-                        toujours plus rocambolesques.
-                        Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
-                        formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
-                        désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
-                        exceptionnelles de leurs héros.</p>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-            <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
-                <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                    <img class="carousel-pic"
-                         src="https://m.media-amazon.com/images/I/91sKhhBDJ0L._AC_UL640_FMwebp_QL65_.jpg">
-                </div>
-                <div class="col-7 ">
-                    <p class="username">One piece tome 3</p>
-                    <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
-                        devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
-                        a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
-                        contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
-                        de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
-                        toujours plus rocambolesques.
-                        Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
-                        formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
-                        désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
-                        exceptionnelles de leurs héros.</p>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
-                <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                    <img class="carousel-pic"
-                         src="https://m.media-amazon.com/images/I/913wc4EdSlL._AC_UL640_FMwebp_QL65_.jpg">
-                </div>
-                <div class="col-7 ">
-                    <p class="username">One piece tome 4</p>
-                    <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
-                        devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
-                        a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
-                        contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
-                        de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
-                        toujours plus rocambolesques.
-                        Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
-                        formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
-                        désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
-                        exceptionnelles de leurs héros.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 </body>
 <!-- FOOTER -->
 <footer class="footer mt-auto py-3 bg-body-tertiary">
@@ -212,9 +212,7 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
         </footer>
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>

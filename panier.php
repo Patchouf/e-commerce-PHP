@@ -6,11 +6,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         setcookie('ID', '', -1);
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
-    } else if (isset($_POST['buPanier'])) {
-        echo "Bouton Panier OK!!!!!!!!";
-    } 
-} else {
-    header('Location: home.php');
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['buPanier'])) {
+        $userId = $_COOKIE["ID"];
+    } else {
+        header('Location: home.php');
+    }
 }
 
 if (isset($_COOKIE["ID"])) {

@@ -17,18 +17,21 @@
           <a class="nav-link active" href="home.php">Home</a>
         </li>
         <li class="nav-item">
-          <form action="panier.php" method="post">
+          <form action="panier.php" method="get">
             <button class="nav-link active" name="buPanier" style="margin-top: 15px;">Panier</button>
           </form>
           <!-- <a class="nav-link active" href="panier.php">Panier</a> -->
         </li>
         <li class="nav-item">
-          <form action="commands.php" method="post">
+          <form action="commands.php" method="get">
             <button class="nav-link active" name="buCommandes" style="margin-top: 15px;">Commandes</button>
           </form>
           <!-- <a class="nav-link active" href="commands.php">Commandes</a> -->
         </li>
-        <li class="nav-item"><a class="nav-link active" href="profil.php">Profil</a>
+          <form action="profil.php" method="get">
+              <button class="nav-link active" name="boutonProfil" style="margin-top: 15px;">Profil</button>
+            </form>
+        <!-- <li class="nav-item"><a class="nav-link active" href="profil.php">Profil</a> -->
         </li>
         <form action="home.php" method="post" style="margin: 0px;">
           <li class="nav-item"><button class="nav-link active" name="Deconnexion" value="deco">Deconnexion</button></li>
