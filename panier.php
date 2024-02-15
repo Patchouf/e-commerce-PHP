@@ -22,6 +22,7 @@ if (isset($_COOKIE["ID"])) {
 } else {
     include("Deconn_header.php");
 }
+
 ?>
 
 <!doctype html>
@@ -39,13 +40,15 @@ if (isset($_COOKIE["ID"])) {
 </head>
 
 <body class="d-flex flex-column h-100">
-    <div class="row row-cols-3" style="margin-top: 50px; margin-right:0px; margin-left: 0px;">
+    <div class="row row-cols-3" style="margin-top: 100px; margin-right:0px; margin-left: 0px;">
         <div class="col-4 pt-3 pb-3 text-center" style="font-size: 30px;">
             Votre Panier
         </div>
         <div class="col-2"></div>
         <div class="col-6 text-center pt-3 pb-3" style="padding-right: 0px;">
-            <button class="bu-payer amazon-color"><a class="nav-link active" href="paiment.html">Payer</a></button>
+            <form action="paiment.php" method="get">
+                <button class="bu-payer amazon-color">Payer</button>
+            </form>
         </div>
     </div>
 
@@ -60,7 +63,7 @@ if (isset($_COOKIE["ID"])) {
             </div>
             <div class="col-1 text-center">
                 <button class="bu-croix">
-                    <img src="../img/croix.png" style="width: 80%;">
+                    <img src="img/croix.png" style="width: 80%;">
                 </button>
             </div>
         </div>
@@ -74,7 +77,7 @@ if (isset($_COOKIE["ID"])) {
             </div>
             <div class="col-1 text-center">
                 <button class="bu-croix">
-                    <img src="../img/croix.png" style="width: 80%;">
+                    <img src="img/croix.png" style="width: 80%;">
                 </button>
             </div>
         </div>
@@ -88,7 +91,7 @@ if (isset($_COOKIE["ID"])) {
             </div>
             <div class="col-1 text-center">
                 <button class="bu-croix">
-                    <img src="../img/croix.png" style="width: 80%;">
+                    <img src="img/croix.png" style="width: 80%;">
                 </button>
             </div>
         </div>
