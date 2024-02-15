@@ -17,10 +17,16 @@
           <a class="nav-link active" href="home.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="panier.php">Panier</a>
+          <form action="panier.php" method="post">
+            <button class="nav-link active" name="buPanier" style="margin-top: 15px;">Panier</button>
+          </form>
+          <!-- <a class="nav-link active" href="panier.php">Panier</a> -->
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="commands.php">Commandes</a>
+          <form action="commands.php" method="post">
+            <button class="nav-link active" name="buCommandes" style="margin-top: 15px;">Commandes</button>
+          </form>
+          <!-- <a class="nav-link active" href="commands.php">Commandes</a> -->
         </li>
         <li class="nav-item"><a class="nav-link active" href="profil.php">Profil</a>
         </li>

@@ -6,7 +6,11 @@
         setcookie('ID', '', -1);
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
+    } else if (isset($_POST['buCommandes'])) {
+        echo "Bouton Commandes OK!!!!!!!!";
     }
+} else {
+    header('Location: home.php');
 }
 
 if (isset($_COOKIE["ID"])) {

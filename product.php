@@ -58,12 +58,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         } catch (mysqli_sql_exception) {
             echo "PB! Add Comment";
         }
-    } else {
+    } else if (isset($_GET['product'])) {
         $get = $_GET["product"];
         $get_explode = explode(" ", $get);
         $value = $get_explode[0];
         $categoryName = $get_explode[1];
+    } else {
+        header('Location: home.php');
     }
+
 
     $MainRow = getSomethink('items', $value, $conn);
     $name = $MainRow["Name"];
@@ -92,6 +95,17 @@ function createCommentSpace($commentId, $conn)
     } catch (mysqli_sql_exception) {
         echo "Problème";
     }
+}
+
+function createOwner($seller, $ownerId)
+{ 
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $form = createElement($dom, 'form', '', array('action' => 'profil.php', 'method' => 'get'));
+    $button = createElement($dom, 'button', $seller , array('class' => 'nav-link active' ,'style' => 'color: blue;', 'name' => 'boutonProfil', 'value' => $ownerId));
+
+    $form->append($button);
+    $dom->appendChild($form);
+    echo $dom->saveXML();
 }
 
 function createComment($comment, $userId, $conn)
@@ -160,7 +174,9 @@ function createComment($comment, $userId, $conn)
                 <article class="blog-post">
                     <h2 class="display-5 link-body-emphasis mb-1"><?php echo $name ?></h2>
                     <p><?php echo $description ?></p>
-                    <p class="blog-post-meta">par <a href="profil.php"><?php echo $seller ?></a></p>
+                    <p class="blog-post-meta"> par:
+                        <?php createOwner($seller, $MainRow["Seller"]) ?>
+                    </p>
                     <hr>
                     <img src="<?php echo $photo ?>" alt="Photo du produit" class="card">
                     <p><?php echo $description ?></p>

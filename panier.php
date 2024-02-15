@@ -1,12 +1,16 @@
-<?php 
-  include("Utils.inc.php");
+<?php
+include("Utils.inc.php");
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
         setcookie('ID', '', -1);
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
-    }
+    } else if (isset($_POST['buPanier'])) {
+        echo "Bouton Panier OK!!!!!!!!";
+    } 
+} else {
+    header('Location: home.php');
 }
 
 if (isset($_COOKIE["ID"])) {
@@ -22,11 +26,8 @@ if (isset($_COOKIE["ID"])) {
 <head>
     <!-- <script src="../assets/js/color-modes.js"></script> -->
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/Panier_page.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -40,16 +41,14 @@ if (isset($_COOKIE["ID"])) {
         </div>
         <div class="col-2"></div>
         <div class="col-6 text-center pt-3 pb-3" style="padding-right: 0px;">
-            <button class="bu-payer amazon-color"><a class="nav-link active" href="paiment.html" >Payer</a></button>
+            <button class="bu-payer amazon-color"><a class="nav-link active" href="paiment.html">Payer</a></button>
         </div>
     </div>
 
     <div class="row row-cols-1 text-center" style="margin-top: 20px; margin-left:0px; margin-right:0px;">
-        <div class="row row-cols-3 mb-3"
-            style="width: 90%; border-style:solid; border-radius: 10px; border-color: rgba(0, 0, 0, 0.25); margin:0px; margin-left: 5%;">
+        <div class="row row-cols-3 mb-3" style="width: 90%; border-style:solid; border-radius: 10px; border-color: rgba(0, 0, 0, 0.25); margin:0px; margin-left: 5%;">
             <div class="col-3 pt-3 pb-2 text-center">
-                <img class="panier-pic"
-                    src="https://m.media-amazon.com/images/I/91t7YlWwGfL._AC_UL640_FMwebp_QL65_.jpg">
+                <img class="panier-pic" src="https://m.media-amazon.com/images/I/91t7YlWwGfL._AC_UL640_FMwebp_QL65_.jpg">
             </div>
             <div class="col-7">
                 <p class="nom-produit">One piece tome 1</p>
@@ -61,11 +60,9 @@ if (isset($_COOKIE["ID"])) {
                 </button>
             </div>
         </div>
-        <div class="row row-cols-3 mb-3"
-            style="width: 90%; border-style:solid; border-radius: 10px; border-color: rgba(0, 0, 0, 0.25); margin:0px; margin-left: 5%;">
+        <div class="row row-cols-3 mb-3" style="width: 90%; border-style:solid; border-radius: 10px; border-color: rgba(0, 0, 0, 0.25); margin:0px; margin-left: 5%;">
             <div class="col-3 pt-3 pb-2 text-center">
-                <img class="panier-pic"
-                    src="https://m.media-amazon.com/images/I/91sKhhBDJ0L._AC_UL640_FMwebp_QL65_.jpg">
+                <img class="panier-pic" src="https://m.media-amazon.com/images/I/91sKhhBDJ0L._AC_UL640_FMwebp_QL65_.jpg">
             </div>
             <div class="col-7">
                 <p class="nom-produit">One piece tome 3</p>
@@ -77,11 +74,9 @@ if (isset($_COOKIE["ID"])) {
                 </button>
             </div>
         </div>
-        <div class="row row-cols-3 mb-3"
-            style="width: 90%; border-style:solid; border-radius: 10px; border-color: rgba(0, 0, 0, 0.25); margin:0px; margin-left: 5%;">
+        <div class="row row-cols-3 mb-3" style="width: 90%; border-style:solid; border-radius: 10px; border-color: rgba(0, 0, 0, 0.25); margin:0px; margin-left: 5%;">
             <div class="col-3 pt-3 pb-2 text-center">
-                <img class="panier-pic"
-                    src="https://m.media-amazon.com/images/I/913wc4EdSlL._AC_UL640_FMwebp_QL65_.jpg">
+                <img class="panier-pic" src="https://m.media-amazon.com/images/I/913wc4EdSlL._AC_UL640_FMwebp_QL65_.jpg">
             </div>
             <div class="col-7">
                 <p class="nom-produit">One piece tome 4</p>
@@ -138,4 +133,5 @@ if (isset($_COOKIE["ID"])) {
         </footer>
     </div>
 </footer>
+
 </html>

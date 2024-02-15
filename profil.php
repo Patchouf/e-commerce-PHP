@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_COOKIE["ID"])) {
     include("Conn_header.php");
 } else {
-    include("Deconn_header.php");
+    header('Location: home.php');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
