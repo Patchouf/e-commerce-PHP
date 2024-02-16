@@ -1,6 +1,10 @@
 <?php
 include("Utils.inc.php");
 
+if (isset($_COOKIE['ID'])) {
+  header("Location: home.php");
+}
+
 function getEmail($email, $conn)
 {
   $query = "SELECT * FROM login_info WHERE mail = '" . $email . "';";
@@ -119,7 +123,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
   $queryAddress = "INSERT INTO Address (Id, Street, City, CP, State, Country) VALUES ($countUser, '', '', 2, '', '')";
   $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, '')";
   $queryCommands = "INSERT INTO Commands (Id) VALUES ($countUser)";
-  $queryCart = "INSERT INTO Cart (Id) VALUES ($countUser)";
   $queryInvoices = "INSERT INTO Invoices (Id) VALUES ($countUser)";
   $queryPreferPayement = "INSERT INTO Prefer_payment (Id, Payment) VALUES ($countUser, 0)";
   $queryRating = "INSERT INTO Rating (Id, Rating, Comment) VALUES ($countRating, 3, 0)";
@@ -146,11 +149,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
     mysqli_query($conn, $queryCommands);
   } catch (mysqli_sql_exception) {
     echo "PB! Commands";
-  }
-  try {
-    mysqli_query($conn, $queryCart);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Cart";
   }
   try {
     mysqli_query($conn, $queryInvoices);

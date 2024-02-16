@@ -9,6 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
         $is_connected = false;
+    } else if (isset($_POST['addToCart'])) {
+        $value = $_POST['addToCart'];
+        addToCart($value, $conn);
     }
 }
 
@@ -23,12 +26,23 @@ if (isset($_COOKIE["ID"])) {
 function createButonAddToCart($value)
 {
     $dom = new DOMDocument('1.0', 'utf-8');
-    $form = createElement($dom, 'form', '', array('action' => 'panier.php', 'methode' => 'post'));
+    $form = createElement($dom, 'form', '', array('action' => 'product.php', 'method' => 'post'));
     $bouton = createElement($dom, 'button', 'Ajout au panier', array('class' => 'add-to-cart', 'name' => 'addToCart', 'value' => $value));
 
     $form->append($bouton);
     $dom->appendChild($form);
     echo $dom->saveXML();
+}
+
+function addToCart($value, $conn)
+{
+    $userId = $_COOKIE["ID"];
+    $queryCart = "INSERT INTO Cart (Id, Items) VALUES ($userId, $value)";
+    try {
+        mysqli_query($conn, $queryCart);
+    } catch (mysqli_sql_exception) {
+        echo "PB! Cart";
+    }
 }
 
 function createDivAddComment($value)
@@ -66,18 +80,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     } else {
         header('Location: home.php');
     }
-
-
-    $MainRow = getSomethink('items', $value, $conn);
-    $name = $MainRow["Name"];
-    $price = $MainRow["Price"];
-    $description = $MainRow["Description"];
-    $category = $MainRow["Category"];
-    $photo = getSomethink('photo', $MainRow["Photo"], $conn)["Link"];
-    $seller = getSomethink('user', $MainRow["Seller"], $conn)["Name"];
-    $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
-    $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
 }
+
+$MainRow = getSomethink('items', $value, $conn);
+$name = $MainRow["Name"];
+$price = $MainRow["Price"];
+$description = $MainRow["Description"];
+$category = $MainRow["Category"];
+$photo = getSomethink('photo', $MainRow["Photo"], $conn)["Link"];
+$seller = getSomethink('user', $MainRow["Seller"], $conn)["Name"];
+$rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
+$commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Comment"];
 
 function createCommentSpace($commentId, $conn)
 {
@@ -98,10 +111,10 @@ function createCommentSpace($commentId, $conn)
 }
 
 function createOwner($seller, $ownerId)
-{ 
+{
     $dom = new DOMDocument('1.0', 'utf-8');
     $form = createElement($dom, 'form', '', array('action' => 'profil.php', 'method' => 'get'));
-    $button = createElement($dom, 'button', $seller , array('class' => 'nav-link active' ,'style' => 'color: blue;', 'name' => 'boutonProfil', 'value' => $ownerId));
+    $button = createElement($dom, 'button', $seller, array('class' => 'nav-link active', 'style' => 'color: blue;', 'name' => 'boutonProfil', 'value' => $ownerId));
 
     $form->append($button);
     $dom->appendChild($form);
@@ -129,7 +142,7 @@ function createComment($comment, $userId, $conn)
                     $img = createElement($dom, 'img', '', array('src' => 'img/default.png', 'alt' => 'pp', 'style' => 'block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;'));
                 }
                 $strong = createElement($dom, 'strong', $row["Name"]);
-                $p = createElement($dom, 'p', $comment);
+                $p = createElement($dom, 'p', $comment, array('style' => 'width: 100%;'));
             }
         } else {
             echo "Ce produit n'a aucun commentaire";

@@ -1,5 +1,9 @@
 <?php
-include("Utils.inc.php")
+include("Utils.inc.php");
+
+if (isset($_COOKIE['ID'])) {
+  header("Location: home.php");
+}
 ?>
 
 <!doctype html>
