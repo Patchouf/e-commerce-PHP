@@ -18,5 +18,6 @@
 ##### Boite Mail
 
     - Download MailHog sur: [MailHog](https://github.com/mailhog/MailHog/releases/tag/v1.0.1),
+    - Download MailHog sur: <https://github.com/mailhog/MailHog/releases/tag/v1.0.1>,
 
 
