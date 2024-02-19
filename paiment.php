@@ -1,7 +1,7 @@
 <?php
 include("Utils.inc.php");
 
-// Créer la commande
+// Insérer la commande dans la bdd
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
