@@ -1,6 +1,9 @@
 <?php
 include("Utils.inc.php");
 
+// Créer la commande
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
         setcookie('ID', '', -1);
@@ -126,7 +129,8 @@ function countItemsCart($userId, $conn)
     }
 }
 
-function getCodePromo($codePromo, $conn) {
+function getCodePromo($codePromo, $conn)
+{
     $dom = new DOMDocument('1.0', 'utf-8');
 
     $query = "SELECT * FROM Code_promo WHERE Code = '" . $codePromo . "';";

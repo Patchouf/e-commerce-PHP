@@ -1,5 +1,7 @@
 <?php
 
+$month = array('January' => 'Janvier','February' => 'Février', 'March' => 'Mars', 'April' => 'Avril','May' => 'Mai', 'June' => 'Juin', 'July' => 'Juillet', 'August' => 'Août', 'September' => 'Septembre', 'October' => 'Octobre', 'November' => 'Novembre', 'Decembre' => 'Décembre');
+
 // PHP
 // projet.e.commerce.php@gmail.com
 // ProjetECommercePHP
@@ -192,6 +194,15 @@ function createCarousel($category, $id, $conn) {
   $dom->appendChild($section);
   echo $dom->saveXML();
 }
+
+// $array2 = getdate();
+
+// foreach($array2 as $key => $value) {
+//   echo "{$key} = {$value} <br>";
+// }
+
+// echo "<br>";
+// echo $array2['mday'] . " " . $month[$array2['month']] . " " . $array2['year'];
 
 // phpinfo();
 

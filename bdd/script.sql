@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS Commands
 (
     Id      INT NOT NULL,
     UserId INT NOT NULL,
+    Date VARCHAR(50) NOT NULL,
     PRIMARY KEY (Id)
 );
 
