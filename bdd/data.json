@@ -106,25 +106,6 @@
   },
   {
     "type": "table",
-    "name": "commands",
-    "database": "projet-ecommerce",
-    "data": [
-      {
-        "Id": "0",
-        "Command": "0"
-      },
-      {
-        "Id": "1",
-        "Command": "1"
-      },
-      {
-        "Id": "2",
-        "Command": "2"
-      }
-    ]
-  },
-  {
-    "type": "table",
     "name": "comment",
     "database": "projet-ecommerce",
     "data": [
@@ -2332,6 +2313,25 @@
       {
         "Id": "2",
         "Token": "$2y$10$AYqboiFrj0sq7EEtghnK2OEduVbqek46x.QQltbU4sxKZ7Jnt4yha"
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "code_promo",
+    "database": "projet-ecommerce",
+    "data": [
+      {
+        "Code": "YANN",
+        "Diminution": "0.95"
+      },
+      {
+        "Code": "ALBERIC",
+        "Diminution": "0.9"
+      },
+      {
+        "Code": "ADRIANA",
+        "Diminution": "0.8"
       }
     ]
   }

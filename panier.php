@@ -193,11 +193,14 @@ function createBoutonPayer() {
             
         </div>
         <div class="col-2"></div>
-        <div class="col-6 text-center pt-3 pb-3" style="padding-right: 0px;">
+        <div class="col-6 text-center pt-3 pb-3" style="padding-right: 0px; font-size: 28px;">
             <?php 
-            if ($count > 0) {
-                createBoutonPayer();
-            } ?>
+            if ($count == 1) {
+                echo countItemsCart($_COOKIE['ID'], $conn) . " article";
+            } else if ($count > 1) {
+                echo countItemsCart($_COOKIE['ID'], $conn) . " articles";
+            }
+            ?>
         </div>
     </div>
 
@@ -209,14 +212,21 @@ function createBoutonPayer() {
         ?>
     </div>
 
-    <div>
-        <p style="margin-left: 70px; font-size: 28px;">
+    <div class="row row-cols-2">
+        <div class="col-6 text-center pt-3 pb-5" style="padding-right: 175px; font-size: 28px;">
             <?php
             if ($count > 0) {
-                echo "Total: " . $total;
+                echo "Total: " . $total . " €";
             }
             ?>
-        </p>
+        </div>
+        <div class="col-6 text-center pt-3 pb-3" style="padding-right: 0px;">
+            <?php 
+            if ($count > 0) {
+                createBoutonPayer();
+            } 
+            ?>
+        </div>
     </div>
 </body>
 <!-- FOOTER -->

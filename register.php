@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
   $queryLoginInfo = "INSERT INTO Login_info (Id, mail, Password) VALUES ($countUser, '$email', '$hash')";
   $queryAddress = "INSERT INTO Address (Id, Street, City, CP, State, Country) VALUES ($countUser, '', '', 2, '', '')";
   $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, '')";
-  $queryCommands = "INSERT INTO Commands (Id) VALUES ($countUser)";
+  // $queryCommands = "INSERT INTO Commands (Id) VALUES ($countUser)";
   $queryInvoices = "INSERT INTO Invoices (Id) VALUES ($countUser)";
   $queryPreferPayement = "INSERT INTO Prefer_payment (Id, Payment) VALUES ($countUser, 0)";
   $queryRating = "INSERT INTO Rating (Id, Rating, Comment) VALUES ($countRating, 3, 0)";
@@ -145,11 +145,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
   } catch (mysqli_sql_exception) {
     echo "PB! Photo";
   }
-  try {
-    mysqli_query($conn, $queryCommands);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Commands";
-  }
+  // try {
+  //   mysqli_query($conn, $queryCommands);
+  // } catch (mysqli_sql_exception) {
+  //   echo "PB! Commands";
+  // }
   try {
     mysqli_query($conn, $queryInvoices);
   } catch (mysqli_sql_exception) {
