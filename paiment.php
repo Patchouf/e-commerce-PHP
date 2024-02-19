@@ -3,7 +3,6 @@ include("Utils.inc.php");
 
 // Insérer la commande dans la bdd
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
         setcookie('ID', '', -1);
