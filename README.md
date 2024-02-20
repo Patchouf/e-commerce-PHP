@@ -2,8 +2,8 @@
 
     - faire la recherche dans la page home.php
     - faire page profil
-    - faire page paiement
     - faire page commande
+    - faire mail d'inscription et de facture après l'achat.
 
 # e-commerce-PHP
 
