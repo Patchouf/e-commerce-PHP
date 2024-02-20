@@ -9,24 +9,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
     } else if (isset($_POST['payer'])) {
-        echo $_POST['prenom'] . "<br>";
-        echo $_POST['nom'] . "<br>";
-        if ($_POST['email'] == "") {
-            $email = getEmailFromId($conn);
-            echo $email  . "<br>";
-        } else {
-            echo $_POST['email'] . "<br>";
-        }
+        // echo $_POST['prenom'] . "<br>";
+        // echo $_POST['nom'] . "<br>";
+        // if ($_POST['email'] == "") {
+        //     $email = getEmailFromId($conn);
+        //     echo $email  . "<br>";
+        // } else {
+        //     echo $_POST['email'] . "<br>";
+        // }
 
-        echo $_POST['adresse'] . "<br>";
-        echo $_POST['pays'] . "<br>";
-        echo $_POST['departement'] . "<br>";
-        echo $_POST['ville'] . "<br>";
-        echo $_POST['paymentMethod'] . "<br>";
-        echo $_POST['proprietaire'] . "<br>";
-        echo $_POST['numero'] . "<br>";
-        echo $_POST['expiration'] . "<br>";
-        echo $_POST['cvv'] . "<br>";
+        // echo $_POST['adresse'] . "<br>";
+        // echo $_POST['pays'] . "<br>";
+        // echo $_POST['departement'] . "<br>";
+        // echo $_POST['ville'] . "<br>";
+        // echo $_POST['paymentMethod'] . "<br>";
+        // echo $_POST['proprietaire'] . "<br>";
+        // echo $_POST['numero'] . "<br>";
+        // echo $_POST['expiration'] . "<br>";
+        // echo $_POST['cvv'] . "<br>";
+        cartToCommands($month, $conn);
     }
 }
 
@@ -34,6 +35,71 @@ if (isset($_COOKIE["ID"])) {
     include("Conn_header.php");
 } else {
     include("Deconn_header.php");
+}
+
+function cartToCommands($month, $conn)
+{
+    $total = 0;
+    $countCommands = getNumber("Commands", $conn);
+    $userId = $_COOKIE['ID'];
+    $date = getNowDate($month);
+
+    $queryCart = "SELECT * FROM Cart WHERE Id = " . $userId . ";";
+    try {
+        $result = $conn->query($queryCart);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $itemId = $row["Items"];
+                $total = $total +  getItemPrice($row["Items"], $conn);
+                $queryCommand = "INSERT INTO Command (Id, Items) VALUES ($countCommands, $itemId)";
+                try {
+                    mysqli_query($conn, $queryCommand);
+                } catch (mysqli_sql_exception) {
+                    echo "PB! Commands";
+                }
+            }
+        } else {
+            echo "Ce produit n'a aucun commentaire";
+        }
+    } catch (mysqli_sql_exception) {
+        echo "Problème";
+    }
+
+    $queryCommands = "INSERT INTO Commands (Id, UserId, Date, Total) VALUES ($countCommands, $userId, '$date', $total)";
+    echo $queryCommands . "<br>";
+    try {
+        mysqli_query($conn, $queryCommands);
+    } catch (mysqli_sql_exception) {
+        echo "PB! Commands";
+    }
+
+    $queryDeleteItemsFromCart = "DELETE FROM Cart WHERE Id = " . $userId . ";";
+
+    try {
+        mysqli_query($conn, $queryDeleteItemsFromCart);
+    } catch (mysqli_sql_exception) {
+        echo "PB! Cart";
+    }
+    header("Location: home.php");
+}
+
+function getItemPrice($itemId, $conn) {
+    $query = "SELECT * FROM Items WHERE Id = " . $itemId . ";";
+
+    try {
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                return $row["Price"];
+            }
+        } else {
+            echo "Problème avec la générationdu cart";
+        }
+    } catch (mysqli_sql_exception) {
+        echo "Problème";
+    }
 }
 
 function getEmailFromId($conn)

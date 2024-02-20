@@ -41,7 +41,11 @@ function getNumber($table, $conn)
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
-        return intval($row["max"], 10) + 1;
+        if ($row["max"] == "") {
+          return 0;
+        } else {
+          return intval($row["max"], 10) + 1;
+        }
       }
     } else {
       echo "0 results";
@@ -193,6 +197,11 @@ function createCarousel($category, $id, $conn) {
   $section->append($form);
   $dom->appendChild($section);
   echo $dom->saveXML();
+}
+
+function getNowDate($month) {
+  $array = getdate();
+  return $array['mday'] . " " . $month[$array['month']] . " " . $array['year'];
 }
 
 // $array2 = getdate();

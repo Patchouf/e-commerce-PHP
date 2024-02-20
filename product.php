@@ -113,8 +113,8 @@ function createCommentSpace($commentId, $conn)
 function createOwner($seller, $ownerId)
 {
     $dom = new DOMDocument('1.0', 'utf-8');
-    $form = createElement($dom, 'form', '', array('action' => 'profil.php', 'method' => 'get'));
-    $button = createElement($dom, 'button', $seller, array('class' => 'nav-link active', 'style' => 'color: blue;', 'name' => 'boutonProfil', 'value' => $ownerId));
+    $form = createElement($dom, 'form', '', array('action' => 'profil.php', 'method' => 'get', 'style' => 'display:inline;'));
+    $button = createElement($dom, 'button', $seller, array('class' => 'nav-link active', 'style' => 'color: blue; display:inline;', 'name' => 'boutonProfil', 'value' => $ownerId));
 
     $form->append($button);
     $dom->appendChild($form);
@@ -187,7 +187,7 @@ function createComment($comment, $userId, $conn)
                 <article class="blog-post">
                     <h2 class="display-5 link-body-emphasis mb-1"><?php echo $name ?></h2>
                     <p><?php echo $description ?></p>
-                    <p class="blog-post-meta"> par:
+                    <p class="blog-post-meta" style="display: inline;"> par: 
                         <?php createOwner($seller, $MainRow["Seller"]) ?>
                     </p>
                     <hr>

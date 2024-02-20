@@ -1,5 +1,5 @@
-<?php 
-  include("Utils.inc.php");
+<?php
+include("Utils.inc.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
     }
-} 
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['buCommandes'])) {
@@ -30,30 +30,68 @@ if (isset($_COOKIE["ID"])) {
 <head>
     <!-- <script src="../assets/js/color-modes.js"></script> -->
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/Panier_page.css">
+    <link rel="stylesheet" href="css/commands.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>Maladie.fr/command</title>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" style="margin-top: 40px;">
     <!--    Body    -->
     <div class="body container mt-5" style="margin-top: 50px; margin-right:0px; margin-left: 0px;">
         <h1>Historique des Commandes</h1>
 
         <!-- Liste dynamique des commandes -->
-        <ul class="list-group">
+        <ul class="list-group" style="margin-top: 40px;">
             <li class="list-group-item">
-                <div id="carouselExample" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item">
-                            <div class="card">
-                                <div class="card-body">
+                <div class="wrap-collabsible"> <input id="collapsible2" class="toggle" type="checkbox"> <label for="collapsible2" class="lbl-toggle">
+                        <p style="display:inline;">20 Février 2024</p>
+                    </label>
+                    <div class="collapsible-content">
+                        <div class="content-inner" style="padding-top: 25px;">
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:20px;">
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Total:
+                                </div>
+                                <div>
+                                    400 €
                                 </div>
                             </div>
                         </div>
@@ -112,7 +150,7 @@ if (isset($_COOKIE["ID"])) {
         </footer>
     </div>
 </footer>
-  <!-- Scripts Bootstrap et jQuery (assurez-vous d'inclure jQuery avant Bootstrap)
+<!-- Scripts Bootstrap et jQuery (assurez-vous d'inclure jQuery avant Bootstrap)
    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
