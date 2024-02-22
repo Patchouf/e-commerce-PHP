@@ -169,7 +169,7 @@ $ok = true;
           <form action="http://localhost/e-commerce-php/home.php" method="get" target=_blank>
             <button name="verify" value="' . $countUser . '" style="margin-left:20px; padding:10px; background-color: #2569bd; color:white; border-style:none;">Vérifiez votre email!</button>
           </form>';
-        EnvoieMail($email, $body);
+        EnvoieMail($email, $body, true);
       }
 
       ?>

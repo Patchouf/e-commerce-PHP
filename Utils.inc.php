@@ -206,7 +206,7 @@ function getNowDate($month) {
 
 
 
-function EnvoieMail($email, $body)
+function EnvoieMail($email, $body, $verif)
 {
   //Create an instance; passing `true` enables exceptions
   $mail = new PHPMailer(true);
@@ -235,7 +235,9 @@ function EnvoieMail($email, $body)
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo "Un mail de vérification vous à été envoyer. Il vous permettra d'activer votre compte.";
+    if ($verif) {
+      echo "Un mail de vérification vous à été envoyer. Il vous permettra d'activer votre compte.";
+    }
   } catch (Exception $e) {
     echo "Le mail de vérification n'a pas pu etre envoyer.";
   }

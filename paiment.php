@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
     } else if (isset($_POST['payer'])) {
-        cartToCommands($month, $_POST['payer'], $conn);
+        cartToCommands($month, $_POST['email'], $_POST['payer'], $conn);
     }
 }
 
@@ -19,12 +19,14 @@ if (isset($_COOKIE["ID"])) {
     include("Deconn_header.php");
 }
 
-function cartToCommands($month, $tot, $conn)
+function cartToCommands($month, $email,$tot, $conn)
 {
     $total = 0;
     $countCommands = getNumber("Commands", $conn);
     $userId = $_COOKIE['ID'];
     $date = getNowDate($month);
+
+    createInvoice($tot, $email, $conn); // Envoie de la facture en premier
 
     $queryCart = "SELECT * FROM Cart WHERE Id = " . $userId . ";";
     try {
@@ -67,26 +69,34 @@ function cartToCommands($month, $tot, $conn)
     header("Location: home.php");
 }
 
-function getEmailFromId($conn)
-{
-    $userId = $_COOKIE["ID"];
-
-    $query = "SELECT mail FROM Login_info WHERE Id = " . $userId . ";";
+function createInvoice($tot, $email, $conn) {
+    $body = "<p>Merci d'avoir commander chez nous.</p>
+             <p>Voici votre facture:</p>";
+    $userId = $_COOKIE['ID'];
+    // $email = getSomethink('Login_info', $userId, $conn)['mail'];
+    $queryCart = "SELECT * FROM Cart WHERE Id = " . $userId . ";";
     try {
-        $result = $conn->query($query);
+        $result = $conn->query($queryCart);
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
-                return $row["mail"];
+                $itemId = $row["Items"];
+                $itemName = getSomethink('Items', $itemId, $conn)['Name'];
+                $itemPrice = getSomethink('Items', $itemId, $conn)['Price'];
+                $ligne = $itemName . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $itemPrice . " €<br>";
+                $body = $body . $ligne;
             }
+            $body = $body . "<br>Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $tot . " €<br>";
         } else {
             echo "Ce produit n'a aucun commentaire";
         }
     } catch (mysqli_sql_exception) {
         echo "Problème";
     }
+    EnvoieMail($email, $body, false);
+    echo "ookkkkkkkkkkkkkkkkkkkkkkkkkkkkk<br>";
+    echo $body;
 }
-
 
 function createCart($userId, $conn)
 {
@@ -210,6 +220,7 @@ function getCodePromo($codePromo, $conn)
 </head>
 
 <body class="d-flex flex-column h-100">
+    
     <!--    Body    -->
     <div class="container" style="margin-top: 100px; margin-right:0px; margin-left: 0px;">
         <main>
@@ -226,7 +237,7 @@ function getCodePromo($codePromo, $conn)
                         $total = createCart($_COOKIE["ID"], $conn);
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             if (isset($_POST['boutonPromo'])) {
-                                if ($_POST['CodePromo'] != 'AUCUN' and $_POST['CodePromo'] != 'aucun' and $_POST['CodePromo'] != 'None') {
+                                if ($_POST['CodePromo'] != 'AUCUN' and $_POST['CodePromo'] != 'aucun' and $_POST['CodePromo'] != 'none' and $_POST['CodePromo'] != 'NONE') {
                                     $total = $total * getCodePromo($_POST['CodePromo'], $conn);
                                 }
                             }

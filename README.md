@@ -2,7 +2,6 @@
 
     - faire la recherche dans la page home.php
     - faire page profil (si possible: faire une page pour modifier le profil)
-    - faire mail de facture après l'achat.
 
 # e-commerce-PHP
 
@@ -27,3 +26,4 @@ Mailhog vous permettra de recevoir le mail d'activation de votre compte ainsi qu
 - YANN:        -5%
 - ALBERIC:     -10%
 - ADRIANNA:    -20%
+- AUCUN, aucun, none, NONE:  -0% (Permet d'annuler l'utilisation d'un code promo)
