@@ -9,6 +9,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['verify'])) {
+  $USERID = intval($_GET['verify']);
+  $token = getTokenFromId($USERID, $conn);
+  if ($token == "0 results") {
+
+    $queryAuth = "INSERT INTO Auth (Id, Token) VALUES ($USERID, 'Verify')";
+
+    try {
+      mysqli_query($conn, $queryAuth);
+    } catch (mysqli_sql_exception) {
+      echo "PB! Auth";
+    }
+    setcookie('ID', $USERID);
+    $page = $_SERVER['PHP_SELF'];
+    header("Refresh: 0; url=$page");
+  } else if ($token != "Problème"){
+    setcookie('AR', 'true');
+    header('Location: home.php');
+  } else {
+    echo "PROBLEME!!!!!!!!!";
+  }
+}
+
 if (isset($_COOKIE["ID"])) {
   include("Conn_header.php");
 } else {
@@ -16,7 +39,8 @@ if (isset($_COOKIE["ID"])) {
 }
 
 // Permet de créer le rendu de la page home.php
-function createHome($conn) {
+function createHome($conn)
+{
   $query = "SELECT * FROM Category;";
   try {
     $result = $conn->query($query);
@@ -32,6 +56,40 @@ function createHome($conn) {
     echo "Problème";
   }
 }
+
+function createRemerciement() {
+  $dom = new DOMDocument('1.0', 'utf-8');
+  $div1 = createElement($dom, 'div', '', array('style' => 'position:fixed; z-index: 100; top: 25%; left: 25%; background-color: rgba(255, 255, 255, 1);'));
+  $div2 = createElement($dom, 'div', '', array('style' => 'background-color: rgba(0, 150, 0, 0.2);  padding:250px; padding-top:150px; padding-bottom:150px;'));
+  $p = createElement($dom, 'p', 'Merci d avoir commander!');
+  $button = createElement($dom, 'button', '', array('style' => 'position: absolute; top: -10px; right: -10px; border-style: none; border-radius: 25%;', 'id' => 'croixtkt'));
+  $img = createElement($dom, 'img', '', array('src' => 'img/croix.png', 'style' => 'width:30px;'));
+
+  $button->append($img);
+  $div2->append($p);
+  $div2->append($button);
+  $div1->append($div2);
+  $dom->appendChild($div1);
+  echo $dom->saveXML();
+}
+
+function createReprimende() {
+  $dom = new DOMDocument('1.0', 'utf-8');
+  $div1 = createElement($dom, 'div', '', array('style' => 'position:fixed; z-index: 100; top: 25%; left: 25%; background-color: rgba(255, 255, 255, 1);'));
+  $div2 = createElement($dom, 'div', '', array('style' => 'background-color: rgba(150, 0, 0, 0.2);  padding:250px; padding-top:150px; padding-bottom:150px;'));
+  $p = createElement($dom, 'p', 'Votre email est déja vérifier!');
+  $button = createElement($dom, 'button', '', array('style' => 'position: absolute; top: -10px; right: -10px; border-style: none; border-radius: 25%;', 'id' => 'croixpastkt'));
+  $img = createElement($dom, 'img', '', array('src' => 'img/croix.png', 'style' => 'width:30px;'));
+
+  $button->append($img);
+  $div2->append($p);
+  $div2->append($button);
+  $div1->append($div2);
+  $dom->appendChild($div1);
+  echo $dom->saveXML();
+}
+
+
 ?>
 
 <!doctype html>
@@ -51,12 +109,21 @@ function createHome($conn) {
 </head>
 
 <body class="d-flex flex-column h-100">
+    <?php 
+    if (isset($_COOKIE['JP'])) {
+      createRemerciement();
+    }
+    if (isset($_COOKIE['AR'])) {
+      createReprimende();
+    }
+    ?>
   <h2 style="margin-top:100px;">Produits</h2>
   <?php
   createHome($conn);
   ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="js/rating.js"></script>
   <script>
     $(document).ready(function() {
       $(".owl-carousel").owlCarousel({

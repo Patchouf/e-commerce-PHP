@@ -9,25 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $page = $_SERVER['PHP_SELF'];
         header("Refresh: 0; url=$page");
     } else if (isset($_POST['payer'])) {
-        // echo $_POST['prenom'] . "<br>";
-        // echo $_POST['nom'] . "<br>";
-        // if ($_POST['email'] == "") {
-        //     $email = getEmailFromId($conn);
-        //     echo $email  . "<br>";
-        // } else {
-        //     echo $_POST['email'] . "<br>";
-        // }
-
-        // echo $_POST['adresse'] . "<br>";
-        // echo $_POST['pays'] . "<br>";
-        // echo $_POST['departement'] . "<br>";
-        // echo $_POST['ville'] . "<br>";
-        // echo $_POST['paymentMethod'] . "<br>";
-        // echo $_POST['proprietaire'] . "<br>";
-        // echo $_POST['numero'] . "<br>";
-        // echo $_POST['expiration'] . "<br>";
-        // echo $_POST['cvv'] . "<br>";
-        cartToCommands($month, $conn);
+        cartToCommands($month, $_POST['payer'], $conn);
     }
 }
 
@@ -37,7 +19,7 @@ if (isset($_COOKIE["ID"])) {
     include("Deconn_header.php");
 }
 
-function cartToCommands($month, $conn)
+function cartToCommands($month, $tot, $conn)
 {
     $total = 0;
     $countCommands = getNumber("Commands", $conn);
@@ -51,7 +33,6 @@ function cartToCommands($month, $conn)
             // output data of each row
             while ($row = $result->fetch_assoc()) {
                 $itemId = $row["Items"];
-                $total = $total +  getItemPrice($row["Items"], $conn);
                 $queryCommand = "INSERT INTO Command (Id, Items) VALUES ($countCommands, $itemId)";
                 try {
                     mysqli_query($conn, $queryCommand);
@@ -66,7 +47,7 @@ function cartToCommands($month, $conn)
         echo "Problème";
     }
 
-    $queryCommands = "INSERT INTO Commands (Id, UserId, Date, Total) VALUES ($countCommands, $userId, '$date', $total)";
+    $queryCommands = "INSERT INTO Commands (Id, UserId, Date, Total) VALUES ($countCommands, $userId, '$date', $tot)";
     echo $queryCommands . "<br>";
     try {
         mysqli_query($conn, $queryCommands);
@@ -81,25 +62,9 @@ function cartToCommands($month, $conn)
     } catch (mysqli_sql_exception) {
         echo "PB! Cart";
     }
+
+    setcookie('JP', 'True');
     header("Location: home.php");
-}
-
-function getItemPrice($itemId, $conn) {
-    $query = "SELECT * FROM Items WHERE Id = " . $itemId . ";";
-
-    try {
-        $result = $conn->query($query);
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                return $row["Price"];
-            }
-        } else {
-            echo "Problème avec la générationdu cart";
-        }
-    } catch (mysqli_sql_exception) {
-        echo "Problème";
-    }
 }
 
 function getEmailFromId($conn)
@@ -320,6 +285,7 @@ function getCodePromo($codePromo, $conn)
                                 <label for="zip" class="form-label">Ville</label>
                                 <input type="text" class="form-control" name="ville" required>
                             </div>
+                            <div ></div>
                         </div>
 
                         <hr class="my-4">
@@ -383,7 +349,7 @@ function getCodePromo($codePromo, $conn)
 
                         <hr class="my-4">
 
-                        <button class="w-100 btn btn-primary btn-lg" type="submit" name="payer">Payer</button>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" name="payer" value="<?php echo $total; ?>">Payer</button>
                     </form>
                 </div>
             </div>

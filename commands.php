@@ -22,6 +22,81 @@ if (isset($_COOKIE["ID"])) {
 } else {
     include("Deconn_header.php");
 }
+
+function getCommands($conn)
+{
+    $queryCommands = "SELECT * FROM Commands WHERE UserId = " . $_COOKIE['ID'] . ";";
+    try {
+        $result = $conn->query($queryCommands);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                createCommands($row['Id'], $row['Date'], $row['Total'], $conn);
+            }
+        } else {
+            echo "Vous n'avez pas de commands";
+        }
+    } catch (mysqli_sql_exception) {
+        echo "Problème";
+    }
+}
+
+function createCommands($commandId, $date, $total, $conn)
+{
+
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $div1 = createElement($dom, 'div', '', array('class' => 'wrap-collabsible'));
+    $input = createElement($dom, 'input', '', array('id' => $commandId, 'class' => 'toggle', 'type' => 'checkbox'));
+    $label = createElement($dom, 'label', '', array('for' => $commandId, 'class' => 'lbl-toggle'));
+    $p = createElement($dom, 'p', $date, array('style' => 'display:inline;'));
+    $div2 = createElement($dom, 'div', '', array('class' => 'collapsible-content'));
+    $div3 = createElement($dom, 'div', '', array('class' => 'content-inner', 'style' => 'padding-top: 25px;'));
+
+    $queryCommand = "SELECT * FROM Command WHERE Id = " . $commandId . ";";
+    try {
+        $result = $conn->query($queryCommand);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $itemInfo = getSomethink('Items', $row['Items'], $conn);
+
+
+                $div4 = createElement($dom, 'div', '', array('style' => 'display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;'));
+                $div5 = createElement($dom, 'div', $itemInfo['Name']);
+                $div6 = createElement($dom, 'div', $itemInfo['Price'] . ' €');
+
+
+                $div4->append($div5);
+                $div4->append($div6);
+                
+                $div3->append($div4);
+        
+            }
+        } else {
+            echo "Ce produit n'a aucun commentaire";
+        }
+    } catch (mysqli_sql_exception) {
+        echo "Problème";
+    }
+
+    // $div7 = createElement($dom, 'div', '', array('style' => 'display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:20px;'));
+    $div8 = createElement($dom, 'div', '', array('style' => 'display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px; margin-bottom:5px, padding-top: 5%; border-top: solid 1px rgba(0,0,0,0.2)'));
+    $div9 = createElement($dom, 'div', 'Total:');
+    $div10 = createElement($dom, 'div', $total . ' €');
+
+    $div8->append($div9);
+    $div8->append($div10);
+
+    // $div3->append($div7);
+    $div3->append($div8);
+    $div2->append($div3);
+    $label->append($p);
+    $div1->append($input);
+    $div1->append($label);
+    $div1->append($div2);
+    $dom->appendChild($div1);
+    echo $dom->saveXML();
+}
 ?>
 
 <!doctype html>
@@ -47,7 +122,11 @@ if (isset($_COOKIE["ID"])) {
         <!-- Liste dynamique des commandes -->
         <ul class="list-group" style="margin-top: 40px;">
             <li class="list-group-item">
-                <div class="wrap-collabsible"> <input id="collapsible2" class="toggle" type="checkbox"> <label for="collapsible2" class="lbl-toggle">
+                <?php
+                getCommands($conn)
+                ?>
+                <!-- <div class="wrap-collabsible"> <input id="collapsible2" class="toggle" type="checkbox">
+                    <label for="collapsible2" class="lbl-toggle">
                         <p style="display:inline;">20 Février 2024</p>
                     </label>
                     <div class="collapsible-content">
@@ -60,43 +139,9 @@ if (isset($_COOKIE["ID"])) {
                                     100 €
                                 </div>
                             </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:20px;">
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Total:
-                                </div>
-                                <div>
-                                    400 €
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </li>
         </ul>
     </div>

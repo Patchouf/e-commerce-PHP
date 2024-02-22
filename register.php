@@ -106,79 +106,75 @@ $ok = true;
       </div>
       <button class="btn btn-primary w-100 py-2" type="submit"> <a class="nav-link active">Connexion</a></button>
     </form>
+    <div>
+      <?php
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
+
+        $countUser = getNumber("user", $conn);
+        $countPhoto = getNumber("photo", $conn);
+        $countRating = getNumber("rating", $conn);
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $token = password_hash($password, PASSWORD_BCRYPT);
+        $default = 0;
+
+        $queryLoginInfo = "INSERT INTO Login_info (Id, mail, Password) VALUES ($countUser, '$email', '$hash')";
+        $queryAddress = "INSERT INTO Address (Id, Street, City, CP, State, Country) VALUES ($countUser, '', '', 2, '', '')";
+        $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, '')";
+        $queryInvoices = "INSERT INTO Invoices (Id) VALUES ($countUser)";
+        $queryPreferPayement = "INSERT INTO Prefer_payment (Id, Payment) VALUES ($countUser, 0)";
+        $queryRating = "INSERT INTO Rating (Id, Rating, Comment) VALUES ($countRating, 3, 0)";
+        $queryUser = "INSERT INTO User (Id, Name, Login_info, Address, Photo, Commands, Cart, Invoices, Prefer_payment, Rating) VALUES ($countUser, '$username', $countUser, $countUser, $countPhoto, $countUser, $countUser, $countUser, 3, $countRating)";
+
+        try {
+          mysqli_query($conn, $queryLoginInfo);
+        } catch (mysqli_sql_exception) {
+          echo "PB! Login Info";
+        }
+        try {
+          mysqli_query($conn, $queryAddress);
+        } catch (mysqli_sql_exception) {
+          echo "PB! Address";
+        }
+
+        try {
+          mysqli_query($conn, $queryPhoto);
+        } catch (mysqli_sql_exception) {
+          echo "PB! Photo";
+        }
+        try {
+          mysqli_query($conn, $queryInvoices);
+        } catch (mysqli_sql_exception) {
+          echo "PB! Invoices";
+        }
+        try {
+          mysqli_query($conn, $queryPreferPayement);
+        } catch (mysqli_sql_exception) {
+          echo "PB! Prefer Payement";
+        }
+        try {
+          mysqli_query($conn, $queryRating);
+        } catch (mysqli_sql_exception) {
+          echo "PB! Rating";
+        }
+        try {
+          mysqli_query($conn, $queryUser);
+        } catch (mysqli_sql_exception) {
+          echo "PB! User";
+        }
+
+        // Envoi du mail pour verifiez l'email.
+        $body = 'Bonjour, merci de votre inscription.<br><br> 
+          Veuillez verifiez votre adresse mail:<br><br>
+          <form action="http://localhost/e-commerce-php/home.php" method="get" target=_blank>
+            <button name="verify" value="' . $countUser . '" style="margin-left:20px; padding:10px; background-color: #2569bd; color:white; border-style:none;">Vérifiez votre email!</button>
+          </form>';
+        EnvoieMail($email, $body);
+      }
+
+      ?>
+    </div>
   </main>
 </body>
-<?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" and $ok) {
-
-  $countUser = getNumber("user", $conn);
-  $countPhoto = getNumber("photo", $conn);
-  $countRating = getNumber("rating", $conn);
-  $hash = password_hash($password, PASSWORD_DEFAULT);
-  $token = password_hash($password, PASSWORD_BCRYPT);
-  $default = 0;
-
-  $queryLoginInfo = "INSERT INTO Login_info (Id, mail, Password) VALUES ($countUser, '$email', '$hash')";
-  $queryAddress = "INSERT INTO Address (Id, Street, City, CP, State, Country) VALUES ($countUser, '', '', 2, '', '')";
-  $queryPhoto = "INSERT INTO Photo (Id, Link) VALUES ($countPhoto, '')";
-  // $queryCommands = "INSERT INTO Commands (Id) VALUES ($countUser)";
-  $queryInvoices = "INSERT INTO Invoices (Id) VALUES ($countUser)";
-  $queryPreferPayement = "INSERT INTO Prefer_payment (Id, Payment) VALUES ($countUser, 0)";
-  $queryRating = "INSERT INTO Rating (Id, Rating, Comment) VALUES ($countRating, 3, 0)";
-  $queryUser = "INSERT INTO User (Id, Name, Login_info, Address, Photo, Commands, Cart, Invoices, Prefer_payment, Rating) VALUES ($countUser, '$username', $countUser, $countUser, $countPhoto, $countUser, $countUser, $countUser, 3, $countRating)";
-  $queryAuth = "INSERT INTO Auth (Id, Token) VALUES ($countUser, '$token')";
-
-  try {
-    mysqli_query($conn, $queryLoginInfo);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Login Info";
-  }
-  try {
-    mysqli_query($conn, $queryAddress);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Address";
-  }
-
-  try {
-    mysqli_query($conn, $queryPhoto);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Photo";
-  }
-  // try {
-  //   mysqli_query($conn, $queryCommands);
-  // } catch (mysqli_sql_exception) {
-  //   echo "PB! Commands";
-  // }
-  try {
-    mysqli_query($conn, $queryInvoices);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Invoices";
-  }
-  try {
-    mysqli_query($conn, $queryPreferPayement);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Prefer Payement";
-  }
-  try {
-    mysqli_query($conn, $queryRating);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Rating";
-  }
-  try {
-    mysqli_query($conn, $queryUser);
-  } catch (mysqli_sql_exception) {
-    echo "PB! User";
-  }
-  try {
-    mysqli_query($conn, $queryAuth);
-  } catch (mysqli_sql_exception) {
-    echo "PB! Auth";
-  }
-
-  setcookie('ID', $countUser);
-  header('Location: home.php');
-}
-?>
 
 </html>

@@ -135,3 +135,11 @@ input[type='checkbox'] {
 .collapsible-content p {
     margin-bottom: 0;
 }
+
+.scroller {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}

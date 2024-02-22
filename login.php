@@ -62,59 +62,64 @@ if (isset($_COOKIE['ID'])) {
       <button class="btn btn-primary w-100 py-2" type="submit"><a class="nav-link active">Connexion</a></button>
       <!-- <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p> -->
     </form>
+    <div>
+
+      <?php
+
+      function getIdFromEmail($email, $conn)
+      {
+        $query = "SELECT * FROM login_info WHERE mail = '" . $email . "';";
+        try {
+          $result = $conn->query($query);
+          if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+              //   echo "Nombre : " .  . "<br>";
+              return $row["Id"];
+            }
+          } else {
+            echo "0 results";
+          }
+        } catch (mysqli_sql_exception) {
+          echo "Problème";
+        }
+      }
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $id = getIdFromEmail($email, $conn);
+        $token = getTokenFromId($id, $conn);
+        $query = "SELECT Password FROM login_info WHERE mail = '$email';";
+
+        try {
+          $result = $conn->query($query);
+          if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+              $pass = $row["Password"];
+            }
+          } else {
+            $pass = "0 results";
+          }
+        } catch (mysqli_sql_exception) {
+          echo "Problème";
+        }
+
+        if (password_verify($password, $pass) and $token == "Verify") {
+          setcookie('ID', $id);
+          header('Location: home.php');
+        }
+        if (password_verify($password, $pass)) {
+          echo "Vous devez d'abord activer votre compte via votre email.";
+        } else {
+          echo "Vous devez commencer par vous créer un compte.";
+        }
+      }
+      ?>
+    </div>
   </main>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
 </html>
-
-<?php
-
-function getIdFromEmail($email, $conn)
-{
-  $query = "SELECT * FROM login_info WHERE mail = '" . $email . "';";
-  try {
-    $result = $conn->query($query);
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while ($row = $result->fetch_assoc()) {
-        //   echo "Nombre : " .  . "<br>";
-        return $row["Id"];
-      }
-    } else {
-      echo "0 results";
-    }
-  } catch (mysqli_sql_exception) {
-    echo "Problème";
-  }
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  // $hash = password_hash($password, PASSWORD_DEFAULT);
-  $query = "SELECT Password FROM login_info WHERE mail = '$email';";
-
-  try {
-    $result = $conn->query($query);
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while ($row = $result->fetch_assoc()) {
-        $pass = $row["Password"];
-      }
-    } else {
-      $pass = "0 results";
-    }
-  } catch (mysqli_sql_exception) {
-    echo "Problème";
-  }
-
-  if (password_verify($password, $pass)) {
-    $ident = getIdFromEmail($email, $conn);
-    setcookie('ID', $ident);
-    header('Location: home.php');
-  } else {
-    echo "You are not connected";
-  }
-}
-?>
