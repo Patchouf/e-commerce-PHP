@@ -10,8 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 if (isset($_COOKIE["ID"])) {
+    $is_connected = true;
     include("Conn_header.php");
 } else {
+    $is_connected = false;
     include("Conn_header.php");
 }
 
@@ -32,6 +34,8 @@ $UserName = $MainRow['Name'];
 $Photo = getSomethink('photo', $MainRow['Photo'], $conn)['Link'];
 $mail = getSomethink('login_info', $MainRow['Login_info'], $conn)['mail'];
 $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
+$commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Id"];
+
 ?>
 
 <!doctype html>
@@ -60,7 +64,9 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
         <div class="col-md-3">
             <!-- profil card -->
             <div class="card" style="margin-top: 50px;">
-                <img class="profil-picture" src="<?php echo ($Photo == null || $Photo == "None") ? 'https://static.vecteezy.com/ti/vecteur-libre/p3/26619142-defaut-avatar-profil-icone-vecteur-de-social-medias-utilisateur-photo-image-vectoriel.jpg' : $Photo ?>" alt="profile">
+                <img class="profil-picture"
+                     src="<?php echo ($Photo == null || $Photo == "None") ? 'https://static.vecteezy.com/ti/vecteur-libre/p3/26619142-defaut-avatar-profil-icone-vecteur-de-social-medias-utilisateur-photo-image-vectoriel.jpg' : $Photo ?>"
+                     alt="profile">
                 <h1><?php echo $UserName ?></h1>
                 <p class="title"><?php echo $mail ?></p>
                 <p>Rating: <?php echo $rating ?></p>
@@ -70,11 +76,14 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
                     <a href="#"><i class="fa fa-linkedin"></i></a>
                     <a href="#"><i class="fa fa-facebook"></i></a>
                 </div>
-                <p><button>Contact</button></p>
+                <p>
+                    <button>Contact</button>
+                </p>
             </div>
         </div>
         <div class="col-md-7 shadow">
-            <p style="margin-top: 50px; padding-left: 5%; padding-bottom: 10px; font-size: 150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">Produits vendus par l'utilisateur</p>
+            <p style="margin-top: 50px; padding-left: 5%; padding-bottom: 10px; font-size: 150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
+                Produits vendus par l'utilisateur</p>
             <div id="carouselExampleDark" class="carousel carousel-dark slide" style="margin: 20px;">
                 <div class="carousel-inner">
                     <?php
@@ -108,18 +117,51 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
                     }
                     ?>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 class="border-bottom pb-2 mb-0">Commentaires</h6>
+            <div class="col-md-10">
+                <?php
+                $query = "SELECT * FROM comment WHERE Id = $commentId";
+                $result = $conn->query($query);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $comment = $row["Comment"];
+                        $commentUserId = $row["User"];
+                        $commentUserName = getSomethink('user', $commentUserId, $conn)['Name'];
+                        $commentUserPhoto = getSomethink('photo', getSomethink('user', $commentUserId, $conn)['Photo'], $conn)['Link'];
+                        $commentId = $row["Id"];
+                        echo "<div class='my-3 p-3 bg-body rounded shadow-sm'>
+                            <div class='d-flex justify-content-left'>
+                                <img class='profil-picture' style='width: 50px; height: 50px;' src='" . ($commentUserPhoto == null || $commentUserPhoto == "None" ? 'https://static.vecteezy.com/ti/vecteur-libre/p3/26619142-defaut-avatar-profil-icone-vecteur-de-social-medias-utilisateur-photo-image-vectoriel.jpg' : $commentUserPhoto) . "' alt='...'>
+                                <h6 class='border-bottom pb-2 mb-0'>$commentUserName</h6>
+                            </div>
+                            <div class='d-flex justify-content-left'>
+                                <p class='text-muted'>$comment</p>
+                            </div>
+                        </div>";
+                    }
+                } else {
+                    echo "0 results";
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 </body>
 
 <!-- FOOTER -->
