@@ -32,7 +32,6 @@ $UserName = $MainRow['Name'];
 $Photo = getSomethink('photo', $MainRow['Photo'], $conn)['Link'];
 $mail = getSomethink('login_info', $MainRow['Login_info'], $conn)['mail'];
 $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
-
 ?>
 
 <!doctype html>
@@ -40,128 +39,89 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
 
 <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/Profil_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>Maladie.fr/profil</title>
 </head>
-
-<body class="d-flex flex-column ">
-    <div class="row" style="margin: 50px;">
-        <!--    profil card-->
-        <div class="col col-5" style="margin: 50px;">
-            <div class="card" style="padding: 100px; width:600px;">
-                <img src='<?php if ($Photo == null || $Photo == "") {
-                                $Photo = 'img/default.png';
-                            }
-                            echo $Photo ?>' style="width:200px;" alt="John">
+<body>
+<div class="container-fluid" style="margin-bottom: 200px; margin-left: 50px">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- profil card -->
+            <div class="card" style="margin-top: 50px;">
+                <img class="profil-picture" src="<?php echo ($Photo == null || $Photo == "None") ? 'https://static.vecteezy.com/ti/vecteur-libre/p3/26619142-defaut-avatar-profil-icone-vecteur-de-social-medias-utilisateur-photo-image-vectoriel.jpg' : $Photo ?>" alt="profile">
                 <h1><?php echo $UserName ?></h1>
                 <p class="title"><?php echo $mail ?></p>
                 <p>Rating: <?php echo $rating ?></p>
-
                 <div style="margin: 24px 0;">
                     <a href="#"><i class="fa fa-dribbble"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-linkedin"></i></a>
                     <a href="#"><i class="fa fa-facebook"></i></a>
                 </div>
-                <p>
-                    <button>Contact</button>
-                </p>
+                <p><button>Contact</button></p>
             </div>
         </div>
-        <!--    espace commentaire-->
-        <div class="col col-5" style="margin: 50px;">
-        </div>
-    </div>
-    <p style="margin: 30px;margin-top: 50px; padding-left:5%;padding-bottom:10px; font-size:150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
-        Produits vendu par l'utilisateur
-    </p>
+        <div class="col-md-7 shadow">
+            <p style="margin-top: 50px; padding-left: 5%; padding-bottom: 10px; font-size: 150%; border-bottom: 1px solid rgba(0, 0, 0, 0.25);">Produits vendus par l'utilisateur</p>
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" style="margin: 20px;">
+                <div class="carousel-inner">
+                    <?php
+                    $query = "SELECT * FROM items WHERE Seller = $get";
+                    $result = $conn->query($query);
 
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" style="margin: 20px;">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
-                    <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/91t7YlWwGfL._AC_UL640_FMwebp_QL65_.jpg">
-                    </div>
-                    <div class="col-7 ">
-                        <p class="username">One piece tome 1</p>
-                        <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
-                            devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
-                            a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
-                            contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
-                            de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
-                            toujours plus rocambolesques.
-                            Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
-                            formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
-                            désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
-                            exceptionnelles de leurs héros.</p>
-                    </div>
+                    if ($result->num_rows > 0) {
+                        $i = 0;
+                        while ($row = $result->fetch_assoc()) {
+                            $url_image = getImage($row["Photo"], $conn);
+                            $active = ($i == 0) ? 'active' : '';
+                            $productId = $row["Id"];
+                            $productCategory = $row["Category"];
+                            $url = "product.php?product=$productId+$productCategory";
+                            echo "<div class='carousel-item $active' style='padding-left: 20%; padding-right: 20%; padding-top: 5%'>
+                                        <img src='$url_image' class='d-block' style='height: 200px;' alt='...'>
+                                        <div>
+                                            <h5>" . $row["Name"] . "</h5>
+                                            <p>" . $row["Description"] . "</p>
+                                            <p>" . getSomethink('rating', $row['Rating'], $conn)['Rating'] . "/5</p>
+                                            <p>" . $row["Price"] . "€</p>
+                                            <div class='d-flex justify-content-between'>
+                                                <a href='$url' class='btn btn-primary'>Voir le produit</a>
+                                            </div>
+                                        </div>
+                                    </div>";
+                            $i++;
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    ?>
                 </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
-                    <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/91sKhhBDJ0L._AC_UL640_FMwebp_QL65_.jpg">
-                    </div>
-                    <div class="col-7 ">
-                        <p class="username">One piece tome 3</p>
-                        <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
-                            devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
-                            a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
-                            contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
-                            de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
-                            toujours plus rocambolesques.
-                            Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
-                            formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
-                            désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
-                            exceptionnelles de leurs héros.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row row-cols-2" style="margin-top: 20px; margin-left:5px;">
-                    <div class="col-4 pt-3 pb-2 text-center" style="border-right: 1px solid rgba(0, 0, 0, 0.25);">
-                        <img class="carousel-pic" src="https://m.media-amazon.com/images/I/913wc4EdSlL._AC_UL640_FMwebp_QL65_.jpg">
-                    </div>
-                    <div class="col-7 ">
-                        <p class="username">One piece tome 4</p>
-                        <p class="description-user">Nous sommes à l'ère des pirates. Luffy, un garçon espiègle, rêve de
-                            devenir le roi des pirates en trouvant le “One Piece”, un fabuleux trésor. Seulement, Luffy
-                            a avalé un fruit du démon qui l'a transformé en homme élastique. Depuis, il est capable de
-                            contorsionner son corps dans tous les sens, mais il a perdu la faculté de nager. Avec l'aide
-                            de ses précieux amis, il va devoir affronter de redoutables pirates dans des aventures
-                            toujours plus rocambolesques.
-                            Également adapté en dessin animé pour la télévision et le cinéma, One Piece remporte un
-                            formidable succès à travers le monde. Les aventures de Luffy au chapeau de paille ont
-                            désormais gagné tous les lecteurs, qui se passionnent chaque trimestre pour les aventures
-                            exceptionnelles de leurs héros.</p>
-                    </div>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
+</div>
 </body>
+
 <!-- FOOTER -->
 <footer class="footer mt-auto py-3 bg-body-tertiary">
     <div class="container">
@@ -171,13 +131,15 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
                 <div class="col-6 col-md-2 mb-3">
                     <h5>Nous</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Yann Fournier</a>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Yann
+                                Fournier</a>
                         </li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Adriana
                                 Pullig</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Albéric Walsh de
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Albéric Walsh
+                                de
                                 Serrant</a></li>
                     </ul>
                 </div>
@@ -186,7 +148,8 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">PHP</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">HTML/CSS</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">HTML/CSS</a>
+                        </li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Base de
                                 données</a></li>
@@ -212,7 +175,9 @@ $rating = getSomethink('rating', $MainRow["Rating"], $conn)["Rating"];
         </footer>
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>

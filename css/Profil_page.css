@@ -79,10 +79,16 @@ body {
     height: 100%;
     
 }
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
 
 .profil-picture {
-    width: 100%;
-    border-radius: 50%;
+    width: 200px;
+    border-radius: 75%;
+    display: block;
+    margin: auto;
 }
 
 .username {
@@ -100,7 +106,9 @@ body {
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    width: 400px;
+    margin: auto;
+    padding: 100px;
     text-align: center;
     font-family: arial;
 }
