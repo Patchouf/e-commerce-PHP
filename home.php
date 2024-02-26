@@ -124,7 +124,7 @@ function createReprimende() {
       createReprimende();
     }
     ?>
-  <h2 style="margin-top:100px;">Produits</h2>
+  <h2 style="margin-top:1%;">Produits</h2>
   <?php
   createHome($conn);
   ?>
