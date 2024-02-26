@@ -19,14 +19,15 @@ if (isset($_COOKIE["ID"])) {
     include("Deconn_header.php");
 }
 
-function cartToCommands($month, $email,$tot, $conn)
+function cartToCommands($month, $email, $tot, $conn)
 {
-    $total = 0;
     $countCommands = getNumber("Commands", $conn);
     $userId = $_COOKIE['ID'];
     $date = getNowDate($month);
-
-    createInvoice($tot, $email, $conn); // Envoie de la facture en premier
+    
+    // $lignePromoCode = getPromoFromCommands($countCommands, $conn);
+    // $promoCode = $_COOKIE['promoCode'];
+    createInvoice($tot, $email, "", $conn); // Envoie de la facture en premier
 
     $queryCart = "SELECT * FROM Cart WHERE Id = " . $userId . ";";
     try {
@@ -49,7 +50,7 @@ function cartToCommands($month, $email,$tot, $conn)
         echo "Problème";
     }
 
-    $queryCommands = "INSERT INTO Commands (Id, UserId, Date, Total) VALUES ($countCommands, $userId, '$date', $tot)";
+    $queryCommands = "INSERT INTO Commands (Id, UserId, Date, Total, Promo) VALUES ($countCommands, $userId, '$date', $tot, 'Aucun')";
     echo $queryCommands . "<br>";
     try {
         mysqli_query($conn, $queryCommands);
@@ -69,11 +70,18 @@ function cartToCommands($month, $email,$tot, $conn)
     header("Location: home.php");
 }
 
-function createInvoice($tot, $email, $conn) {
+function getPromoFromCommands($idCommands, $conn) {
+    // $diminution = getSomethink('Commands', $idCommands, $conn)['Promo'];
+    // $promoCode = getSomethink('Code_promo', $idPromo, $conn)['Code'];
+    // $codePromoDiminution = (1 - intval($diminution)) * 100;
+    // return $promoCode . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $codePromoDiminution . "<br>";
+}
+
+function createInvoice($tot, $email, $lignePromoCode, $conn) {
     $body = "<p>Merci d'avoir commander chez nous.</p>
              <p>Voici votre facture:</p>";
     $userId = $_COOKIE['ID'];
-    // $email = getSomethink('Login_info', $userId, $conn)['mail'];
+
     $queryCart = "SELECT * FROM Cart WHERE Id = " . $userId . ";";
     try {
         $result = $conn->query($queryCart);
@@ -86,6 +94,7 @@ function createInvoice($tot, $email, $conn) {
                 $ligne = $itemName . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $itemPrice . " €<br>";
                 $body = $body . $ligne;
             }
+            // $body = $body . $lignePromoCode;
             $body = $body . "<br>Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $tot . " €<br>";
         } else {
             echo "Ce produit n'a aucun commentaire";
@@ -238,7 +247,8 @@ function getCodePromo($codePromo, $conn)
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             if (isset($_POST['boutonPromo'])) {
                                 if ($_POST['CodePromo'] != 'AUCUN' and $_POST['CodePromo'] != 'aucun' and $_POST['CodePromo'] != 'none' and $_POST['CodePromo'] != 'NONE') {
-                                    $total = $total * getCodePromo($_POST['CodePromo'], $conn);
+                                    $strPromo = getCodePromo($_POST['CodePromo'], $conn);
+                                    $total = $total * $strPromo;
                                 }
                             }
                         }

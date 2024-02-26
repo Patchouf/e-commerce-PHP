@@ -34,7 +34,7 @@ function getCommands($conn)
                 createCommands($row['Id'], $row['Date'], $row['Total'], $conn);
             }
         } else {
-            echo "Vous n'avez pas de commands";
+            echo "Vous n'avez pas de commande";
         }
     } catch (mysqli_sql_exception) {
         echo "Problème";
@@ -49,7 +49,7 @@ function createCommands($commandId, $date, $total, $conn)
     $input = createElement($dom, 'input', '', array('id' => $commandId, 'class' => 'toggle', 'type' => 'checkbox'));
     $label = createElement($dom, 'label', '', array('for' => $commandId, 'class' => 'lbl-toggle'));
     $p = createElement($dom, 'p', $date, array('style' => 'display:inline;'));
-    $div2 = createElement($dom, 'div', '', array('class' => 'collapsible-content'));
+    $div2 = createElement($dom, 'div', '', array('class' => 'collapsible-content scroller', 'style' => 'scrollbar-color: grey black; display:block; font-weight: 15px; width: 100%; height: 100%;'));
     $div3 = createElement($dom, 'div', '', array('class' => 'content-inner', 'style' => 'padding-top: 25px;'));
 
     $queryCommand = "SELECT * FROM Command WHERE Id = " . $commandId . ";";
@@ -120,121 +120,8 @@ function createCommands($commandId, $date, $total, $conn)
         <h1>Historique des Commandes</h1>
 
         <!-- Liste dynamique des commandes -->
-        <ul class="list-group" style="margin-top: 40px;">
+        <ul class="list-group " style="margin-top: 40px;">
             <li class="list-group-item">
-                <div class="wrap-collabsible"> <input id="collapsible2" class="toggle" type="checkbox">
-                    <label for="collapsible2" class="lbl-toggle">
-                        <p style="display:inline;">20 Février 2024</p>
-                    </label>
-                    <div class="collapsible-content">
-                        <div class="content-inner" style="padding-top: 25px;">
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Nom du produit
-                                </div>
-                                <div>
-                                    100 €
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
-                                <div>
-                                    Total
-                                </div>
-                                <div>
-                                    2000 €
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <?php
                 getCommands($conn)
                 ?>

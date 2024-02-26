@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS Commands
     UserId INT NOT NULL,
     Date VARCHAR(50) NOT NULL,
     Total FLOAT,
+    Promo VARCHAR(50),
     PRIMARY KEY (Id)
 );
 

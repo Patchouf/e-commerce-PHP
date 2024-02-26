@@ -25,5 +25,5 @@ Mailhog vous permettra de recevoir le mail d'activation de votre compte ainsi qu
 
 - YANN:        -5%
 - ALBERIC:     -10%
-- ADRIANNA:    -20%
+- ADRIANA:    -20%
 - AUCUN, aucun, none, NONE:  -0% (Permet d'annuler l'utilisation d'un code promo)

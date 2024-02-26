@@ -59,7 +59,8 @@ function createHome($conn)
 
 function createRemerciement() {
   $dom = new DOMDocument('1.0', 'utf-8');
-  $div1 = createElement($dom, 'div', '', array('style' => 'position:fixed; z-index: 100; top: 25%; left: 25%; background-color: rgba(255, 255, 255, 1);'));
+  $div = createElement($dom, 'div', '', array('style' => 'position:fixed; z-index: 100; background-color: rgba(255, 255, 255, 0.5); width: 100%; height: 100%;'));
+  $div1 = createElement($dom, 'div', '', array('style' => 'position:fixed; z-index: 110; top: 25%; left: 25%; background-color: rgba(255, 255, 255, 1);'));
   $div2 = createElement($dom, 'div', '', array('style' => 'background-color: rgba(0, 150, 0, 0.2);  padding:250px; padding-top:150px; padding-bottom:150px;'));
   $p1 = createElement($dom, 'p', 'Merci d avoir commander.');
   $p2 = createElement($dom, 'p', 'Un facture vous à été envoyer par mail.');
@@ -71,12 +72,14 @@ function createRemerciement() {
   $div2->append($p2);
   $div2->append($button);
   $div1->append($div2);
-  $dom->appendChild($div1);
+  $div->append($div1);
+  $dom->appendChild($div);
   echo $dom->saveXML();
 }
 
 function createReprimende() {
   $dom = new DOMDocument('1.0', 'utf-8');
+  $div = createElement($dom, 'div', '', array('style' => 'position:fixed; z-index: 100; background-color: rgba(255, 255, 255, 0.5); width: 100%; height: 100%;'));
   $div1 = createElement($dom, 'div', '', array('style' => 'position:fixed; z-index: 100; top: 25%; left: 25%; background-color: rgba(255, 255, 255, 1);'));
   $div2 = createElement($dom, 'div', '', array('style' => 'background-color: rgba(150, 0, 0, 0.2);  padding:250px; padding-top:150px; padding-bottom:150px;'));
   $p = createElement($dom, 'p', 'Votre email est déja vérifier!');
@@ -87,7 +90,8 @@ function createReprimende() {
   $div2->append($p);
   $div2->append($button);
   $div1->append($div2);
-  $dom->appendChild($div1);
+  $div->append($div1);
+  $dom->appendChild($div);
   echo $dom->saveXML();
 }
 
