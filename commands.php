@@ -122,10 +122,7 @@ function createCommands($commandId, $date, $total, $conn)
         <!-- Liste dynamique des commandes -->
         <ul class="list-group" style="margin-top: 40px;">
             <li class="list-group-item">
-                <?php
-                getCommands($conn)
-                ?>
-                <!-- <div class="wrap-collabsible"> <input id="collapsible2" class="toggle" type="checkbox">
+                <div class="wrap-collabsible"> <input id="collapsible2" class="toggle" type="checkbox">
                     <label for="collapsible2" class="lbl-toggle">
                         <p style="display:inline;">20 Février 2024</p>
                     </label>
@@ -139,9 +136,108 @@ function createCommands($commandId, $date, $total, $conn)
                                     100 €
                                 </div>
                             </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Nom du produit
+                                </div>
+                                <div>
+                                    100 €
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content:space-between; padding-left: 5%; padding-right: 5%; height:40px;">
+                                <div>
+                                    Total
+                                </div>
+                                <div>
+                                    2000 €
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
+                <?php
+                getCommands($conn)
+                ?>
             </li>
         </ul>
     </div>
