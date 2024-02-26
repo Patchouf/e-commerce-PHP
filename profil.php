@@ -14,7 +14,7 @@ if (isset($_COOKIE["ID"])) {
     include("Conn_header.php");
 } else {
     $is_connected = false;
-    include("Conn_header.php");
+    include("Deconn_header.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -65,7 +65,7 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Id"];
             <!-- profil card -->
             <div class="card" style="margin-top: 50px;">
                 <img class="profil-picture"
-                     src="<?php echo ($Photo == null || $Photo == "None") ? 'https://static.vecteezy.com/ti/vecteur-libre/p3/26619142-defaut-avatar-profil-icone-vecteur-de-social-medias-utilisateur-photo-image-vectoriel.jpg' : $Photo ?>"
+                     src="<?php echo ($Photo == null || $Photo == "") ? 'img/default2.png' : $Photo ?>"
                      alt="profile">
                 <h1><?php echo $UserName ?></h1>
                 <p class="title"><?php echo $mail ?></p>
@@ -147,7 +147,7 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Id"];
                         $commentId = $row["Id"];
                         echo "<div class='my-3 p-3 bg-body rounded shadow-sm'>
                             <div class='d-flex justify-content-left'>
-                                <img class='profil-picture' style='width: 50px; height: 50px;' src='" . ($commentUserPhoto == null || $commentUserPhoto == "None" ? 'https://static.vecteezy.com/ti/vecteur-libre/p3/26619142-defaut-avatar-profil-icone-vecteur-de-social-medias-utilisateur-photo-image-vectoriel.jpg' : $commentUserPhoto) . "' alt='...'>
+                                <img class='profil-picture' style='width: 50px; height: 50px;' src='" . ($commentUserPhoto == null || $commentUserPhoto == "" ? 'img/default2.png' : $commentUserPhoto) . "' alt='...'>
                                 <h6 class='border-bottom pb-2 mb-0'>$commentUserName</h6>
                             </div>
                             <div class='d-flex justify-content-left'>
@@ -199,7 +199,7 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Id"];
                 </div>
 
                 <div class="col-md-5 offset-md-1 mb-3">
-                    <form>
+                    <!-- <form>
                         <h5>Abonne toi à notre Newsletter</h5>
                         <p>Alerte pour les nouveaux produits et promotions de la semaine</p>
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
@@ -207,7 +207,7 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Id"];
                             <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
                             <button class="btn btn-primary" type="button">S'abonner</button>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
 

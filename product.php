@@ -136,10 +136,10 @@ function createComment($comment, $userId, $conn)
             // output data of each row
             while ($row = $result->fetch_assoc()) {
                 $url_image = getImage($row["Photo"], $conn);
-                if ($url_image != "None") {
+                if ($url_image != "") {
                     $img = createElement($dom, 'img', '', array('src' => $url_image, 'alt' => 'pp', 'style' => 'block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;'));
                 } else {
-                    $img = createElement($dom, 'img', '', array('src' => 'img/default.png', 'alt' => 'pp', 'style' => 'block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;'));
+                    $img = createElement($dom, 'img', '', array('src' => 'img/default2.png', 'alt' => 'pp', 'style' => 'block-size: 50px; width: 50px; height: 50px; border-radius: 15%; margin-right:20px;'));
                 }
                 $strong = createElement($dom, 'strong', $row["Name"]);
                 $p = createElement($dom, 'p', $comment, array('style' => 'width: 100%;'));
