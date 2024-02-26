@@ -111,6 +111,7 @@ function createReprimende() {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
+    <link rel="stylesheet" href="css/main.css">
   <title>Maladie.fr/home</title>
 </head>
 

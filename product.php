@@ -176,6 +176,7 @@ function createComment($comment, $userId, $conn)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <link rel="stylesheet" href="css/main.css">
     <title>Maladie.fr/product</title>
 </head>
 
@@ -191,7 +192,7 @@ function createComment($comment, $userId, $conn)
                         <?php createOwner($seller, $MainRow["Seller"]) ?>
                     </p>
                     <hr>
-                    <img src="<?php echo $photo ?>" alt="Photo du produit" class="card">
+                    <img src="<?php echo $photo ?>" alt="Photo du produit" class="product-image">
                     <p><?php echo $description ?></p>
                     <h2>Prix: <?php echo $price ?> €</h2>
                     <h2>Rating: <?php echo $rating ?>/5</h2>

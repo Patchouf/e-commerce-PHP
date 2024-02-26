@@ -110,6 +110,7 @@ function createCommands($commandId, $date, $total, $conn)
     <link rel="stylesheet" href="css/Panier_page.css">
     <link rel="stylesheet" href="css/commands.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
     <meta name="description" content="">
     <title>Maladie.fr/command</title>
 </head>

@@ -1,0 +1,59 @@
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.product-image {
+    margin: 10px;
+    text-align: center;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    width: 30%;
+}
+
+.btn-link {
+    background-color: rgba(255, 255, 255, 0);
+    color: #057695;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    width: 30%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 10% 0;
+}
+
+.success {
+    background-color: #23ed23;
+    margin: auto;
+}
+
+.warning {
+    background-color: #ec5c0f;
+    margin: auto;
+}
+
+.info {
+    background-color: #0f7aec;
+    margin: auto;
+}

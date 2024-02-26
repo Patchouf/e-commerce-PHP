@@ -18,6 +18,7 @@ if (isset($_COOKIE['ID'])) {
   <link rel="stylesheet" href="css/login.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
+    <link rel="stylesheet" href="css/main.css">
   <title>Maladie.fr/login</title>
 </head>
 

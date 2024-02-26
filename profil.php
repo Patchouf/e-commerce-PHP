@@ -1,6 +1,8 @@
 <?php
 include("Utils.inc.php");
 
+$is_your_profil = false;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['Deconnexion'])) {
         setcookie('ID', '', -1);
@@ -21,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET["boutonProfil"])) {
         if ($_GET["boutonProfil"] == "") {
             $get = $_COOKIE["ID"];
+            $is_your_profil = true;
         } else {
             $get = $_GET["boutonProfil"];
         }
@@ -49,6 +52,7 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Id"];
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/Profil_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
@@ -77,7 +81,15 @@ $commentId = getSomethink('rating', $MainRow["Rating"], $conn)["Id"];
                     <a href="#"><i class="fa fa-facebook"></i></a>
                 </div>
                 <p>
-                    <button>Contact</button>
+                    <?php
+                    if ($is_your_profil) {
+                        echo "<form method='post' action='modify.php'>
+                            <button type='submit' name='Modify'>Modify</button>
+                        </form>";
+                    } else {
+                        echo '<button>Contact</button>';
+                    }
+                    ?>
                 </p>
             </div>
         </div>

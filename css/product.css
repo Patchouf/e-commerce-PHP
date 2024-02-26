@@ -6,12 +6,6 @@ body{
     height:100vh;
 }
 
-.card{
-    width:380px;
-    border:none;
-    height:280px;
-}
-
 .ratings{
     margin-right:10px;
 }
@@ -167,8 +161,4 @@ h2 {
 }
 .owl-carousel .owl-next {
   right: 2px;
-}
-.shadow {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
 }

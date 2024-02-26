@@ -209,7 +209,7 @@ function getNowDate($month)
 }
 
 
-function EnvoieMail($email, $body, $verif)
+function EnvoieMail($email, $object, $body, $verif)
 {
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
@@ -233,7 +233,7 @@ function EnvoieMail($email, $body, $verif)
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Mail from code PHP';
+        $mail->Subject = $object;
         $mail->Body = $body;
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
