@@ -48,7 +48,7 @@ function addToCart($value, $conn)
 function createDivAddComment($value)
 {
     $dom = new DOMDocument('1.0', 'utf-8');
-    $div = createElement($dom, 'div', '', array());
+    $div = createElement($dom, 'div', '', array('class' => 'shadow'));
     $form = createElement($dom, 'form', '', array('action' => 'product.php', 'methode' => 'get'));
     $input = createElement($dom, 'input', '', array('type' => 'text', 'name' => 'inputCommentaire', 'placeholder' => 'Ajouter un commentaire'));
     $bouton = createElement($dom, 'button', 'Ajouter', array('class' => 'add-to-cart', 'name' => 'divAddComment', 'value' => $value));
@@ -183,7 +183,7 @@ function createComment($comment, $userId, $conn)
 <body class="d-flex flex-column h-100">
     <main class="container-fluid">
         <div class="row g-5 mt-5">
-            <div class="col-md-8">
+            <div class="shadow col-md-8" style="margin: 100px">
                 <article class="blog-post">
                     <h2 class="display-5 link-body-emphasis mb-1"><?php echo $name ?></h2>
                     <p><?php echo $description ?></p>
