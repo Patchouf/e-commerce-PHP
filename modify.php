@@ -1,7 +1,4 @@
 <?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-
 include("Utils.inc.php");
 
 $get = $_COOKIE["ID"];
@@ -136,6 +133,10 @@ $Photo = getSomethink('photo', $MainRow['Photo'], $conn)['Link'];
                 }
                 ?>
             </div>
+            <div class="mb-3">
+                <label for="photo" class="form-label text-dark">Photo de profil</label>
+                <input type="text" class="form-control" name="photo" placeholder="Url de la photo de profil">
+            </div>
             <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     </div>
@@ -183,6 +184,17 @@ $Photo = getSomethink('photo', $MainRow['Photo'], $conn)['Link'];
             echo "<p class='warning card' style='margin: 0 10px; padding: 10px 0'>Les mots de passe ne correspondent pas</p><br>";
         } else if (!empty($oldPassword) && !password_verify($oldPassword, $Password)) {
             echo "<p class='warning card' style='margin: 0 10px; padding: 10px 0'>Mot de passe incorrect</p><br>";
+        }
+
+        if (!empty($_POST['photo'])) {
+            $photo = filter_input(INPUT_POST, "photo", FILTER_SANITIZE_STRING);
+            $query = "UPDATE photo SET Link = '" . $photo . "' WHERE ID = " . $MainRow['Photo'] . ";";
+            try {
+                $conn->query($query);
+                echo "<p class='success card' style='margin: 0 10px; padding: 10px 0'>Photo de profil modifiée avec succès</p><br>";
+            } catch (mysqli_sql_exception $e) {
+                echo "Problème : " . $e->getMessage();
+            }
         }
     }
     ?>
