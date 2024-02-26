@@ -168,3 +168,7 @@ h2 {
 .owl-carousel .owl-next {
   right: 2px;
 }
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
